@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm uninstall:*)",
+      "WebFetch(domain:dcu.cbe.go.kr)",
+      "WebFetch(domain:www.krds.go.kr)",
+      "WebFetch(domain:www.oka.go.kr)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
