@@ -11,7 +11,11 @@
       "Bash(npm uninstall:*)",
       "WebFetch(domain:dcu.cbe.go.kr)",
       "WebFetch(domain:www.krds.go.kr)",
-      "WebFetch(domain:www.oka.go.kr)"
+      "WebFetch(domain:www.oka.go.kr)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
