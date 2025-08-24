@@ -1,6 +1,7 @@
 import Layout from '../../components/common/Layout';
 import { Clock, Play, CheckCircle, Award, Brain, Target, User, Eye, ThumbsUp } from 'lucide-react';
 import { useState } from 'react';
+import fractionImage from '../../assets/pictures/fraction.jpg';
 
 const TodayLearning = () => {
   const [selectedSubject, setSelectedSubject] = useState('전체');
@@ -13,7 +14,7 @@ const TodayLearning = () => {
       subject: '수학',
       teacher: '김수학 선생님',
       duration: 25,
-      thumbnail: '📐',
+      thumbnail: fractionImage,
       views: 1234,
       likes: 89,
       difficulty: 'medium',
@@ -222,8 +223,16 @@ const TodayLearning = () => {
             <div key={lesson.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all hover:scale-105 cursor-pointer">
               {/* 썸네일 영역 */}
               <div className="relative">
-                <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-5xl">
-                  {lesson.thumbnail}
+                <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
+                  {typeof lesson.thumbnail === 'string' && lesson.thumbnail.includes('.') ? (
+                    <img 
+                      src={lesson.thumbnail} 
+                      alt={lesson.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-5xl">{lesson.thumbnail}</div>
+                  )}
                 </div>
                 {/* 진행률 바 */}
                 {lesson.progress > 0 && (

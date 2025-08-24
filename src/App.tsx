@@ -9,6 +9,7 @@ import AdminDashboard from './pages/AdminDashboard';
 
 // Student pages
 import TodayLearning from './pages/student/TodayLearning';
+import ProblemSolving from './pages/student/ProblemSolving';
 import OnlineLibrary from './pages/student/OnlineLibrary';
 import QuestionRoom from './pages/student/QuestionRoom';
 import Mentoring from './pages/student/Mentoring';
@@ -59,6 +60,9 @@ function App() {
         } />
         <Route path="/student/today" element={
           user?.role === 'student' ? <TodayLearning /> : <Navigate to="/" />
+        } />
+        <Route path="/student/problems" element={
+          user?.role === 'student' ? <ProblemSolving /> : <Navigate to="/" />
         } />
         <Route path="/student/library" element={
           user?.role === 'student' ? <OnlineLibrary /> : <Navigate to="/" />

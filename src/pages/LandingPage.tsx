@@ -49,19 +49,21 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold text-gray-900">경산시 스마트학습 플랫폼</span>
             </div>
             
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#intro" className="text-gray-700 hover:text-blue-600 font-medium transition">플랫폼 소개</a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition">핵심 서비스</a>
-              <a href="#notice" className="text-gray-700 hover:text-blue-600 font-medium transition">공지사항</a>
+              <a href="#services" className="text-gray-700 hover:text-primary font-medium transition">온라인 학습</a>
+              <a href="#services" className="text-gray-700 hover:text-primary font-medium transition">AI 학습진단</a>
+              <a href="#services" className="text-gray-700 hover:text-primary font-medium transition">디지털 책방</a>
+              <a href="#services" className="text-gray-700 hover:text-primary font-medium transition">포인트몰</a>
+              <a href="#notice" className="text-gray-700 hover:text-primary font-medium transition">공지사항</a>
               <button 
                 onClick={handleLogin}
-                className="px-6 py-2.5 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition shadow-lg hover:shadow-xl"
+                className="px-6 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-opacity-90 transition shadow-lg hover:shadow-xl"
               >
                 로그인
               </button>
@@ -75,13 +77,13 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-secondary to-blue-800">
         <div className="absolute inset-0 bg-black/30"></div>
         
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in">
             AI 기술과 인간적 교감이 결합된<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-green-300">
               초개인화 학습 생태계
             </span>
           </h1>
@@ -90,7 +92,7 @@ const LandingPage = () => {
           </p>
           <button 
             onClick={handleStart}
-            className="px-10 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold text-lg shadow-2xl hover:shadow-3xl transform transition hover:scale-105"
+            className="px-10 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-bold text-lg shadow-2xl hover:shadow-3xl transform transition hover:scale-105"
           >
             학습 시작하기
             <ArrowRight className="inline-block w-5 h-5 ml-2" />
@@ -98,6 +100,40 @@ const LandingPage = () => {
           
           <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white opacity-70 animate-bounce">
             <ChevronDown className="w-8 h-8" />
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Navigation */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">빠른 이동</h2>
+            <p className="text-lg text-gray-600">원하는 기능으로 바로 이동하세요</p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { title: '스마트 클래스', desc: '초등 학습 콘텐츠', color: 'primary', path: '/student/today' },
+              { title: '러닝메이트', desc: '학생 대시보드', color: 'secondary', path: '/student' },
+              { title: '디지털 책방', desc: '온라인 독서 서비스', color: 'primary', path: '/student/library' },
+              { title: '문제풀이', desc: '문제 풀이 페이지', color: 'secondary', path: '/student/problems' },
+              { title: '1:1 학습질문', desc: '학습질문 페이지', color: 'primary', path: '/student/questions' },
+              { title: '1:1 멘토링', desc: '멘토링 페이지', color: 'secondary', path: '/student/mentoring' },
+              { title: '상담예약', desc: '메일 상담 페이지', color: 'primary', path: '/parent/consultation' },
+              { title: '포인트몰', desc: '포인트몰 페이지', color: 'secondary', path: '/student/points' },
+            ].map((item, idx) => (
+              <button
+                key={idx}
+                onClick={() => navigate('/login')}
+                className={`p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 text-left ${
+                  item.color === 'primary' ? 'bg-gradient-to-br from-primary to-blue-600' : 'bg-gradient-to-br from-secondary to-green-500'
+                } text-white`}
+              >
+                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                <p className="text-sm opacity-90">{item.desc}</p>
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -139,7 +175,7 @@ const LandingPage = () => {
       </section>
 
       {/* Impact Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-20 px-4 bg-gradient-to-r from-primary to-secondary">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -222,7 +258,7 @@ const LandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-xl font-bold text-white">경산시 스마트학습 플랫폼</span>

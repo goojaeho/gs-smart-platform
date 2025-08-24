@@ -19,6 +19,16 @@ export const useAuthStore = create<AuthState>((set) => ({
     if (user && user.role === role) {
       set({ user, isAuthenticated: true });
       localStorage.setItem('user', JSON.stringify(user));
+      
+      // Handle post-login redirect
+      const redirectRoute = sessionStorage.getItem('redirectAfterLogin');
+      if (redirectRoute) {
+        sessionStorage.removeItem('redirectAfterLogin');
+        // Use setTimeout to ensure state is updated before navigation
+        setTimeout(() => {
+          window.location.href = redirectRoute;
+        }, 100);
+      }
     } else {
       throw new Error('Invalid credentials');
     }

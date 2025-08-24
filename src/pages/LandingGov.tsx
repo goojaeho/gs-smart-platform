@@ -8,10 +8,10 @@ import {
   FileText, Calendar, BarChart3, Headphones
 } from 'lucide-react';
 
-// 정부 표준 색상
+// GS Smart Platform 색상 (PDF 요구사항에 맞춤)
 const govColors = {
-  primary: '#1e4788',
-  secondary: '#2e5ba6',
+  primary: '#0397D6',
+  secondary: '#63C29D', 
   lightBlue: '#4a90e2',
   success: '#5cb85c',
   warning: '#f0ad4e',
@@ -40,19 +40,19 @@ const LandingGov = () => {
   // 메인 비주얼 슬라이드
   const slides = [
     {
-      title: "모든 아이에게 평등한 교육 기회를",
-      subtitle: "경산시 스마트학습 플랫폼이 교육 격차를 해소합니다",
-      image: "bg-gradient-to-br from-[#1e4788] to-[#2e5ba6]"
+      title: "AI 기술과 인간적 교감이 결합된",
+      subtitle: "초개인화 학습 생태계로 경산시 아이들의 무한한 가능성을 펼칩니다",
+      image: "bg-gradient-to-br from-[#0397D6] to-[#63C29D]"
     },
     {
-      title: "AI 기반 맞춤형 학습 지원",
-      subtitle: "개인별 학습 수준에 최적화된 교육 콘텐츠 제공",
-      image: "bg-gradient-to-br from-[#2e5ba6] to-[#4a90e2]"
+      title: "러닝메이트와 함께하는 학습 여행",
+      subtitle: "캐릭터 성장과 미션 기반 학습으로 재미있게 공부해요",
+      image: "bg-gradient-to-br from-[#63C29D] to-[#0397D6]"
     },
     {
       title: "전문 교사와 함께하는 온라인 멘토링",
       subtitle: "실시간 화상 수업으로 언제 어디서나 학습 가능",
-      image: "bg-gradient-to-br from-[#1e4788] to-[#4a90e2]"
+      image: "bg-gradient-to-br from-[#0397D6] to-[#4a90e2]"
     }
   ];
 
@@ -137,7 +137,7 @@ const LandingGov = () => {
               <span className="text-[#cccccc]">|</span>
               
               {/* 로그인 */}
-              <button onClick={handleLogin} className="text-[#1e4788] hover:underline font-medium">
+              <button onClick={handleLogin} className="text-[#0397D6] hover:underline font-medium">
                 로그인
               </button>
             </div>
@@ -153,7 +153,7 @@ const LandingGov = () => {
               {/* 로고 */}
               <div className="flex items-center space-x-4">
                 <a href="/" className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-[#1e4788] rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-[#0397D6] rounded-lg flex items-center justify-center">
                     <GraduationCap className="w-7 h-7 text-white" />
                   </div>
                   <div>
@@ -169,7 +169,7 @@ const LandingGov = () => {
                   <input
                     type="text"
                     placeholder="무엇을 도와드릴까요?"
-                    className="w-full px-4 py-2 pr-10 border border-[#cccccc] rounded-lg focus:outline-none focus:border-[#1e4788]"
+                    className="w-full px-4 py-2 pr-10 border border-[#cccccc] rounded-lg focus:outline-none focus:border-[#0397D6]"
                   />
                   <button className="absolute right-2 top-1/2 transform -translate-y-1/2">
                     <Search className="w-5 h-5 text-[#666666]" />
@@ -189,22 +189,23 @@ const LandingGov = () => {
           </div>
 
           {/* GNB 메뉴 */}
-          <nav className="hidden lg:block bg-[#1e4788]">
+          <nav className="hidden lg:block bg-[#0397D6]">
             <div className="max-w-[1280px] mx-auto px-4">
               <ul className="flex">
                 {[
                   { icon: Home, label: '홈', active: true },
                   { icon: Monitor, label: '온라인 학습' },
                   { icon: Brain, label: 'AI 학습진단' },
-                  { icon: Users, label: '멘토링' },
-                  { icon: BookOpen, label: '학습자료실' },
+                  { icon: BookOpen, label: '디지털 책방' },
+                  { icon: Award, label: '포인트몰' },
                   { icon: FileText, label: '공지사항' },
-                  { icon: Headphones, label: '고객지원' }
+                  { icon: Headphones, label: '고객지원' },
+                  { icon: BookOpen, label: '학습자료실' }
                 ].map((item, idx) => {
                   const Icon = item.icon;
                   return (
                     <li key={idx}>
-                      <button className={`flex items-center space-x-2 px-6 py-4 text-white hover:bg-[#2e5ba6] transition ${item.active ? 'bg-[#2e5ba6]' : ''}`}>
+                      <button className={`flex items-center space-x-2 px-6 py-4 text-white hover:bg-[#63C29D] transition ${item.active ? 'bg-[#63C29D]' : ''}`}>
                         <Icon className="w-4 h-4" />
                         <span>{item.label}</span>
                       </button>
@@ -251,7 +252,7 @@ const LandingGov = () => {
                   </p>
                   <button 
                     onClick={handleLogin}
-                    className="px-8 py-3 bg-white text-[#1e4788] rounded-lg font-medium hover:bg-[#f5f5f5] transition"
+                    className="px-8 py-3 bg-white text-[#0397D6] rounded-lg font-medium hover:bg-[#f5f5f5] transition"
                   >
                     학습 시작하기
                     <ArrowRight className="inline-block w-5 h-5 ml-2" />
@@ -298,20 +299,32 @@ const LandingGov = () => {
         <div className="max-w-[1280px] mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
             {[
-              { icon: '📚', label: '학습가이드' },
-              { icon: '📝', label: '과제제출' },
-              { icon: '📊', label: '성적확인' },
-              { icon: '👨‍🏫', label: '멘토찾기' },
-              { icon: '📅', label: '학습일정' },
-              { icon: '💬', label: '질문하기' },
-              { icon: '🎓', label: '수료증' },
-              { icon: '📞', label: '상담예약' }
-            ].map((link, idx) => (
-              <button key={idx} className="bg-white rounded-lg p-4 hover:shadow-md transition text-center group">
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{link.icon}</div>
-                <div className="text-sm text-[#666666]">{link.label}</div>
-              </button>
-            ))}
+              { icon: '📚', label: '학습가이드', route: '/student/today' },
+              { icon: '📝', label: '과제제출', route: '/student/today' },
+              { icon: '📊', label: '성적확인', route: '/student' },
+              { icon: '👨‍🏫', label: '멘토찾기', route: '/student/mentoring' },
+              { icon: '📅', label: '학습일정', route: '/parent/schedule' },
+              { icon: '💬', label: '질문하기', route: '/student/questions' },
+              { icon: '🎓', label: '수료증', route: '/student/notes' },
+              { icon: '📞', label: '상담예약', route: '/parent/consultation' }
+            ].map((link, idx) => {
+              const handleQuickNavClick = () => {
+                // Store the intended destination for post-login redirect
+                sessionStorage.setItem('redirectAfterLogin', link.route);
+                handleLogin();
+              };
+
+              return (
+                <button 
+                  key={idx} 
+                  onClick={handleQuickNavClick}
+                  className="bg-white rounded-lg p-4 hover:shadow-md transition text-center group cursor-pointer hover:bg-gray-50"
+                >
+                  <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{link.icon}</div>
+                  <div className="text-sm text-[#666666]">{link.label}</div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -327,7 +340,7 @@ const LandingGov = () => {
                   <AlertCircle className="w-5 h-5 mr-2 text-[#d9534f]" />
                   공지사항
                 </h3>
-                <button className="text-sm text-[#1e4788] hover:underline">
+                <button className="text-sm text-[#0397D6] hover:underline">
                   더보기 →
                 </button>
               </div>
@@ -347,7 +360,7 @@ const LandingGov = () => {
                       {item.isNew && (
                         <span className="px-2 py-1 bg-[#f0ad4e] text-white text-xs rounded">NEW</span>
                       )}
-                      <a href="#" className="text-[#333333] hover:text-[#1e4788] hover:underline">
+                      <a href="#" className="text-[#333333] hover:text-[#0397D6] hover:underline">
                         {item.title}
                       </a>
                     </div>
@@ -364,7 +377,7 @@ const LandingGov = () => {
                   <FileText className="w-5 h-5 mr-2 text-[#1e4788]" />
                   학습자료실
                 </h3>
-                <button className="text-sm text-[#1e4788] hover:underline">
+                <button className="text-sm text-[#0397D6] hover:underline">
                   더보기 →
                 </button>
               </div>
@@ -381,7 +394,7 @@ const LandingGov = () => {
                       <span className="px-2 py-1 bg-[#f5f5f5] text-[#666666] text-xs rounded">
                         {item.category}
                       </span>
-                      <a href="#" className="text-[#333333] hover:text-[#1e4788] hover:underline">
+                      <a href="#" className="text-[#333333] hover:text-[#0397D6] hover:underline">
                         {item.title}
                       </a>
                     </div>
@@ -401,10 +414,10 @@ const LandingGov = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Monitor, title: '온라인 학습', desc: '24시간 이용 가능한\n온라인 학습 시스템', color: '#1e4788' },
-              { icon: Brain, title: 'AI 학습진단', desc: '인공지능 기반\n맞춤형 학습 분석', color: '#2e5ba6' },
-              { icon: Users, title: '1:1 멘토링', desc: '전문 교사와 함께하는\n개인 맞춤 지도', color: '#4a90e2' },
-              { icon: BookOpen, title: '학습자료실', desc: '다양한 학습 자료와\n전자책 제공', color: '#5cb85c' }
+              { icon: Monitor, title: '온라인 학습', desc: 'AI 기술과 인간적\n교감이 결합된 학습', color: '#0397D6' },
+              { icon: Brain, title: 'AI 학습진단', desc: '개인별 맞춤 학습\n수준 분석 서비스', color: '#63C29D' },
+              { icon: BookOpen, title: '디지털 책방', desc: '온라인 독서 서비스\n전자책 제공', color: '#0397D6' },
+              { icon: Award, title: '포인트몰', desc: '학습 성과를 포인트로\n다양한 상품 구매', color: '#63C29D' }
             ].map((service, idx) => {
               const Icon = service.icon;
               return (
@@ -425,7 +438,7 @@ const LandingGov = () => {
       </section>
 
       {/* 통계 정보 */}
-      <section className="py-16 bg-[#1e4788]">
+      <section className="py-16 bg-[#0397D6]">
         <div className="max-w-[1280px] mx-auto px-4">
           <h2 className="text-3xl font-bold text-white text-center mb-12">플랫폼 현황</h2>
           

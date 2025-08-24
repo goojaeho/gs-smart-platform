@@ -7,10 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#3b82f6',
-        secondary: '#f97316',
+        primary: '#0397D6',
+        secondary: '#63C29D',
+        accent: '#f97316',
         success: '#22c55e',
         warning: '#f59e0b',
+        'gs-blue': '#0397D6',
+        'gs-green': '#63C29D',
       },
       fontFamily: {
         sans: ['Pretendard', 'Noto Sans KR', 'sans-serif'],
