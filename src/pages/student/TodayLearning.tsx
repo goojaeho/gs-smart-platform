@@ -2,6 +2,15 @@ import Layout from '../../components/common/Layout';
 import { Clock, Play, CheckCircle, Award, Brain, Target, User, Eye, ThumbsUp } from 'lucide-react';
 import { useState } from 'react';
 import fractionImage from '../../assets/pictures/fraction.jpg';
+import englishImage from  '../../assets/pictures/english.jpg';
+import aiImage from  '../../assets/pictures/ai.png';
+import Codingimage from '../../assets/pictures/game.webp';
+import galaxyImage from  '../../assets/pictures/galaxy.webp';
+import chosenImage from  '../../assets/pictures/chosen.jpg';
+import literacyImage from  '../../assets/pictures/literacy.png';
+import chatgptImage from  '../../assets/pictures/chatgpt.png';
+import pythonImage from  '../../assets/pictures/python.png';
+import chemImage from  '../../assets/pictures/chemistry.jpg';
 
 const TodayLearning = () => {
   const [selectedSubject, setSelectedSubject] = useState('전체');
@@ -27,7 +36,7 @@ const TodayLearning = () => {
       subject: 'AI',
       teacher: '이AI 선생님',
       duration: 20,
-      thumbnail: '🤖',
+      thumbnail: aiImage,
       views: 2341,
       likes: 156,
       difficulty: 'easy',
@@ -40,7 +49,7 @@ const TodayLearning = () => {
       subject: '코딩',
       teacher: '박코딩 선생님',
       duration: 30,
-      thumbnail: '💻',
+      thumbnail: Codingimage,
       views: 3456,
       likes: 234,
       difficulty: 'easy',
@@ -53,7 +62,7 @@ const TodayLearning = () => {
       subject: '영어',
       teacher: 'James 선생님',
       duration: 15,
-      thumbnail: '🌍',
+      thumbnail: englishImage,
       views: 987,
       likes: 67,
       difficulty: 'medium',
@@ -66,7 +75,7 @@ const TodayLearning = () => {
       subject: '과학',
       teacher: '최과학 선생님',
       duration: 18,
-      thumbnail: '🪐',
+      thumbnail: galaxyImage,
       views: 1567,
       likes: 98,
       difficulty: 'easy',
@@ -79,7 +88,7 @@ const TodayLearning = () => {
       subject: '사회',
       teacher: '정역사 선생님',
       duration: 22,
-      thumbnail: '🏛️',
+      thumbnail: chosenImage,
       views: 876,
       likes: 54,
       difficulty: 'medium',
@@ -91,7 +100,7 @@ const TodayLearning = () => {
       subject: '국어',
       teacher: '강국어 선생님',
       duration: 20,
-      thumbnail: '📚',
+      thumbnail: literacyImage,
       views: 654,
       likes: 43,
       difficulty: 'hard',
@@ -103,7 +112,7 @@ const TodayLearning = () => {
       subject: 'AI',
       teacher: '이AI 선생님',
       duration: 15,
-      thumbnail: '💬',
+      thumbnail: chatgptImage,
       views: 4321,
       likes: 312,
       difficulty: 'easy',
@@ -116,7 +125,7 @@ const TodayLearning = () => {
       subject: '코딩',
       teacher: '박코딩 선생님',
       duration: 35,
-      thumbnail: '🐍',
+      thumbnail: pythonImage,
       views: 2890,
       likes: 201,
       difficulty: 'medium',
@@ -128,7 +137,7 @@ const TodayLearning = () => {
       subject: '과학',
       teacher: '최과학 선생님',
       duration: 28,
-      thumbnail: '⚗️',
+      thumbnail: chemImage,
       views: 1123,
       likes: 78,
       difficulty: 'hard',

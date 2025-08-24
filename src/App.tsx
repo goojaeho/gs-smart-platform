@@ -16,6 +16,7 @@ import Mentoring from './pages/student/Mentoring';
 import LearningNotes from './pages/student/LearningNotes';
 import PointShop from './pages/student/PointShop';
 import TestVideoCall from './pages/student/TestVideoCall';
+import NoticeBoard from './pages/student/NoticeBoard';
 
 // Parent pages
 import LearningProgress from './pages/parent/LearningProgress';
@@ -30,6 +31,8 @@ import LearningReports from './pages/teacher/LearningReports';
 import MentoringManagement from './pages/teacher/MentoringManagement';
 import ClassSchedule from './pages/teacher/ClassSchedule';
 import Notices from './pages/teacher/Notices';
+import AIDiagnosis from './pages/teacher/AIDiagnosis';
+import QAManagement from './pages/teacher/QAManagement';  
 
 // Admin pages
 import CenterStatus from './pages/admin/CenterStatus';
@@ -82,6 +85,9 @@ function App() {
         <Route path="/student/test" element={
           user?.role === 'student' ? <TestVideoCall /> : <Navigate to="/" />
         } />
+        <Route path="/student/notices" element={
+          user?.role === 'student' ? <NoticeBoard /> : <Navigate to="/" />
+        } />
         <Route path="/parent" element={
           user?.role === 'parent' ? <ParentDashboard /> : <Navigate to="/" />
         } />
@@ -117,6 +123,12 @@ function App() {
         } />
         <Route path="/teacher/notices" element={
           user?.role === 'teacher' ? <Notices /> : <Navigate to="/" />
+        } />
+        <Route path="/teacher/ai-diagnosis" element={
+          user?.role === 'teacher' ? <AIDiagnosis /> : <Navigate to="/" />
+        } />
+        <Route path="/teacher/qa" element={
+          user?.role === 'teacher' ? <QAManagement /> : <Navigate to="/" />
         } />
         <Route path="/admin" element={
           user?.role === 'admin' ? <AdminDashboard /> : <Navigate to="/" />

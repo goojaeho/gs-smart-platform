@@ -34,9 +34,11 @@ const Sidebar = () => {
           { icon: Home, label: '대시보드', path: '/teacher' },
           { icon: Users, label: '학생 관리', path: '/teacher/students' },
           { icon: BarChart3, label: '학습 리포트', path: '/teacher/reports' },
+          { icon: MessageSquare, label: '1:1 질문 답변', path: '/teacher/qa' },
           { icon: Heart, label: '멘토링 관리', path: '/teacher/mentoring' },
           { icon: Calendar, label: '수업 일정', path: '/teacher/schedule' },
           { icon: FileText, label: '공지사항', path: '/teacher/notices' },
+          { icon: Brain, label: 'AI 학습 진단', path: '/teacher/ai-diagnosis' },
         ];
       case 'admin':
         return [

@@ -312,9 +312,10 @@ const StudentManagement = () => {
               </div>
 
               <div className="space-y-4">
+                {/* 학습 성과 */}
                 <div className="bg-gray-50 rounded-lg p-4">
-                  <h4 className="font-medium text-gray-900 mb-2">학습 성과</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <h4 className="font-medium text-gray-900 mb-3">학습 성과</h4>
+                  <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <p className="text-sm text-gray-600">전체 진도율</p>
                       <p className="text-xl font-bold text-gray-900">{selectedStudent.overallProgress}%</p>
@@ -322,6 +323,78 @@ const StudentManagement = () => {
                     <div>
                       <p className="text-sm text-gray-600">주간 학습시간</p>
                       <p className="text-xl font-bold text-gray-900">{selectedStudent.weeklyStudyHours}시간</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">현재 학습 단원</span>
+                      <span className="font-medium">수학: 분수의 나눗셈</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">단원 진도율</span>
+                      <span className="font-medium">75%</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">문제풀이 진도율</span>
+                      <span className="font-medium">82%</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">완료한 학습</span>
+                      <span className="font-medium">23/30 단원</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 학생 질문 현황 */}
+                <div className="bg-yellow-50 rounded-lg p-4">
+                  <h4 className="font-medium text-gray-900 mb-3">최근 질문내역</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">미답변 질문</span>
+                      <span className="font-medium text-red-600">2개</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">이주 내 질문</span>
+                      <span className="font-medium">7개</span>
+                    </div>
+                    <div className="text-xs text-gray-500 mt-2">
+                      마지막 질문: "분수 나눗셈 계산 방법이 헷갈려요" (2시간 전)
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 멘토링 상태 */}
+                <div className="bg-purple-50 rounded-lg p-4">
+                  <h4 className="font-medium text-gray-900 mb-3">멘토링 현황</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">총 세션</p>
+                      <p className="text-lg font-bold text-purple-600">12회</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">이주 세션</p>
+                      <p className="text-lg font-bold text-purple-600">3회</p>
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-500 mt-2">
+                    다음 세션: 오늘 오후 3시 (수학 보강)
+                  </div>
+                </div>
+                
+                {/* 독서 진도 */}
+                <div className="bg-green-50 rounded-lg p-4">
+                  <h4 className="font-medium text-gray-900 mb-3">독서 진도</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">이주 내 읽은 책</span>
+                      <span className="font-medium">3권</span>
+                    </div>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-600">이달 목표</span>
+                      <span className="font-medium">6권 (50%)</span>
+                    </div>
+                    <div className="text-xs text-gray-500 mt-2">
+                      현재 독서중: "어린왕자" (진도 65%)
                     </div>
                   </div>
                 </div>
@@ -342,9 +415,29 @@ const StudentManagement = () => {
                   <p className="text-sm text-gray-700">{selectedStudent.notes}</p>
                 </div>
 
+                {/* 책 추천 */}
+                <div className="bg-indigo-50 rounded-lg p-4">
+                  <h4 className="font-medium text-gray-900 mb-3">교사 추천 도서</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">"마당을 떠도는 행리"</span>
+                      <button className="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200">추천</button>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">"수학의 새로운 발견"</span>
+                      <button className="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200">추천</button>
+                    </div>
+                  </div>
+                </div>
+                
                 <div className="border-t pt-4">
                   <h4 className="font-medium text-gray-900 mb-2">학부모 연락처</h4>
-                  <p className="text-sm text-gray-600">{selectedStudent.parentContact}</p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-gray-600">{selectedStudent.parentContact}</p>
+                    <button className="text-xs px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200">
+                      상담 신청
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

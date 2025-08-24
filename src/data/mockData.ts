@@ -103,7 +103,7 @@ export const students: Student[] = [
     name: '박지호',
     grade: 3,
     school: '압량초등학교',
-    centerId: 'C001',
+    centerId: 'C004',
     level: 15,
     points: 1850,
     weeklyStudyTime: 10.2,
@@ -120,7 +120,7 @@ export const students: Student[] = [
     name: '최서진',
     grade: 6,
     school: '진량초등학교',
-    centerId: 'C003',
+    centerId: 'C006',
     level: 35,
     points: 4200,
     weeklyStudyTime: 18.7,
@@ -137,7 +137,7 @@ export const students: Student[] = [
     name: '정유진',
     grade: 4,
     school: '경산초등학교',
-    centerId: 'C002',
+    centerId: 'C013',
     level: 20,
     points: 2100,
     weeklyStudyTime: 11.5,
@@ -156,22 +156,36 @@ export const teachers: Teacher[] = [
     id: 'T001',
     name: '김선생',
     centerId: 'C001',
-    centerName: '경산중앙지역아동센터',
+    centerName: '한사지역아동센터',
     studentCount: 25
   },
   {
     id: 'T002',
     name: '이선생',
     centerId: 'C002',
-    centerName: '하양지역아동센터',
-    studentCount: 30
+    centerName: '금락지역아동센터',
+    studentCount: 20
   },
   {
     id: 'T003',
     name: '박선생',
-    centerId: 'C003',
+    centerId: 'C006',
     centerName: '진량지역아동센터',
     studentCount: 28
+  },
+  {
+    id: 'T004',
+    name: '최선생',
+    centerId: 'C013',
+    centerName: '경산지역아동센터',
+    studentCount: 32
+  },
+  {
+    id: 'T005',
+    name: '정선생',
+    centerId: 'C021',
+    centerName: '아가페지역아동센터',
+    studentCount: 35
   }
 ];
 
@@ -196,43 +210,179 @@ export const parents: Parent[] = [
 export const centers: Center[] = [
   {
     id: 'C001',
-    name: '경산중앙지역아동센터',
+    name: '한사지역아동센터',
     location: { lat: 35.8250, lng: 128.7416 },
-    studentCount: 45,
+    studentCount: 39,
     attendanceRate: 92,
     avgStudyTime: 12.3
   },
   {
     id: 'C002',
-    name: '하양지역아동센터',
-    location: { lat: 35.9130, lng: 128.8180 },
-    studentCount: 38,
+    name: '금락지역아동센터',
+    location: { lat: 35.8130, lng: 128.7280 },
+    studentCount: 29,
     attendanceRate: 88,
     avgStudyTime: 11.8
   },
   {
     id: 'C003',
-    name: '진량지역아동센터',
-    location: { lat: 35.8370, lng: 128.8520 },
-    studentCount: 42,
+    name: '느티나무지역아동센터',
+    location: { lat: 35.8370, lng: 128.7520 },
+    studentCount: 19,
     attendanceRate: 90,
     avgStudyTime: 13.1
   },
   {
     id: 'C004',
-    name: '압량지역아동센터',
-    location: { lat: 35.9520, lng: 128.7830 },
-    studentCount: 35,
+    name: '봉황지역아동센터',
+    location: { lat: 35.8520, lng: 128.7830 },
+    studentCount: 39,
     attendanceRate: 85,
     avgStudyTime: 10.5
   },
   {
     id: 'C005',
-    name: '와촌지역아동센터',
-    location: { lat: 35.9730, lng: 128.8050 },
-    studentCount: 40,
+    name: '윤성지역아동센터',
+    location: { lat: 35.8730, lng: 128.7650 },
+    studentCount: 19,
     attendanceRate: 93,
     avgStudyTime: 14.2
+  },
+  {
+    id: 'C006',
+    name: '진량지역아동센터',
+    location: { lat: 35.8370, lng: 128.8520 },
+    studentCount: 39,
+    attendanceRate: 91,
+    avgStudyTime: 12.8
+  },
+  {
+    id: 'C007',
+    name: '초원지역아동센터',
+    location: { lat: 35.8450, lng: 128.7380 },
+    studentCount: 29,
+    attendanceRate: 89,
+    avgStudyTime: 11.5
+  },
+  {
+    id: 'C008',
+    name: '황제지역아동센터',
+    location: { lat: 35.8680, lng: 128.7750 },
+    studentCount: 39,
+    attendanceRate: 87,
+    avgStudyTime: 12.1
+  },
+  {
+    id: 'C009',
+    name: '경동지역아동센터',
+    location: { lat: 35.8150, lng: 128.7580 },
+    studentCount: 19,
+    attendanceRate: 94,
+    avgStudyTime: 13.5
+  },
+  {
+    id: 'C010',
+    name: '헤세드지역아동센터',
+    location: { lat: 35.8320, lng: 128.7450 },
+    studentCount: 29,
+    attendanceRate: 86,
+    avgStudyTime: 11.2
+  },
+  {
+    id: 'C011',
+    name: '봄빛미소지역아동센터',
+    location: { lat: 35.8550, lng: 128.7320 },
+    studentCount: 19,
+    attendanceRate: 92,
+    avgStudyTime: 12.7
+  },
+  {
+    id: 'C012',
+    name: '참사랑나눔터지역아동센터',
+    location: { lat: 35.8280, lng: 128.7680 },
+    studentCount: 29,
+    attendanceRate: 88,
+    avgStudyTime: 11.9
+  },
+  {
+    id: 'C013',
+    name: '경산지역아동센터',
+    location: { lat: 35.8180, lng: 128.7380 },
+    studentCount: 39,
+    attendanceRate: 90,
+    avgStudyTime: 13.2
+  },
+  {
+    id: 'C014',
+    name: '사동지역아동센터',
+    location: { lat: 35.8420, lng: 128.7550 },
+    studentCount: 19,
+    attendanceRate: 85,
+    avgStudyTime: 10.8
+  },
+  {
+    id: 'C015',
+    name: '해피스쿨지역아동센터',
+    location: { lat: 35.8620, lng: 128.7420 },
+    studentCount: 29,
+    attendanceRate: 91,
+    avgStudyTime: 12.4
+  },
+  {
+    id: 'C016',
+    name: '장산지역아동센터',
+    location: { lat: 35.8780, lng: 128.7850 },
+    studentCount: 39,
+    attendanceRate: 89,
+    avgStudyTime: 11.7
+  },
+  {
+    id: 'C017',
+    name: '성암지역아동센터',
+    location: { lat: 35.8350, lng: 128.7280 },
+    studentCount: 29,
+    attendanceRate: 87,
+    avgStudyTime: 11.3
+  },
+  {
+    id: 'C018',
+    name: '남천지역아동센터',
+    location: { lat: 35.8480, lng: 128.7620 },
+    studentCount: 27,
+    attendanceRate: 93,
+    avgStudyTime: 13.8
+  },
+  {
+    id: 'C019',
+    name: '대천지역아동센터',
+    location: { lat: 35.8250, lng: 128.7480 },
+    studentCount: 29,
+    attendanceRate: 86,
+    avgStudyTime: 10.9
+  },
+  {
+    id: 'C020',
+    name: '예일지역아동센터',
+    location: { lat: 35.8580, lng: 128.7720 },
+    studentCount: 39,
+    attendanceRate: 90,
+    avgStudyTime: 12.6
+  },
+  {
+    id: 'C021',
+    name: '아가페지역아동센터',
+    location: { lat: 35.8380, lng: 128.7350 },
+    studentCount: 41,
+    attendanceRate: 94,
+    avgStudyTime: 14.1
+  },
+  {
+    id: 'C022',
+    name: '들꽃지역아동센터',
+    location: { lat: 35.8650, lng: 128.7580 },
+    studentCount: 29,
+    attendanceRate: 88,
+    avgStudyTime: 11.6
   }
 ];
 

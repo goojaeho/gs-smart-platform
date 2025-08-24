@@ -5,7 +5,8 @@ import {
   Settings, ArrowRight, ChevronDown, Menu, X, Phone, Mail, MapPin,
   Clock, Award, TrendingUp, ChevronLeft, ChevronRight,
   Home, Search, User as UserIcon, Globe, CheckCircle, AlertCircle,
-  FileText, Calendar, BarChart3, Headphones
+  FileText, Calendar, BarChart3, Headphones, Facebook, Youtube, 
+  Instagram, BookMarked
 } from 'lucide-react';
 
 // GS Smart Platform 색상 (PDF 요구사항에 맞춤)
@@ -104,21 +105,21 @@ const LandingGov = () => {
                 <span className="text-[#666666] mr-2">글자크기</span>
                 <button 
                   onClick={() => adjustFontSize('small')}
-                  className={`px-2 py-1 border ${fontSize === 'small' ? 'bg-[#1e4788] text-white' : 'bg-white text-[#666666]'}`}
+                  className={`px-2 py-1 border ${fontSize === 'small' ? 'bg-[#0397D6] text-white' : 'bg-white text-[#666666]'}`}
                   aria-label="글자 작게"
                 >
                   가-
                 </button>
                 <button 
                   onClick={() => adjustFontSize('medium')}
-                  className={`px-2 py-1 border ${fontSize === 'medium' ? 'bg-[#1e4788] text-white' : 'bg-white text-[#666666]'}`}
+                  className={`px-2 py-1 border ${fontSize === 'medium' ? 'bg-[#0397D6] text-white' : 'bg-white text-[#666666]'}`}
                   aria-label="글자 보통"
                 >
                   가
                 </button>
                 <button 
                   onClick={() => adjustFontSize('large')}
-                  className={`px-2 py-1 border ${fontSize === 'large' ? 'bg-[#1e4788] text-white' : 'bg-white text-[#666666]'}`}
+                  className={`px-2 py-1 border ${fontSize === 'large' ? 'bg-[#0397D6] text-white' : 'bg-white text-[#666666]'}`}
                   aria-label="글자 크게"
                 >
                   가+
@@ -475,12 +476,19 @@ const LandingGov = () => {
                 모든 아이들이 평등하게 학습할 수 있는<br />
                 디지털 교육 환경을 만들어갑니다.
               </p>
-              <div className="flex space-x-2">
-                {['페이스북', '유튜브', '인스타그램', '블로그'].map((sns, idx) => (
-                  <button key={idx} className="w-8 h-8 bg-[#666666] rounded hover:bg-[#999999] transition text-xs">
-                    {sns[0]}
-                  </button>
-                ))}
+              <div className="flex space-x-3">
+                <button className="w-10 h-10 bg-[#666666] rounded-full hover:bg-[#0397D6] transition flex items-center justify-center group">
+                  <Facebook className="w-5 h-5 text-white" />
+                </button>
+                <button className="w-10 h-10 bg-[#666666] rounded-full hover:bg-[#0397D6] transition flex items-center justify-center group">
+                  <Youtube className="w-5 h-5 text-white" />
+                </button>
+                <button className="w-10 h-10 bg-[#666666] rounded-full hover:bg-[#0397D6] transition flex items-center justify-center group">
+                  <Instagram className="w-5 h-5 text-white" />
+                </button>
+                <button className="w-10 h-10 bg-[#666666] rounded-full hover:bg-[#0397D6] transition flex items-center justify-center group">
+                  <BookMarked className="w-5 h-5 text-white" />
+                </button>
               </div>
             </div>
 

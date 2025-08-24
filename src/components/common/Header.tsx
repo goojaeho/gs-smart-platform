@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
-import { Bell, LogOut, User, GraduationCap, Search } from 'lucide-react';
+import { Bell, LogOut, User, GraduationCap, Search, MessageSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const { user, logout } = useAuthStore();
+  const navigate = useNavigate();
   const [fontSize, setFontSize] = useState('medium');
+  const [unreadQuestions, setUnreadQuestions] = useState(3); // Mock data for unread questions
 
   const getRoleName = (role: string) => {
     const roleNames = {
@@ -121,8 +124,25 @@ const Header = () => {
               </div>
             </div>
 
-            {/* 알림 */}
+            {/* 알림 및 빠른 액세스 버튼 */}
             <div className="flex items-center space-x-4">
+              {/* Teacher Q&A Button */}
+              {user?.role === 'teacher' && (
+                <button 
+                  onClick={() => navigate('/teacher/qa')}
+                  className="relative flex items-center space-x-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  <span className="text-sm font-medium">질문 답변</span>
+                  {unreadQuestions > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      {unreadQuestions}
+                    </span>
+                  )}
+                </button>
+              )}
+              
+              {/* Notification Bell */}
               <button className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors">
                 <Bell className="w-5 h-5" />
                 <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
