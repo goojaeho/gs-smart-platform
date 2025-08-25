@@ -11,6 +11,7 @@ import literacyImage from '../../assets/pictures/literacy.png';
 import chatgptImage from '../../assets/pictures/chatgpt.jpeg';
 import pythonImage from '../../assets/pictures/python.jpeg';
 import chemImage from '../../assets/pictures/chemistry.jpg';
+import ingangImage from '../../assets/pictures/ingang.jpg';
 
 const TodayLearning = () => {
   const [selectedSubject, setSelectedSubject] = useState('전체');
@@ -262,11 +263,11 @@ const TodayLearning = () => {
         },
         {
           id: 'fraction6',
-          title: '[보충] 분수 나눗셈 자주 틀리는 실수',
+          title: '덧셈과 뺄셈',
           subject: '수학',
           teacher: '김분수 선생님',
           duration: 12,
-          thumbnail: fractionImage,
+          thumbnail: ingangImage,
           views: 2156,
           likes: 203,
           difficulty: 'easy',
