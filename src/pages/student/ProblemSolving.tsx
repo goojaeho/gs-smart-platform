@@ -239,81 +239,83 @@ const ProblemSolving = () => {
 
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <div className="flex items-center justify-between">
+      <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+        {/* Header - Mobile optimized */}
+        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">수학 문제 풀이</h1>
-              <p className="text-gray-600 mt-1">3학년 수학 - 분수와 사칙연산</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">수학 문제 풀이</h2>
+              <p className="text-sm sm:text-base text-gray-600 mt-1">3학년 수학 - 분수와 사칙연산</p>
             </div>
-            <div className="flex items-center space-x-6">
-              <div className="text-center">
-                <p className="text-sm text-gray-500">소요 시간</p>
-                <p className="text-2xl font-bold text-blue-600">{formatTime(timeElapsed)}</p>
+            <div className="flex items-center space-x-4 sm:space-x-6">
+              <div className="text-center flex-1 sm:flex-initial">
+                <p className="text-xs sm:text-sm text-gray-500">소요 시간</p>
+                <p className="text-xl sm:text-2xl font-bold text-blue-600">{formatTime(timeElapsed)}</p>
               </div>
-              <div className="text-center">
-                <p className="text-sm text-gray-500">진행률</p>
-                <p className="text-2xl font-bold text-green-600">{totalAnswered}/{totalProblems}</p>
+              <div className="text-center flex-1 sm:flex-initial">
+                <p className="text-xs sm:text-sm text-gray-500">진행률</p>
+                <p className="text-xl sm:text-2xl font-bold text-green-600">{totalAnswered}/{totalProblems}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        {/* Tab Navigation - Mobile optimized */}
+        <div className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-100">
           <div className="flex">
             <button
               onClick={() => setActiveTab('solving')}
-              className={`flex-1 py-4 px-6 text-lg font-semibold rounded-t-xl transition-colors ${
+              className={`flex-1 py-3 sm:py-4 px-3 sm:px-6 text-sm sm:text-lg font-semibold rounded-t-lg sm:rounded-t-xl transition-colors ${
                 activeTab === 'solving'
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
               }`}
             >
-              <Target className="w-5 h-5 inline-block mr-2" />
-              문제 풀이
+              <Target className="w-4 h-4 sm:w-5 sm:h-5 inline-block mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">문제 풀이</span>
+              <span className="sm:hidden">풀이</span>
             </button>
             <button
               onClick={() => setActiveTab('results')}
-              className={`flex-1 py-4 px-6 text-lg font-semibold rounded-t-xl transition-colors ${
+              className={`flex-1 py-3 sm:py-4 px-3 sm:px-6 text-sm sm:text-lg font-semibold rounded-t-lg sm:rounded-t-xl transition-colors ${
                 activeTab === 'results'
                   ? 'bg-blue-500 text-white'
                   : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
               }`}
               disabled={userAnswers.length === 0}
             >
-              <Award className="w-5 h-5 inline-block mr-2" />
-              결과 확인
+              <Award className="w-4 h-4 sm:w-5 sm:h-5 inline-block mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">결과 확인</span>
+              <span className="sm:hidden">결과</span>
             </button>
           </div>
 
           {/* Problem Solving Tab */}
           {activeTab === 'solving' && (
-            <div className="p-8">
+            <div className="p-4 sm:p-6 lg:p-8">
               {/* Progress Bar */}
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-600">
+                  <span className="text-xs sm:text-sm font-medium text-gray-600">
                     문제 {currentProblemIndex + 1} / {totalProblems}
                   </span>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-xs sm:text-sm text-gray-500">
                     {Math.round(((currentProblemIndex + 1) / totalProblems) * 100)}% 완료
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3">
                   <div
-                    className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-300"
+                    className="bg-gradient-to-r from-blue-500 to-blue-600 h-full rounded-full transition-all duration-300"
                     style={{ width: `${((currentProblemIndex + 1) / totalProblems) * 100}%` }}
                   />
                 </div>
               </div>
 
               {/* Problem Card */}
-              <div className="bg-gray-50 rounded-xl p-8 mb-8">
-                <div className="mb-6">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+              <div className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8">
+                <div className="mb-4 sm:mb-6">
+                  <div className="flex items-center space-x-2 mb-3 sm:mb-4">
+                    <span className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium ${
                       currentProblem.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
                       currentProblem.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700' :
                       'bg-red-100 text-red-700'
@@ -321,21 +323,21 @@ const ProblemSolving = () => {
                       {currentProblem.difficulty === 'easy' ? '기초' : 
                        currentProblem.difficulty === 'medium' ? '중급' : '심화'}
                     </span>
-                    <span className="text-sm text-gray-500">문제 {currentProblem.id}</span>
+                    <span className="text-xs sm:text-sm text-gray-500">문제 {currentProblem.id}</span>
                   </div>
-                  <h2 className="text-xl font-semibold text-gray-900 leading-relaxed">
+                  <h2 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 leading-relaxed">
                     {currentProblem.question}
                   </h2>
                 </div>
 
                 {/* Answer Options */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {currentProblem.options.map((option, index) => (
                     <button
                       key={index}
                       onClick={() => handleAnswerSelect(index)}
                       disabled={isSubmitted}
-                      className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
+                      className={`w-full p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 text-left transition-all ${
                         selectedAnswer === index
                           ? isSubmitted
                             ? index === currentProblem.correctAnswer
@@ -347,8 +349,8 @@ const ProblemSolving = () => {
                             : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
                       }`}
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                      <div className="flex items-center space-x-2 sm:space-x-3">
+                        <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 flex items-center justify-center ${
                           selectedAnswer === index
                             ? isSubmitted
                               ? index === currentProblem.correctAnswer
@@ -363,12 +365,12 @@ const ProblemSolving = () => {
                             <div className="w-2 h-2 rounded-full bg-white" />
                           ) : null}
                         </div>
-                        <span className="font-medium">{option}</span>
+                        <span className="font-medium text-sm sm:text-base">{option}</span>
                         {isSubmitted && index === currentProblem.correctAnswer && (
-                          <Check className="w-5 h-5 text-green-500 ml-auto" />
+                          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 ml-auto" />
                         )}
                         {isSubmitted && selectedAnswer === index && index !== currentProblem.correctAnswer && (
-                          <X className="w-5 h-5 text-red-500 ml-auto" />
+                          <X className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 ml-auto" />
                         )}
                       </div>
                     </button>
@@ -377,12 +379,12 @@ const ProblemSolving = () => {
 
                 {/* Explanation */}
                 {isSubmitted && (
-                  <div className="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-                    <div className="flex items-start space-x-3">
-                      <BookOpen className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-blue-50 rounded-lg sm:rounded-xl border border-blue-200">
+                    <div className="flex items-start space-x-2 sm:space-x-3">
+                      <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                       <div>
-                        <h4 className="text-blue-800 font-semibold mb-1">해설</h4>
-                        <p className="text-blue-700 text-sm leading-relaxed">
+                        <h4 className="text-blue-800 font-semibold mb-1 text-sm sm:text-base">해설</h4>
+                        <p className="text-blue-700 text-xs sm:text-sm leading-relaxed">
                           {currentProblem.explanation}
                         </p>
                       </div>
@@ -391,23 +393,23 @@ const ProblemSolving = () => {
                 )}
               </div>
 
-              {/* Navigation Buttons */}
+              {/* Navigation Buttons - Mobile optimized */}
               <div className="flex items-center justify-between">
                 <button
                   onClick={handlePrevious}
                   disabled={currentProblemIndex === 0}
-                  className="flex items-center space-x-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-6 py-2 sm:py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm sm:text-base"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span>이전</span>
                 </button>
 
-                <div className="flex space-x-3">
+                <div className="flex space-x-2 sm:space-x-3">
                   {!isSubmitted ? (
                     <button
                       onClick={handleSubmit}
                       disabled={selectedAnswer === null}
-                      className="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-semibold"
+                      className="px-4 sm:px-8 py-2 sm:py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-semibold text-sm sm:text-base"
                     >
                       답안 제출
                     </button>

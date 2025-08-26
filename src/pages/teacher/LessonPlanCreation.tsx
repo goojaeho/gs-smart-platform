@@ -254,33 +254,36 @@ const LessonPlanCreation = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex items-center justify-between">
+        <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+          <div className="flex flex-col gap-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <PenTool className="w-6 h-6 text-white" />
+              <div className="w-10 sm:w-12 h-10 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                <PenTool className="w-5 sm:w-6 h-5 sm:h-6 text-white" />
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">지도안 생성</h1>
-                <p className="text-gray-600">수업 계획을 상세하게 작성하고 공유하세요</p>
+              <div className="min-w-0">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900">지도안 생성</h1>
+                <p className="text-xs sm:text-base text-gray-600 hidden sm:block">수업 계획을 상세하게 작성하고 공유하세요</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={loadTemplate}
-                className="px-4 py-2 text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"
+                className="px-2 sm:px-4 py-2 text-xs sm:text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-center"
               >
-                예시 템플릿 불러오기
+                <span className="hidden sm:inline">예시 템플릿 불러오기</span>
+                <span className="sm:hidden">템플릿</span>
               </button>
-              <button className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2">
-                <Save className="w-4 h-4" />
-                <span>임시저장</span>
+              <button className="px-2 sm:px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-1 text-xs sm:text-sm">
+                <Save className="w-3 sm:w-4 h-3 sm:h-4" />
+                <span className="hidden sm:inline">임시저장</span>
+                <span className="sm:hidden">저장</span>
               </button>
-              <button className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center space-x-2">
-                <Eye className="w-4 h-4" />
-                <span>미리보기</span>
+              <button className="px-2 sm:px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-1 text-xs sm:text-sm">
+                <Eye className="w-3 sm:w-4 h-3 sm:h-4" />
+                <span className="hidden sm:inline">미리보기</span>
+                <span className="sm:hidden">보기</span>
               </button>
             </div>
           </div>
@@ -289,109 +292,110 @@ const LessonPlanCreation = () => {
         {/* Lesson Metadata Section */}
         <div className="bg-white rounded-lg shadow-sm">
           <div 
-            className="p-6 border-b border-gray-200 cursor-pointer flex items-center justify-between"
+            className="p-4 sm:p-6 border-b border-gray-200 cursor-pointer flex items-center justify-between"
             onClick={() => toggleSection('metadata')}
           >
-            <div className="flex items-center space-x-3">
-              <BookOpen className="w-5 h-5 text-primary" />
-              <h2 className="text-lg font-semibold text-gray-900">수업 정보</h2>
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <BookOpen className="w-4 sm:w-5 h-4 sm:h-5 text-primary" />
+              <h2 className="text-base sm:text-lg font-semibold text-gray-900">수업 정보</h2>
             </div>
-            {expandedSections.metadata ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+            {expandedSections.metadata ? <ChevronDown className="w-4 sm:w-5 h-4 sm:h-5" /> : <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />}
           </div>
           
           {expandedSections.metadata && (
-            <div className="p-6 space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 sm:p-6 space-y-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">과목 *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">과목 *</label>
                   <select 
                     value={lessonPlan.subject}
                     onChange={(e) => updateLessonPlan('subject', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                   >
-                    <option value="">선택하세요</option>
+                    <option value="">선택</option>
                     {subjects.map(subject => (
                       <option key={subject} value={subject}>{subject}</option>
                     ))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">학년 *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">학년 *</label>
                   <select 
                     value={lessonPlan.grade}
                     onChange={(e) => updateLessonPlan('grade', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                   >
-                    <option value="">선택하세요</option>
+                    <option value="">선택</option>
                     {grades.map(grade => (
                       <option key={grade} value={grade}>{grade}학년</option>
                     ))}
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">수업 시간 (분)</label>
+                <div className="col-span-2 sm:col-span-1">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">수업 시간 (분)</label>
                   <input
                     type="number"
                     value={lessonPlan.duration}
                     onChange={(e) => updateLessonPlan('duration', parseInt(e.target.value))}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                     min="1"
                     max="120"
                   />
                 </div>
-                <div className="flex items-end">
-                  <div className="text-sm text-gray-600">
-                    <Clock className="w-4 h-4 inline mr-1" />
-                    총 계획 시간: {calculateTotalTime()}분
+                <div className="col-span-2 sm:col-span-1 flex items-end">
+                  <div className="text-xs sm:text-sm text-gray-600">
+                    <Clock className="w-3 sm:w-4 h-3 sm:h-4 inline mr-1" />
+                    <span className="hidden sm:inline">총 계획 시간:</span>
+                    <span className="sm:hidden">총:</span> {calculateTotalTime()}분
                     {calculateTotalTime() !== lessonPlan.duration && (
-                      <span className="text-orange-600 ml-1">⚠️ 불일치</span>
+                      <span className="text-orange-600 ml-1">⚠️</span>
                     )}
                   </div>
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">단원명 *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">단원명 *</label>
                   <input
                     type="text"
                     value={lessonPlan.unitTitle}
                     onChange={(e) => updateLessonPlan('unitTitle', e.target.value)}
                     placeholder="예: 문단의 짜임"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">수업명 *</label>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">수업명 *</label>
                   <input
                     type="text"
                     value={lessonPlan.lessonTitle}
                     onChange={(e) => updateLessonPlan('lessonTitle', e.target.value)}
                     placeholder="예: 문단을 나누고 정리하는 방법"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                   />
                 </div>
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">학습 목표 *</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">학습 목표 *</label>
                 <textarea
                   value={lessonPlan.objectives}
                   onChange={(e) => updateLessonPlan('objectives', e.target.value)}
                   placeholder="간단한 문장으로 학습 목표를 작성하세요"
                   rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">성취기준/교육과정 연계 (선택)</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">성취기준/교육과정 연계 (선택)</label>
                 <textarea
                   value={lessonPlan.standards}
                   onChange={(e) => updateLessonPlan('standards', e.target.value)}
                   placeholder="관련 교육과정 성취기준을 입력하세요"
                   rows={2}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-xs sm:text-sm"
                 />
               </div>
             </div>
@@ -813,16 +817,17 @@ const LessonPlanCreation = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end space-x-3">
-          <button className="px-6 py-3 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            임시저장
+        <div className="flex flex-col sm:flex-row justify-end gap-3">
+          <button className="px-4 sm:px-6 py-2.5 sm:py-3 text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200 font-medium flex items-center justify-center gap-2 shadow-sm hover:shadow">
+            <Save className="w-4 h-4" />
+            <span>임시저장</span>
           </button>
-          <button className="px-6 py-3 text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center space-x-2">
+          <button className="px-4 sm:px-6 py-2.5 sm:py-3 text-blue-600 bg-white border border-blue-500 rounded-lg hover:bg-blue-50 transition-all duration-200 font-medium flex items-center justify-center gap-2 shadow-sm hover:shadow">
             <Eye className="w-4 h-4" />
             <span>미리보기</span>
           </button>
-          <button className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors flex items-center space-x-2">
-            <Save className="w-4 h-4" />
+          <button className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-200 font-medium flex items-center justify-center gap-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+            <Upload className="w-4 h-4" />
             <span>지도안 게시</span>
           </button>
         </div>

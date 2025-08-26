@@ -58,78 +58,81 @@ const LearningReports = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">학습 리포트</h2>
-            <p className="text-gray-600 mt-1">학급별 학습 성과 분석</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">학습 리포트</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">학급별 학습 성과 분석</p>
           </div>
-          <div className="flex space-x-3">
-            <select
-              value={selectedClass}
-              onChange={(e) => setSelectedClass(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="5-3">5학년 3반</option>
-              <option value="5-1">5학년 1반</option>
-              <option value="6-2">6학년 2반</option>
-            </select>
-            <select
-              value={selectedPeriod}
-              onChange={(e) => setSelectedPeriod(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="week">주간</option>
-              <option value="month">월간</option>
-              <option value="quarter">분기</option>
-            </select>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+            <div className="flex gap-2">
+              <select
+                value={selectedClass}
+                onChange={(e) => setSelectedClass(e.target.value)}
+                className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              >
+                <option value="5-3">5학년 3반</option>
+                <option value="5-1">5학년 1반</option>
+                <option value="6-2">6학년 2반</option>
+              </select>
+              <select
+                value={selectedPeriod}
+                onChange={(e) => setSelectedPeriod(e.target.value)}
+                className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              >
+                <option value="week">주간</option>
+                <option value="month">월간</option>
+                <option value="quarter">분기</option>
+              </select>
+            </div>
+            <button className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base">
               <Download className="w-4 h-4" />
-              <span>리포트 다운로드</span>
+              <span className="hidden sm:inline">리포트 다운로드</span>
+              <span className="sm:hidden">다운로드</span>
             </button>
           </div>
         </div>
 
         {/* 핵심 지표 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <Users className="w-8 h-8 text-blue-500" />
-              <span className="text-sm text-green-600">+2명</span>
+              <Users className="w-6 sm:w-8 h-6 sm:h-8 text-blue-500" />
+              <span className="text-xs sm:text-sm text-green-600">+2명</span>
             </div>
-            <h3 className="text-sm text-gray-600">전체 학생</h3>
-            <p className="text-2xl font-bold text-gray-900">28명</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">전체 학생</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">28명</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <TrendingUp className="w-8 h-8 text-green-500" />
-              <span className="text-sm text-green-600">+5%</span>
+              <TrendingUp className="w-6 sm:w-8 h-6 sm:h-8 text-green-500" />
+              <span className="text-xs sm:text-sm text-green-600">+5%</span>
             </div>
-            <h3 className="text-sm text-gray-600">평균 성취도</h3>
-            <p className="text-2xl font-bold text-gray-900">82.5%</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">평균 성취도</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">82.5%</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <Award className="w-8 h-8 text-purple-500" />
-              <span className="text-sm text-green-600">+12개</span>
+              <Award className="w-6 sm:w-8 h-6 sm:h-8 text-purple-500" />
+              <span className="text-xs sm:text-sm text-green-600">+12개</span>
             </div>
-            <h3 className="text-sm text-gray-600">획득 배지</h3>
-            <p className="text-2xl font-bold text-gray-900">156개</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">획듍 배지</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">156개</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <AlertTriangle className="w-8 h-8 text-yellow-500" />
-              <span className="text-sm text-red-600">3명</span>
+              <AlertTriangle className="w-6 sm:w-8 h-6 sm:h-8 text-yellow-500" />
+              <span className="text-xs sm:text-sm text-red-600">3명</span>
             </div>
-            <h3 className="text-sm text-gray-600">관리 필요</h3>
-            <p className="text-2xl font-bold text-gray-900">10.7%</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">관리 필요</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">10.7%</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 과목별 성취도 */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">과목별 성취도 분석</h3>
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">과목별 성취도 분석</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={classPerformance}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -145,8 +148,8 @@ const LearningReports = () => {
           </div>
 
           {/* 주간 진도 추이 */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">주간 학습 추이</h3>
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">주간 학습 추이</h3>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={weeklyProgress}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -163,8 +166,8 @@ const LearningReports = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 학생 순위 */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">상위 학생</h3>
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">상위 학생</h3>
             <div className="space-y-3">
               {studentRankings.map((student) => (
                 <div key={student.rank} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -189,8 +192,8 @@ const LearningReports = () => {
           </div>
 
           {/* 역량 분석 */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">핵심 역량 분석</h3>
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">핵심 역량 분석</h3>
             <ResponsiveContainer width="100%" height={250}>
               <RadarChart data={skillsAnalysis}>
                 <PolarGrid />

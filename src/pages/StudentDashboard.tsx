@@ -40,9 +40,9 @@ const StudentDashboard = () => {
 
   return (
     <Layout>
-      <div className="flex gap-8">
-        {/* Learning Mate Sidebar */}
-        <div className="w-80 flex-shrink-0">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+        {/* Learning Mate Sidebar - Mobile: Top, Desktop: Left */}
+        <div className="w-full lg:w-80 lg:flex-shrink-0">
           <LearningMate
             studentLevel={studentData.level}
             currentExp={currentExp}
@@ -54,27 +54,33 @@ const StudentDashboard = () => {
         </div>
 
         {/* Main Dashboard Content */}
-        <div className="flex-1 space-y-8">
-          {/* Typography Hierarchy - Large Bold Heading (H1) */}
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">안녕하세요, {studentData.name}님!</h1>
-              <p className="text-lg text-gray-600">오늘도 즐거운 학습 시작해볼까요?</p>
-            </div>
-            <div className="flex items-center space-x-6">
-              <div className="text-center bg-[#f9fafb] rounded-xl p-4 border border-gray-100">
-                <p className="text-sm text-gray-500 font-medium">나의 레벨</p>
-                <p className="text-3xl font-bold text-[#0397D6] mt-1">Lv.{studentData.level}</p>
+        <div className="flex-1 space-y-4 sm:space-y-6 lg:space-y-8">
+          {/* Typography Hierarchy - Mobile optimized */}
+          <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm sm:bg-transparent sm:shadow-none sm:p-0">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="w-full sm:w-auto">
+                <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
+                  안녕하세요, {studentData.name}님!
+                </h1>
+                <p className="text-sm sm:text-base lg:text-lg text-gray-600">
+                  오늘도 즐거운 학습 시작해볼까요?
+                </p>
               </div>
-              <div className="text-center bg-[#f9fafb] rounded-xl p-4 border border-gray-100">
-                <p className="text-sm text-gray-500 font-medium">보유 포인트</p>
-                <p className="text-3xl font-bold text-[#63C29D] mt-1">{studentData.points.toLocaleString()}P</p>
+              <div className="flex items-center justify-between sm:justify-start w-full sm:w-auto space-x-3 sm:space-x-6">
+                <div className="flex-1 sm:flex-initial text-center bg-[#f9fafb] rounded-xl p-3 sm:p-4 border border-gray-100">
+                  <p className="text-xs sm:text-sm text-gray-500 font-medium">나의 레벨</p>
+                  <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-[#0397D6] mt-1">Lv.{studentData.level}</p>
+                </div>
+                <div className="flex-1 sm:flex-initial text-center bg-[#f9fafb] rounded-xl p-3 sm:p-4 border border-gray-100">
+                  <p className="text-xs sm:text-sm text-gray-500 font-medium">보유 포인트</p>
+                  <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-[#63C29D] mt-1">{studentData.points.toLocaleString()}P</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Dashboard Cards - 24px gap grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Dashboard Cards - Responsive grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
           <DashboardCard
             title="이번 주 학습시간"
             value={`${studentData.weeklyStudyTime}시간`}
@@ -104,31 +110,31 @@ const StudentDashboard = () => {
           />
         </div>
 
-          {/* Main Content Grid - 24px gaps */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
+          {/* Main Content Grid - Responsive */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="lg:col-span-2 space-y-6 lg:space-y-8">
               {/* Today's Learning Missions */}
-              <div className="bg-[#f9fafb] rounded-xl p-6 border border-gray-100 shadow-sm">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">오늘의 학습 미션</h2>
-                  <span className="text-sm text-[#6b7280] font-medium bg-gray-100 px-3 py-1 rounded-full">AI 맞춤 추천</span>
+              <div className="bg-[#f9fafb] rounded-xl p-4 sm:p-6 border border-gray-100 shadow-sm">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-2">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">오늘의 학습 미션</h2>
+                  <span className="text-xs sm:text-sm text-[#6b7280] font-medium bg-gray-100 px-2 sm:px-3 py-1 rounded-full">AI 맞춤 추천</span>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                 {todayMissions.map((mission) => (
-                  <div key={mission.id} className="flex items-center justify-between p-5 bg-white rounded-xl border border-gray-100 hover:shadow-md hover:scale-[1.01] transition-all cursor-pointer">
-                    <div className="flex items-center space-x-4">
-                      <div className={`w-4 h-16 rounded-full ${
+                  <div key={mission.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-5 bg-white rounded-xl border border-gray-100 hover:shadow-md hover:scale-[1.01] transition-all cursor-pointer gap-3">
+                    <div className="flex items-center space-x-3 sm:space-x-4 w-full sm:w-auto">
+                      <div className={`w-3 h-12 sm:w-4 sm:h-16 rounded-full flex-shrink-0 ${
                         mission.difficulty === '쉬움' ? 'bg-[#63C29D]' : 
                         mission.difficulty === '보통' ? 'bg-yellow-400' : 'bg-red-400'
                       }`} />
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-1">{mission.title}</h3>
-                        <p className="text-sm text-[#6b7280] font-medium">{mission.subject} • {mission.time}</p>
+                      <div className="flex-1">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">{mission.title}</h3>
+                        <p className="text-xs sm:text-sm text-[#6b7280] font-medium">{mission.subject} • {mission.time}</p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-sm font-bold text-[#63C29D] bg-green-50 px-3 py-1 rounded-full">+{mission.points}P</span>
-                      <button className="px-5 py-2 bg-gradient-to-r from-[#0397D6] to-blue-600 text-white rounded-lg hover:shadow-lg transition-all transform hover:scale-105 font-semibold text-sm">
+                    <div className="flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto justify-end">
+                      <span className="text-xs sm:text-sm font-bold text-[#63C29D] bg-green-50 px-2 sm:px-3 py-1 rounded-full">+{mission.points}P</span>
+                      <button className="px-3 sm:px-5 py-1.5 sm:py-2 bg-gradient-to-r from-[#0397D6] to-blue-600 text-white rounded-lg hover:shadow-lg transition-all transform hover:scale-105 font-semibold text-xs sm:text-sm">
                         시작하기
                       </button>
                     </div>
@@ -138,9 +144,9 @@ const StudentDashboard = () => {
             </div>
 
               {/* Weekly Study Pattern Chart */}
-              <div className="bg-[#f9fafb] rounded-xl p-6 border border-gray-100 shadow-sm">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">주간 학습 패턴</h2>
-                <ResponsiveContainer width="100%" height={320}>
+              <div className="bg-[#f9fafb] rounded-xl p-4 sm:p-6 border border-gray-100 shadow-sm">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">주간 학습 패턴</h2>
+                <ResponsiveContainer width="100%" height={280} className="sm:h-[320px]">
                   <BarChart data={weeklyStudyData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                     <XAxis dataKey="day" tick={{ fontSize: 12, fill: '#6b7280' }} stroke="#9ca3af" />
@@ -165,11 +171,11 @@ const StudentDashboard = () => {
             </div>
 
             {/* Right Sidebar */}
-            <div className="space-y-8">
+            <div className="space-y-6 lg:space-y-8">
               {/* Subject Performance Radar Chart */}
-              <div className="bg-[#f9fafb] rounded-xl p-6 border border-gray-100 shadow-sm">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">과목별 성취도</h2>
-                <ResponsiveContainer width="100%" height={280}>
+              <div className="bg-[#f9fafb] rounded-xl p-4 sm:p-6 border border-gray-100 shadow-sm">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">과목별 성취도</h2>
+                <ResponsiveContainer width="100%" height={240} className="sm:h-[280px]">
                   <RadarChart data={subjectRadarData}>
                     <PolarGrid stroke="#e5e7eb" />
                     <PolarAngleAxis dataKey="subject" tick={{ fontSize: 12, fill: '#6b7280' }} />
@@ -195,9 +201,9 @@ const StudentDashboard = () => {
               </div>
 
               {/* Recent Achievements */}
-              <div className="bg-[#f9fafb] rounded-xl p-6 border border-gray-100 shadow-sm">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">최근 획득 배지</h2>
-                <div className="space-y-4">
+              <div className="bg-[#f9fafb] rounded-xl p-4 sm:p-6 border border-gray-100 shadow-sm">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">최근 획득 배지</h2>
+                <div className="space-y-3 sm:space-y-4">
                   {recentAchievements.map((achievement) => (
                     <div key={achievement.id} className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-all">
                       <div className="flex items-center space-x-4">

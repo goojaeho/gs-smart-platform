@@ -131,69 +131,71 @@ const StudentManagement = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">학생 관리</h2>
-            <p className="text-gray-600 mt-1">담당 학생 {managedStudents.length}명</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">학생 관리</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">담당 학생 {managedStudents.length}명</p>
           </div>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+          <button className="px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base">
             학생 추가
           </button>
         </div>
 
         {/* 필터 및 검색 */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <div className="flex flex-col md:flex-row gap-4">
+        <div className="bg-white rounded-lg shadow-md p-3 sm:p-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 sm:w-5 h-4 sm:h-5" />
                 <input
                   type="text"
                   placeholder="학생 이름 검색..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                 />
               </div>
             </div>
-            <select
-              value={selectedGrade}
-              onChange={(e) => setSelectedGrade(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">전체 학년</option>
-              <option value="5학년">5학년</option>
-              <option value="6학년">6학년</option>
-            </select>
-            <select
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">전체 상태</option>
-              <option value="excellent">우수</option>
-              <option value="active">활발</option>
-              <option value="warning">주의</option>
-              <option value="inactive">비활성</option>
-            </select>
-            <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-              <Filter className="w-4 h-4" />
-              <span>상세 필터</span>
-            </button>
+            <div className="flex gap-2">
+              <select
+                value={selectedGrade}
+                onChange={(e) => setSelectedGrade(e.target.value)}
+                className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              >
+                <option value="all">전체 학년</option>
+                <option value="5학년">5학년</option>
+                <option value="6학년">6학년</option>
+              </select>
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              >
+                <option value="all">전체 상태</option>
+                <option value="excellent">우수</option>
+                <option value="active">활발</option>
+                <option value="warning">주의</option>
+                <option value="inactive">비활성</option>
+              </select>
+              <button className="hidden sm:flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                <Filter className="w-4 h-4" />
+                <span>상세 필터</span>
+              </button>
+            </div>
           </div>
         </div>
 
         {/* 학생 목록 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {filteredStudents.map((student) => (
-            <div key={student.id} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <div className="text-3xl">{student.profileImage}</div>
+            <div key={student.id} className="bg-white rounded-lg shadow-md p-4 sm:p-6 hover:shadow-lg transition-shadow">
+              <div className="flex items-start justify-between mb-3 sm:mb-4">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="text-2xl sm:text-3xl">{student.profileImage}</div>
                   <div>
-                    <h3 className="font-bold text-gray-900">{student.name}</h3>
-                    <p className="text-sm text-gray-600">{student.grade} {student.class}</p>
+                    <h3 className="font-bold text-gray-900 text-sm sm:text-base">{student.name}</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">{student.grade} {student.class}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
@@ -207,11 +209,11 @@ const StudentManagement = () => {
               </div>
 
               {/* 진도율 */}
-              <div className="mb-4">
+              <div className="mb-3 sm:mb-4">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm text-gray-600">전체 진도율</span>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm font-bold text-gray-900">{student.overallProgress}%</span>
+                  <span className="text-xs sm:text-sm text-gray-600">전체 진도율</span>
+                  <div className="flex items-center space-x-1 sm:space-x-2">
+                    <span className="text-xs sm:text-sm font-bold text-gray-900">{student.overallProgress}%</span>
                     {student.trend === 'up' ? (
                       <span className="flex items-center text-green-600 text-xs">
                         <TrendingUp className="w-3 h-3 mr-1" />
@@ -236,22 +238,22 @@ const StudentManagement = () => {
               </div>
 
               {/* 학습 정보 */}
-              <div className="space-y-2 mb-4">
-                <div className="flex items-center justify-between text-sm">
+              <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="text-gray-600">주간 학습시간</span>
                   <span className="font-medium text-gray-900">{student.weeklyStudyHours}시간</span>
                 </div>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="text-gray-600">담당 과목</span>
                   <div className="flex flex-wrap gap-1">
                     {student.subjects.map((subject, idx) => (
-                      <span key={idx} className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs">
+                      <span key={idx} className="px-1.5 sm:px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] sm:text-xs">
                         {subject}
                       </span>
                     ))}
                   </div>
                 </div>
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="text-gray-600">마지막 접속</span>
                   <span className="text-gray-900">{student.lastActive}</span>
                 </div>
@@ -259,10 +261,10 @@ const StudentManagement = () => {
 
               {/* 취약 과목 알림 */}
               {student.weakSubjects.length > 0 && (
-                <div className="mb-4 p-2 bg-yellow-50 rounded-lg">
-                  <div className="flex items-center space-x-2">
-                    <AlertCircle className="w-4 h-4 text-yellow-600" />
-                    <span className="text-xs text-yellow-800">
+                <div className="mb-3 sm:mb-4 p-2 bg-yellow-50 rounded-lg">
+                  <div className="flex items-center space-x-1 sm:space-x-2">
+                    <AlertCircle className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-600" />
+                    <span className="text-[10px] sm:text-xs text-yellow-800">
                       보강 필요: {student.weakSubjects.join(', ')}
                     </span>
                   </div>
@@ -270,20 +272,21 @@ const StudentManagement = () => {
               )}
 
               {/* 액션 버튼 */}
-              <div className="flex space-x-2">
+              <div className="flex space-x-1 sm:space-x-2">
                 <button 
                   onClick={() => setSelectedStudent(student)}
-                  className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 text-sm"
+                  className="flex-1 flex items-center justify-center space-x-0.5 sm:space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 text-[11px] sm:text-sm"
                 >
-                  <Eye className="w-4 h-4" />
-                  <span>상세보기</span>
+                  <Eye className="w-3 sm:w-4 h-3 sm:h-4" />
+                  <span>상세</span>
                 </button>
-                <button className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 text-sm">
-                  <MessageSquare className="w-4 h-4" />
-                  <span>메시지</span>
+                <button className="flex-1 flex items-center justify-center space-x-0.5 sm:space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 text-[11px] sm:text-sm">
+                  <MessageSquare className="w-3 sm:w-4 h-3 sm:h-4" />
+                  <span className="hidden sm:inline">메시지</span>
+                  <span className="sm:hidden">메시지</span>
                 </button>
-                <button className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 text-sm">
-                  <FileText className="w-4 h-4" />
+                <button className="flex-1 flex items-center justify-center space-x-0.5 sm:space-x-1 px-2 sm:px-3 py-1.5 sm:py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 text-[11px] sm:text-sm">
+                  <FileText className="w-3 sm:w-4 h-3 sm:h-4" />
                   <span>리포트</span>
                 </button>
               </div>
@@ -293,8 +296,8 @@ const StudentManagement = () => {
 
         {/* 학생 상세 모달 */}
         {selectedStudent && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center space-x-3">
                   <div className="text-4xl">{selectedStudent.profileImage}</div>

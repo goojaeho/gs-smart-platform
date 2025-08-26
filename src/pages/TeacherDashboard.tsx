@@ -82,19 +82,19 @@ const TeacherDashboard = () => {
     <Layout>
       <div className="space-y-6">
         {/* 상단 헤더 및 알림 */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">교사 대시보드</h2>
-            <p className="text-gray-600 mt-1">{teacherData.centerName} • {new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">교사 대시보드</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">{teacherData.centerName} • <span className="hidden sm:inline">{new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</span><span className="sm:hidden">{new Date().toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' })}</span></p>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <Bell className="w-5 h-5 text-gray-400" />
-              <span className="text-sm text-gray-600">알림 {announcements.filter(a => a.urgent).length}개</span>
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <Bell className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
+              <span className="text-xs sm:text-sm text-gray-600">알림 {announcements.filter(a => a.urgent).length}개</span>
             </div>
             <button 
               onClick={() => setShowMemoPanel(!showMemoPanel)}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm"
             >
               <StickyNote className="w-4 h-4" />
               <span>메모</span>
@@ -116,7 +116,7 @@ const TeacherDashboard = () => {
         )}
 
         {/* 센터 상태 개요 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           <DashboardCard
             title="전체 학생 수"
             value={`${teacherData.studentCount}명`}
@@ -153,24 +153,24 @@ const TeacherDashboard = () => {
         <div className={`grid gap-6 ${showMemoPanel ? 'grid-cols-1 lg:grid-cols-4' : 'grid-cols-1 lg:grid-cols-3'}`}>
           <div className={`space-y-6 ${showMemoPanel ? 'lg:col-span-3' : 'lg:col-span-2'}`}>
             {/* 학생 현재 상태 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">학생 학습 현황</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">학생 학습 현황</h3>
                 <div className="flex space-x-2">
-                  <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">활발: {centerStudents.filter(s => s.level >= 5).length}명</span>
-                  <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full">관심필요: {needsAttention.length}명</span>
+                  <span className="px-2 py-0.5 sm:py-1 bg-green-100 text-green-700 text-[10px] sm:text-xs rounded-full">활발: {centerStudents.filter(s => s.level >= 5).length}명</span>
+                  <span className="px-2 py-0.5 sm:py-1 bg-yellow-100 text-yellow-700 text-[10px] sm:text-xs rounded-full">관심필요: {needsAttention.length}명</span>
                 </div>
               </div>
               <div className="overflow-x-auto">
                 <table className="min-w-full">
                   <thead>
                     <tr className="border-b border-gray-200">
-                      <th className="text-left py-3 px-4 text-sm font-medium text-gray-700">학생명</th>
-                      <th className="text-center py-3 px-4 text-sm font-medium text-gray-700">학년</th>
-                      <th className="text-center py-3 px-4 text-sm font-medium text-gray-700">레벨</th>
-                      <th className="text-center py-3 px-4 text-sm font-medium text-gray-700">주간 학습시간</th>
-                      <th className="text-center py-3 px-4 text-sm font-medium text-gray-700">종합 성취도</th>
-                      <th className="text-center py-3 px-4 text-sm font-medium text-gray-700">상태</th>
+                      <th className="text-left py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-gray-700">학생명</th>
+                      <th className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-gray-700 hidden sm:table-cell">학년</th>
+                      <th className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-gray-700">레벨</th>
+                      <th className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-gray-700 hidden md:table-cell">주간 학습시간</th>
+                      <th className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-gray-700">성취도</th>
+                      <th className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm font-medium text-gray-700">상태</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -180,28 +180,26 @@ const TeacherDashboard = () => {
                       
                       return (
                         <tr key={student.id} className="border-b border-gray-100 hover:bg-gray-50">
-                          <td className="py-3 px-4">
+                          <td className="py-2 sm:py-3 px-2 sm:px-4">
                             <div className="flex items-center">
-                              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-sm font-medium text-blue-600">
+                              <div className="w-6 sm:w-8 h-6 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium text-blue-600 hidden sm:flex">
                                 {student.name[0]}
                               </div>
-                              <span className="ml-3 font-medium text-gray-900">{student.name}</span>
+                              <span className="sm:ml-3 font-medium text-gray-900 text-xs sm:text-sm">{student.name}</span>
                             </div>
                           </td>
-                          <td className="text-center py-3 px-4 text-sm text-gray-600">{student.grade}학년</td>
-                          <td className="text-center py-3 px-4">
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                          <td className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-gray-600 hidden sm:table-cell">{student.grade}학년</td>
+                          <td className="text-center py-2 sm:py-3 px-2 sm:px-4">
+                            <span className="inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium bg-blue-100 text-blue-700">
                               Lv.{student.level}
                             </span>
                           </td>
-                          <td className="text-center py-3 px-4 text-sm text-gray-600">{student.weeklyStudyTime}시간</td>
-                          <td className="text-center py-3 px-4">
-                            <div className="flex items-center justify-center">
-                              <span className="text-sm font-medium text-gray-900">{avgScore.toFixed(1)}%</span>
-                            </div>
+                          <td className="text-center py-2 sm:py-3 px-2 sm:px-4 text-xs sm:text-sm text-gray-600 hidden md:table-cell">{student.weeklyStudyTime}시간</td>
+                          <td className="text-center py-2 sm:py-3 px-2 sm:px-4">
+                            <span className="text-xs sm:text-sm font-medium text-gray-900">{avgScore.toFixed(1)}%</span>
                           </td>
-                          <td className="text-center py-3 px-4">
-                            <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                          <td className="text-center py-2 sm:py-3 px-2 sm:px-4">
+                            <span className={`inline-flex items-center px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium ${
                               status === 'excellent' ? 'bg-green-100 text-green-700' :
                               status === 'good' ? 'bg-blue-100 text-blue-700' :
                               'bg-yellow-100 text-yellow-700'
@@ -218,9 +216,9 @@ const TeacherDashboard = () => {
             </div>
 
             {/* 들어온 질문 목록 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">들어온 질문</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">들어온 질문</h3>
                 <button className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center space-x-1">
                   <span>전체보기</span>
                   <ChevronRight className="w-4 h-4" />
@@ -250,20 +248,20 @@ const TeacherDashboard = () => {
             </div>
 
             {/* 멘토링 서비스 정보 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">멘토링 서비스</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">{mentoringService.totalSessions}</div>
-                  <div className="text-sm text-gray-600 mt-1">총 세션</div>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">멘토링 서비스</h3>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-3 sm:mb-4">
+                <div className="text-center p-2 sm:p-4 bg-blue-50 rounded-lg">
+                  <div className="text-lg sm:text-2xl font-bold text-blue-600">{mentoringService.totalSessions}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mt-0.5 sm:mt-1">총 세션</div>
                 </div>
-                <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">{mentoringService.openRooms}</div>
-                  <div className="text-sm text-gray-600 mt-1">진행중</div>
+                <div className="text-center p-2 sm:p-4 bg-green-50 rounded-lg">
+                  <div className="text-lg sm:text-2xl font-bold text-green-600">{mentoringService.openRooms}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mt-0.5 sm:mt-1">진행중</div>
                 </div>
-                <div className="text-center p-4 bg-purple-50 rounded-lg">
-                  <div className="text-2xl font-bold text-purple-600">{mentoringService.completedToday}</div>
-                  <div className="text-sm text-gray-600 mt-1">오늘 완료</div>
+                <div className="text-center p-2 sm:p-4 bg-purple-50 rounded-lg">
+                  <div className="text-lg sm:text-2xl font-bold text-purple-600">{mentoringService.completedToday}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mt-0.5 sm:mt-1">오늘 완료</div>
                 </div>
               </div>
               {mentoringService.nextSession && (
@@ -282,8 +280,8 @@ const TeacherDashboard = () => {
             </div>
 
             {/* 일별 출석률 차트 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">일별 출석률 추이</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">일별 출석률 추이</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={attendanceData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -295,8 +293,8 @@ const TeacherDashboard = () => {
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">과목별 평균 성취도</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">과목별 평균 성취도</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={subjectAverages}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -309,8 +307,8 @@ const TeacherDashboard = () => {
             </div>
           </div>
 
-          {/* 오른쪽 사이드바 */}
-          <div className="space-y-6">
+          {/* 오른쪽 사이드바 - Hidden on mobile */}
+          <div className="hidden lg:block space-y-6">
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold text-gray-900">주의 필요 학생</h3>
@@ -452,7 +450,7 @@ const TeacherDashboard = () => {
           {/* 메모 패널 */}
           {showMemoPanel && (
             <div className="space-y-4">
-              <div className="bg-white rounded-lg shadow-md p-6">
+              <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-gray-900">메모</h3>
                   <button 

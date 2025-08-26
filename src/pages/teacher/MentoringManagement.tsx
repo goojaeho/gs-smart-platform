@@ -176,26 +176,27 @@ const MentoringManagement = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">멘토링 관리</h2>
-            <p className="text-gray-600 mt-1">1:1 멘토링 및 학부모 상담 관리</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">멘토링 관리</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">1:1 멘토링 및 학부모 상담 관리</p>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex gap-2 sm:gap-3">
             <button 
               onClick={() => setShowJournalCreate(true)}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center space-x-2"
+              className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center justify-center space-x-1 sm:space-x-2 text-sm sm:text-base"
             >
               <FileText className="w-4 h-4" />
               <span>일지 작성</span>
             </button>
             <button 
               onClick={() => setShowRoomCreate(true)}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center space-x-2"
+              className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center space-x-1 sm:space-x-2 text-sm sm:text-base"
             >
               <Plus className="w-4 h-4" />
-              <span>멘토링 방 개설</span>
+              <span className="hidden sm:inline">멘토링 방 개설</span>
+              <span className="sm:hidden">개설</span>
             </button>
           </div>
         </div>

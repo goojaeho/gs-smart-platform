@@ -35,55 +35,55 @@ const PointShop = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">포인트샵</h2>
-            <p className="text-gray-600 mt-1">열심히 모은 포인트로 상품을 구매하세요!</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">포인트샵</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">열심히 모은 포인트로 상품을 구매하세요!</p>
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center justify-between sm:justify-start sm:space-x-4 md:space-x-6">
             <div className="text-center">
-              <p className="text-sm text-gray-500">보유 포인트</p>
-              <p className="text-3xl font-bold text-orange-600">{studentData.points.toLocaleString()}P</p>
+              <p className="text-xs sm:text-sm text-gray-500">보유 포인트</p>
+              <p className="text-2xl sm:text-3xl font-bold text-orange-600">{studentData.points.toLocaleString()}P</p>
             </div>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
+            <button className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600">
               <ShoppingCart className="w-4 h-4" />
-              <span>장바구니</span>
+              <span className="text-sm sm:text-base">장바구니</span>
             </button>
           </div>
         </div>
 
         {/* 포인트 획득 방법 */}
-        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg p-4 sm:p-6 text-white">
           <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-xl font-bold mb-2">오늘의 포인트 미션</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div className="bg-white bg-opacity-20 rounded-lg p-3">
-                  <p className="font-medium mb-1">출석 체크</p>
-                  <p className="text-sm opacity-90">+10P (완료)</p>
+            <div className="flex-1">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">오늘의 포인트 미션</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 mt-3 sm:mt-4">
+                <div className="bg-white bg-opacity-20 rounded-lg p-2.5 sm:p-3">
+                  <p className="font-medium text-sm sm:text-base mb-1">출석 체크</p>
+                  <p className="text-xs sm:text-sm opacity-90">+10P (완료)</p>
                 </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-3">
-                  <p className="font-medium mb-1">학습 1시간</p>
-                  <p className="text-sm opacity-90">+30P (진행중)</p>
+                <div className="bg-white bg-opacity-20 rounded-lg p-2.5 sm:p-3">
+                  <p className="font-medium text-sm sm:text-base mb-1">학습 1시간</p>
+                  <p className="text-xs sm:text-sm opacity-90">+30P (진행중)</p>
                 </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-3">
-                  <p className="font-medium mb-1">문제 20개 풀기</p>
-                  <p className="text-sm opacity-90">+50P</p>
+                <div className="bg-white bg-opacity-20 rounded-lg p-2.5 sm:p-3">
+                  <p className="font-medium text-sm sm:text-base mb-1">문제 20개 풀기</p>
+                  <p className="text-xs sm:text-sm opacity-90">+50P</p>
                 </div>
               </div>
             </div>
-            <Zap className="w-16 h-16 opacity-50" />
+            <Zap className="hidden sm:block w-12 sm:w-16 h-12 sm:h-16 opacity-50" />
           </div>
         </div>
 
         {/* 카테고리 필터 */}
-        <div className="flex space-x-2 overflow-x-auto">
+        <div className="flex space-x-2 overflow-x-auto scrollbar-hide pb-2">
           {categories.map(category => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium whitespace-nowrap transition-colors text-sm sm:text-base ${
                 selectedCategory === category
                   ? 'bg-orange-500 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100'
@@ -97,35 +97,35 @@ const PointShop = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 상품 목록 */}
           <div className="lg:col-span-2">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {filteredItems.map(item => (
-                <div key={item.id} className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+                <div key={item.id} className="bg-white rounded-lg shadow-md p-3 sm:p-4 hover:shadow-lg transition-shadow">
                   <div className="relative">
                     {item.isHot && (
-                      <span className="absolute -top-2 -right-2 px-2 py-1 bg-red-500 text-white text-xs rounded-full">
+                      <span className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-500 text-white text-[10px] sm:text-xs rounded-full">
                         HOT
                       </span>
                     )}
                     {item.isNew && (
-                      <span className="absolute -top-2 -right-2 px-2 py-1 bg-green-500 text-white text-xs rounded-full">
+                      <span className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-green-500 text-white text-[10px] sm:text-xs rounded-full">
                         NEW
                       </span>
                     )}
                     {item.isSpecial && (
-                      <span className="absolute -top-2 -right-2 px-2 py-1 bg-purple-500 text-white text-xs rounded-full">
+                      <span className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-purple-500 text-white text-[10px] sm:text-xs rounded-full">
                         특별
                       </span>
                     )}
-                    <div className="w-full h-24 bg-gray-100 rounded-lg flex items-center justify-center text-4xl mb-3">
+                    <div className="w-full h-20 sm:h-24 bg-gray-100 rounded-lg flex items-center justify-center text-3xl sm:text-4xl mb-2 sm:mb-3">
                       {item.image}
                     </div>
                   </div>
-                  <h3 className="font-medium text-gray-900 text-sm mb-1">{item.name}</h3>
-                  <p className="text-xs text-gray-500 mb-2">재고: {item.stock}개</p>
+                  <h3 className="font-medium text-gray-900 text-xs sm:text-sm mb-1 line-clamp-2">{item.name}</h3>
+                  <p className="text-[10px] sm:text-xs text-gray-500 mb-2">재고: {item.stock}개</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold text-orange-600">{item.points}P</span>
+                    <span className="text-base sm:text-lg font-bold text-orange-600">{item.points}P</span>
                     <button 
-                      className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                      className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded text-xs sm:text-sm font-medium transition-colors ${
                         studentData.points >= item.points
                           ? 'bg-orange-500 text-white hover:bg-orange-600'
                           : 'bg-gray-200 text-gray-400 cursor-not-allowed'
@@ -140,8 +140,8 @@ const PointShop = () => {
             </div>
           </div>
 
-          {/* 사이드바 */}
-          <div className="space-y-6">
+          {/* 사이드바 - Hidden on mobile */}
+          <div className="hidden lg:block space-y-6">
             {/* 포인트 내역 */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">최근 포인트 내역</h3>

@@ -62,8 +62,8 @@ const LearningNotes = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">나의 학습노트</h2>
-            <p className="text-gray-600 mt-1">학습 내용을 정리하고 복습하세요</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">나의 학습노트</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">학습 내용을 정리하고 복습하세요</p>
           </div>
           <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
             <Plus className="w-4 h-4" />

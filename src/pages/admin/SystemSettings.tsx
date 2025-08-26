@@ -16,25 +16,26 @@ const SystemSettings = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">시스템 설정</h2>
-            <p className="text-gray-600 mt-1">플랫폼 전체 설정 관리</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">시스템 설정</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">플랫폼 전체 설정 관리</p>
           </div>
-          <div className="flex space-x-3">
-            <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <div className="flex gap-2">
+            <button className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm sm:text-base">
               <RefreshCw className="w-4 h-4" />
-              <span>초기화</span>
+              <span className="hidden sm:inline">초기화</span>
             </button>
             <button 
               onClick={handleSave}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base"
             >
               <Save className="w-4 h-4" />
               <span>
                 {saveStatus === 'saving' ? '저장 중...' : 
-                 saveStatus === 'saved' ? '저장됨' : '변경사항 저장'}
+                 saveStatus === 'saved' ? '저장됨' : 
+                 <><span className="sm:hidden">저장</span><span className="hidden sm:inline">변경사항 저장</span></>}
               </span>
             </button>
           </div>
@@ -42,8 +43,8 @@ const SystemSettings = () => {
 
         {/* 탭 메뉴 */}
         <div className="bg-white rounded-lg shadow-md">
-          <div className="border-b border-gray-200">
-            <div className="flex space-x-8 px-6">
+          <div className="border-b border-gray-200 overflow-x-auto">
+            <div className="flex gap-4 sm:gap-8 px-4 sm:px-6 min-w-max">
               {[
                 { id: 'general', label: '일반 설정', icon: Settings },
                 { id: 'security', label: '보안', icon: Shield },
@@ -56,13 +57,13 @@ const SystemSettings = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 py-4 border-b-2 font-medium text-sm ${
+                    className={`flex items-center gap-1 sm:gap-2 py-3 sm:py-4 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap ${
                       activeTab === tab.id
                         ? 'border-blue-500 text-blue-600'
                         : 'border-transparent text-gray-500 hover:text-gray-700'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span>{tab.label}</span>
                   </button>
                 );
@@ -70,45 +71,45 @@ const SystemSettings = () => {
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {/* 일반 설정 */}
             {activeTab === 'general' && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">기본 정보</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">기본 정보</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         플랫폼 이름
                       </label>
                       <input
                         type="text"
                         defaultValue="경산시 스마트학습 플랫폼"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         도메인
                       </label>
                       <input
                         type="text"
                         defaultValue="gs-smart.kr"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         관리자 이메일
                       </label>
                       <input
                         type="email"
                         defaultValue="admin@gyeongsan.kr"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         시간대
                       </label>
                       <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -119,19 +120,19 @@ const SystemSettings = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">운영 설정</h3>
-                  <div className="space-y-3">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">운영 설정</h3>
+                  <div className="space-y-2 sm:space-y-3">
                     <label className="flex items-center space-x-3">
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
-                      <span className="text-sm text-gray-700">신규 회원가입 허용</span>
+                      <span className="text-xs sm:text-sm text-gray-700">신규 회원가입 허용</span>
                     </label>
                     <label className="flex items-center space-x-3">
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
-                      <span className="text-sm text-gray-700">유지보수 모드 (관리자만 접속)</span>
+                      <span className="text-xs sm:text-sm text-gray-700">유지보수 모드 (관리자만 접속)</span>
                     </label>
                     <label className="flex items-center space-x-3">
                       <input type="checkbox" className="rounded text-blue-500" />
-                      <span className="text-sm text-gray-700">디버그 모드 활성화</span>
+                      <span className="text-xs sm:text-sm text-gray-700">디버그 모드 활성화</span>
                     </label>
                   </div>
                 </div>
@@ -140,56 +141,56 @@ const SystemSettings = () => {
 
             {/* 보안 설정 */}
             {activeTab === 'security' && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">인증 설정</h3>
-                  <div className="space-y-4">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">인증 설정</h3>
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         세션 만료 시간 (분)
                       </label>
                       <input
                         type="number"
                         defaultValue="30"
-                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full max-w-[150px] sm:max-w-xs px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         최대 로그인 시도 횟수
                       </label>
                       <input
                         type="number"
                         defaultValue="5"
-                        className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full max-w-[150px] sm:max-w-xs px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                       />
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <label className="flex items-center space-x-3">
                         <input type="checkbox" defaultChecked className="rounded text-blue-500" />
-                        <span className="text-sm text-gray-700">2단계 인증 활성화</span>
+                        <span className="text-xs sm:text-sm text-gray-700">2단계 인증 활성화</span>
                       </label>
                       <label className="flex items-center space-x-3">
                         <input type="checkbox" defaultChecked className="rounded text-blue-500" />
-                        <span className="text-sm text-gray-700">비밀번호 복잡도 검사</span>
+                        <span className="text-xs sm:text-sm text-gray-700">비밀번호 복잡도 검사</span>
                       </label>
                       <label className="flex items-center space-x-3">
                         <input type="checkbox" className="rounded text-blue-500" />
-                        <span className="text-sm text-gray-700">IP 기반 접속 제한</span>
+                        <span className="text-xs sm:text-sm text-gray-700">IP 기반 접속 제한</span>
                       </label>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-yellow-50 rounded-lg p-4">
-                  <div className="flex items-start space-x-3">
-                    <AlertTriangle className="w-5 h-5 text-yellow-600 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-yellow-900">보안 경고</p>
-                      <p className="text-sm text-yellow-700 mt-1">
+                <div className="bg-yellow-50 rounded-lg p-3 sm:p-4">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <div className="min-w-0">
+                      <p className="text-xs sm:text-sm font-medium text-yellow-900">보안 경고</p>
+                      <p className="text-xs sm:text-sm text-yellow-700 mt-1">
                         최근 24시간 동안 3건의 비정상적인 로그인 시도가 감지되었습니다.
                       </p>
-                      <button className="text-sm text-yellow-900 font-medium mt-2 hover:underline">
+                      <button className="text-xs sm:text-sm text-yellow-900 font-medium mt-2 hover:underline">
                         자세히 보기 →
                       </button>
                     </div>
@@ -200,42 +201,42 @@ const SystemSettings = () => {
 
             {/* 알림 설정 */}
             {activeTab === 'notification' && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">이메일 알림</h3>
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">이메일 알림</h3>
                   <div className="space-y-3">
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">신규 회원가입</span>
+                      <span className="text-xs sm:text-sm text-gray-700">신규 회원가입</span>
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
                     </label>
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">시스템 오류</span>
+                      <span className="text-xs sm:text-sm text-gray-700">시스템 오류</span>
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
                     </label>
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">일일 리포트</span>
+                      <span className="text-xs sm:text-sm text-gray-700">일일 리포트</span>
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
                     </label>
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">보안 알림</span>
+                      <span className="text-xs sm:text-sm text-gray-700">보안 알림</span>
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
                     </label>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">푸시 알림</h3>
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">푸시 알림</h3>
                   <div className="space-y-3">
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">학습 리마인더</span>
+                      <span className="text-xs sm:text-sm text-gray-700">학습 리마인더</span>
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
                     </label>
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">멘토링 알림</span>
+                      <span className="text-xs sm:text-sm text-gray-700">멘토링 알림</span>
                       <input type="checkbox" defaultChecked className="rounded text-blue-500" />
                     </label>
                     <label className="flex items-center justify-between">
-                      <span className="text-sm text-gray-700">공지사항</span>
+                      <span className="text-xs sm:text-sm text-gray-700">공지사항</span>
                       <input type="checkbox" className="rounded text-blue-500" />
                     </label>
                   </div>
@@ -245,55 +246,55 @@ const SystemSettings = () => {
 
             {/* 데이터베이스 설정 */}
             {activeTab === 'database' && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">데이터베이스 정보</h3>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">데이터베이스 정보</h3>
+                  <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       <div>
-                        <p className="text-sm text-gray-600">데이터베이스 유형</p>
-                        <p className="font-medium text-gray-900">PostgreSQL 14.5</p>
+                        <p className="text-xs sm:text-sm text-gray-600">데이터베이스 유형</p>
+                        <p className="text-sm sm:text-base font-medium text-gray-900">PostgreSQL 14.5</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">현재 크기</p>
-                        <p className="font-medium text-gray-900">3.2 GB</p>
+                        <p className="text-xs sm:text-sm text-gray-600">현재 크기</p>
+                        <p className="text-sm sm:text-base font-medium text-gray-900">3.2 GB</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">최대 연결 수</p>
-                        <p className="font-medium text-gray-900">100</p>
+                        <p className="text-xs sm:text-sm text-gray-600">최대 연결 수</p>
+                        <p className="text-sm sm:text-base font-medium text-gray-900">100</p>
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">현재 연결 수</p>
-                        <p className="font-medium text-gray-900">23</p>
+                        <p className="text-xs sm:text-sm text-gray-600">현재 연결 수</p>
+                        <p className="text-sm sm:text-base font-medium text-gray-900">23</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">백업 설정</h3>
-                  <div className="space-y-4">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">백업 설정</h3>
+                  <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         자동 백업 주기
                       </label>
-                      <select className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <select className="w-full max-w-[200px] sm:max-w-xs px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base">
                         <option>매일</option>
                         <option>매주</option>
                         <option>매월</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                         백업 보관 기간
                       </label>
-                      <select className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <select className="w-full max-w-[200px] sm:max-w-xs px-2 sm:px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base">
                         <option>30일</option>
                         <option>60일</option>
                         <option>90일</option>
                       </select>
                     </div>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+                    <button className="px-3 sm:px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 text-sm sm:text-base">
                       수동 백업 실행
                     </button>
                   </div>
@@ -303,53 +304,53 @@ const SystemSettings = () => {
 
             {/* API 설정 */}
             {activeTab === 'api' && (
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">API 키 관리</h3>
-                  <div className="space-y-3">
-                    <div className="border rounded-lg p-4">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">API 키 관리</h3>
+                  <div className="space-y-2 sm:space-y-3">
+                    <div className="border rounded-lg p-3 sm:p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-medium text-gray-900">OpenAI API</span>
-                        <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">활성</span>
+                        <span className="text-sm sm:text-base font-medium text-gray-900">OpenAI API</span>
+                        <span className="px-2 py-0.5 sm:py-1 bg-green-100 text-green-700 rounded text-xs">활성</span>
                       </div>
-                      <p className="text-sm text-gray-600 font-mono">sk-...************************</p>
-                      <div className="flex space-x-2 mt-3">
-                        <button className="text-sm text-blue-600 hover:text-blue-800">재생성</button>
-                        <button className="text-sm text-red-600 hover:text-red-800">삭제</button>
+                      <p className="text-xs sm:text-sm text-gray-600 font-mono break-all">sk-...************************</p>
+                      <div className="flex gap-2 mt-2 sm:mt-3">
+                        <button className="text-xs sm:text-sm text-blue-600 hover:text-blue-800">재생성</button>
+                        <button className="text-xs sm:text-sm text-red-600 hover:text-red-800">삭제</button>
                       </div>
                     </div>
-                    <div className="border rounded-lg p-4">
+                    <div className="border rounded-lg p-3 sm:p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-medium text-gray-900">Google Maps API</span>
-                        <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">활성</span>
+                        <span className="text-sm sm:text-base font-medium text-gray-900">Google Maps API</span>
+                        <span className="px-2 py-0.5 sm:py-1 bg-green-100 text-green-700 rounded text-xs">활성</span>
                       </div>
-                      <p className="text-sm text-gray-600 font-mono">AIza...**********************</p>
-                      <div className="flex space-x-2 mt-3">
-                        <button className="text-sm text-blue-600 hover:text-blue-800">재생성</button>
-                        <button className="text-sm text-red-600 hover:text-red-800">삭제</button>
+                      <p className="text-xs sm:text-sm text-gray-600 font-mono break-all">AIza...**********************</p>
+                      <div className="flex gap-2 mt-2 sm:mt-3">
+                        <button className="text-xs sm:text-sm text-blue-600 hover:text-blue-800">재생성</button>
+                        <button className="text-xs sm:text-sm text-red-600 hover:text-red-800">삭제</button>
                       </div>
                     </div>
                   </div>
-                  <button className="mt-4 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                  <button className="mt-3 sm:mt-4 px-3 sm:px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm sm:text-base">
                     + 새 API 키 추가
                   </button>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">API 사용량</h3>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <div className="space-y-3">
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-3 sm:mb-4">API 사용량</h3>
+                  <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                    <div className="space-y-2 sm:space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">오늘 요청 수</span>
-                        <span className="font-medium text-gray-900">12,456</span>
+                        <span className="text-xs sm:text-sm text-gray-600">오늘 요청 수</span>
+                        <span className="text-sm sm:text-base font-medium text-gray-900">12,456</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">이번 달 총 요청</span>
-                        <span className="font-medium text-gray-900">387,234</span>
+                        <span className="text-xs sm:text-sm text-gray-600">이번 달 총 요청</span>
+                        <span className="text-sm sm:text-base font-medium text-gray-900">387,234</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">예상 비용</span>
-                        <span className="font-medium text-gray-900">₩234,500</span>
+                        <span className="text-xs sm:text-sm text-gray-600">예상 비용</span>
+                        <span className="text-sm sm:text-base font-medium text-gray-900">₩234,500</span>
                       </div>
                     </div>
                   </div>
@@ -361,8 +362,8 @@ const SystemSettings = () => {
 
         {/* 저장 상태 알림 */}
         {saveStatus === 'saved' && (
-          <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center space-x-2">
-            <CheckCircle className="w-5 h-5" />
+          <div className="fixed bottom-4 right-4 bg-green-500 text-white px-3 sm:px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 text-sm sm:text-base">
+            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>설정이 저장되었습니다</span>
           </div>
         )}

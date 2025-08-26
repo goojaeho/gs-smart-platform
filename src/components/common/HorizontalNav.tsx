@@ -1,4 +1,6 @@
+import { useState, useEffect, useRef } from 'react';
 import { useAuthStore } from '../../store/authStore';
+import { useLocation } from 'react-router-dom';
 import { 
   Home, BookOpen, Users, MessageSquare, Award, 
   BarChart3, Settings, FileText, Video, HelpCircle,
@@ -8,6 +10,9 @@ import {
 
 const HorizontalNav = () => {
   const { user } = useAuthStore();
+  const location = useLocation();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const activeItemRef = useRef<HTMLAnchorElement>(null);
 
   const getMenuItems = () => {
     switch (user?.role) {
@@ -59,36 +64,104 @@ const HorizontalNav = () => {
 
   const menuItems = getMenuItems();
 
+  // Scroll to active item on mount and route change
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      if (activeItemRef.current && scrollContainerRef.current) {
+        const container = scrollContainerRef.current;
+        const activeItem = activeItemRef.current;
+        
+        // Calculate scroll position to center the active item
+        const containerWidth = container.offsetWidth;
+        const itemLeft = activeItem.offsetLeft;
+        const itemWidth = activeItem.offsetWidth;
+        const scrollPosition = itemLeft - (containerWidth / 2) + (itemWidth / 2);
+        
+        // Smooth scroll to the active item
+        container.scrollTo({
+          left: Math.max(0, scrollPosition),
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  }, [location.pathname]);
+
   return (
-    <nav className="fixed top-[120px] left-0 right-0 bg-white shadow-md border-b border-gray-200 z-10">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-center space-x-1 py-4">
+    <nav className="fixed top-16 sm:top-[120px] left-0 right-0 bg-white shadow-md border-b border-gray-200 z-10">
+      <div className="relative">
+        {/* Desktop View */}
+        <div className="hidden sm:block max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-center space-x-1 py-4 overflow-x-auto scrollbar-hide">
           {menuItems.map((item, index) => {
             const Icon = item.icon;
-            const isActive = window.location.pathname === item.path;
+            const isActive = location.pathname === item.path;
             
             return (
               <a
                 key={index}
+                ref={isActive ? activeItemRef : null}
                 href={item.path}
-                className={`flex items-center flex-col space-y-1 px-4 py-3 rounded-lg transition-all duration-200 min-w-[100px] ${
+                className={`flex flex-col items-center justify-center space-y-1 px-4 py-3 rounded-lg transition-all duration-200 min-w-[100px] ${
                   isActive
                     ? 'bg-gradient-to-br from-primary to-secondary text-white shadow-lg transform scale-105'
                     : 'text-gray-600 hover:text-primary hover:bg-gray-50'
-                } ${item.isMain ? '' : ''}`}
+                }`}
               >
                 <Icon className={`w-6 h-6 ${isActive ? 'text-white' : ''}`} />
-                <span className={`text-sm font-medium text-center ${isActive ? 'text-white' : ''}`}>
+                <span className={`text-sm font-medium text-center ${isActive ? 'text-white' : ''} whitespace-nowrap`}>
                   {item.label}
                 </span>
               </a>
             );
           })}
+          </div>
+        </div>
+        
+        {/* Mobile View - Horizontal Scrollable */}
+        <div className="sm:hidden">
+          <div className="relative overflow-hidden">
+            <div 
+              ref={scrollContainerRef}
+              className="flex items-center space-x-2 px-3 py-2 overflow-x-auto scrollbar-hide scroll-smooth"
+              style={{ 
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {menuItems.map((item, index) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path;
+                
+                return (
+                  <a
+                    key={index}
+                    ref={isActive ? activeItemRef : null}
+                    href={item.path}
+                    className={`flex flex-col items-center justify-center space-y-0.5 px-3 py-2 rounded-lg transition-all duration-200 min-w-[75px] relative ${
+                      isActive
+                        ? 'bg-gradient-to-br from-primary to-secondary text-white shadow-md scale-110'
+                        : 'text-gray-600 hover:text-primary hover:bg-gray-50'
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : ''}`} />
+                    <span className={`text-[11px] font-medium text-center ${isActive ? 'text-white' : ''} whitespace-nowrap`}>
+                      {item.label}
+                    </span>
+                    {isActive && (
+                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full" />
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
       
-      {/* Help button - positioned separately */}
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+      {/* Help button - positioned separately - Desktop only */}
+      <div className="hidden sm:block absolute right-4 top-1/2 transform -translate-y-1/2">
         <button className="flex items-center space-x-2 px-3 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">
           <HelpCircle className="w-5 h-5" />
           <span className="text-sm font-medium hidden md:block">도움말</span>

@@ -139,15 +139,15 @@ const LearningMate = ({
   };
 
   return (
-    <div className="bg-[#f9fafb] rounded-2xl p-6 shadow-lg border border-gray-100 relative overflow-hidden">
+    <div className="bg-[#f9fafb] rounded-xl lg:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 relative overflow-hidden">
       {/* Advanced Reward Animations */}
       {showReward && (
         <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
           {rewardType === 'levelup' && (
             <div className="animate-bounce text-center">
-              <div className="text-6xl mb-2">🎉</div>
-              <div className="text-2xl font-bold text-primary animate-pulse">레벨 업!</div>
-              <div className="text-lg text-secondary">새로운 능력 해금!</div>
+              <div className="text-4xl sm:text-6xl mb-2">🎉</div>
+              <div className="text-xl sm:text-2xl font-bold text-primary animate-pulse">레벨 업!</div>
+              <div className="text-base sm:text-lg text-secondary">새로운 능력 해금!</div>
             </div>
           )}
           {rewardType === 'star' && (
@@ -167,11 +167,11 @@ const LearningMate = ({
       )}
 
       {/* Character Evolution Display */}
-      <div className="flex items-center space-x-6 mb-6">
+      <div className="flex items-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
         {/* Enhanced Character with Growth */}
-        <div className="flex flex-col items-center space-y-3 relative">
+        <div className="flex flex-col items-center space-y-2 sm:space-y-3 relative">
           {/* Character with costume evolution */}
-          <div className="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-4xl shadow-xl transform transition-all duration-300 hover:scale-110 relative">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-3xl sm:text-4xl shadow-xl transform transition-all duration-300 hover:scale-110 relative">
             {getCharacterDisplay()}
             {/* Sparkle effect for high levels */}
             {studentLevel >= 10 && (
@@ -181,23 +181,23 @@ const LearningMate = ({
           
           {/* Enhanced Level Badge with Title */}
           <div className="text-center">
-            <div className="bg-gradient-to-r from-primary to-secondary text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg mb-1">
+            <div className="bg-gradient-to-r from-primary to-secondary text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold shadow-lg mb-1">
               Lv.{studentLevel}
             </div>
-            <div className="text-xs font-medium text-gray-600">{characterEvolution.title}</div>
+            <div className="text-[10px] sm:text-xs font-medium text-gray-600">{characterEvolution.title}</div>
           </div>
         </div>
 
         {/* Progress & Character Info */}
         <div className="flex-1">
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-900">{studentName}</h3>
-              <span className="text-sm font-semibold text-primary">{currentExp} / {nextLevelExp} EXP</span>
+              <h3 className="text-base sm:text-lg font-bold text-gray-900">{studentName}</h3>
+              <span className="text-xs sm:text-sm font-semibold text-primary">{currentExp} / {nextLevelExp} EXP</span>
             </div>
             
             {/* Enhanced EXP Bar with level up indicator */}
-            <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden relative">
+            <div className="w-full bg-gray-200 rounded-full h-3 sm:h-4 overflow-hidden relative">
               <div 
                 className="bg-gradient-to-r from-primary to-secondary h-full rounded-full transition-all duration-1000 ease-out relative"
                 style={{ width: `${Math.min(expPercentage, 100)}%` }}
@@ -211,11 +211,11 @@ const LearningMate = ({
               </div>
             </div>
             
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-[10px] sm:text-xs">
               <span className="text-gray-500">다음 레벨까지 {nextLevelExp - currentExp} EXP</span>
               <button 
                 onClick={triggerLevelUp}
-                className="text-primary hover:text-secondary transition-colors font-medium"
+                className="text-primary hover:text-secondary transition-colors font-medium hidden sm:inline"
               >
                 레벨업 미리보기
               </button>
@@ -223,11 +223,11 @@ const LearningMate = ({
           </div>
 
           {/* Character Abilities Display */}
-          <div className="mt-4 flex flex-wrap gap-1">
+          <div className="mt-3 sm:mt-4 flex flex-wrap gap-1">
             {characterEvolution.abilities.map((ability, index) => (
               <span 
                 key={index}
-                className="px-2 py-1 bg-gradient-to-r from-primary/10 to-secondary/10 text-xs font-medium rounded-full text-gray-700 border border-gray-200"
+                className="px-2 py-0.5 sm:py-1 bg-gradient-to-r from-primary/10 to-secondary/10 text-[10px] sm:text-xs font-medium rounded-full text-gray-700 border border-gray-200"
               >
                 ✨ {ability}
               </span>

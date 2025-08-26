@@ -113,25 +113,25 @@ const ConsultationRequest = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">상담 신청</h2>
-            <p className="text-gray-600 mt-1">{childData.name} 학생 학습 상담 예약</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">상담 신청</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">{childData.name} 학생 학습 상담 예약</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* 상담 신청 폼 */}
-          <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">새로운 상담 신청</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">새로운 상담 신청</h3>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* 상담 유형 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   상담 유형 *
                 </label>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
                   {[
                     { value: 'video', icon: Video, label: '화상 상담' },
                     { value: 'phone', icon: Phone, label: '전화 상담' },
@@ -141,14 +141,14 @@ const ConsultationRequest = () => {
                       key={type.value}
                       type="button"
                       onClick={() => setSelectedType(type.value)}
-                      className={`p-4 border rounded-lg flex flex-col items-center space-y-2 transition-colors ${
+                      className={`p-3 sm:p-4 border rounded-lg flex flex-col items-center space-y-1 sm:space-y-2 transition-colors ${
                         selectedType === type.value
                           ? 'border-blue-500 bg-blue-50 text-blue-600'
                           : 'border-gray-300 hover:border-gray-400'
                       }`}
                     >
-                      <type.icon className="w-6 h-6" />
-                      <span className="text-sm font-medium">{type.label}</span>
+                      <type.icon className="w-5 sm:w-6 h-5 sm:h-6" />
+                      <span className="text-xs sm:text-sm font-medium">{type.label}</span>
                     </button>
                   ))}
                 </div>
@@ -156,17 +156,17 @@ const ConsultationRequest = () => {
 
               {/* 선생님 선택 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                   상담 선생님 *
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                   {teachers.map(teacher => (
                     <button
                       key={teacher.name}
                       type="button"
                       onClick={() => teacher.available && setSelectedTeacher(teacher.name)}
                       disabled={!teacher.available}
-                      className={`p-3 border rounded-lg text-left transition-colors ${
+                      className={`p-2 sm:p-3 border rounded-lg text-left transition-colors ${
                         selectedTeacher === teacher.name
                           ? 'border-blue-500 bg-blue-50'
                           : teacher.available
@@ -176,8 +176,8 @@ const ConsultationRequest = () => {
                     >
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="font-medium text-gray-900">{teacher.name}</p>
-                          <p className="text-sm text-gray-600">{teacher.subject}</p>
+                          <p className="text-sm sm:text-base font-medium text-gray-900">{teacher.name}</p>
+                          <p className="text-xs sm:text-sm text-gray-600">{teacher.subject}</p>
                         </div>
                         {teacher.available ? (
                           <span className="text-xs text-green-600">예약가능</span>
@@ -191,9 +191,9 @@ const ConsultationRequest = () => {
               </div>
 
               {/* 날짜 및 시간 */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                     희망 날짜 *
                   </label>
                   <input
@@ -201,7 +201,7 @@ const ConsultationRequest = () => {
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
                     min="2024-01-26"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                     required
                   />
                 </div>

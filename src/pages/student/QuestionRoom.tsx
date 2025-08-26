@@ -50,30 +50,30 @@ const QuestionRoom = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">1:1 학습 질문방</h2>
-            <p className="text-gray-600 mt-1">실시간으로 멘토 선생님께 질문하세요</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">1:1 학습 질문방</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">실시간으로 멘토 선생님께 질문하세요</p>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-gray-600">실시간 멘토 4명 대기중</span>
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              <div className="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-xs sm:text-sm text-gray-600">실시간 멘토 4명 대기중</span>
             </div>
           </div>
         </div>
 
         {/* 빠른 질문하기 */}
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
-          <h3 className="text-xl font-bold mb-4">빠른 질문하기</h3>
-          <div className="space-y-4">
-            <div className="flex space-x-2">
+        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 sm:p-5 lg:p-6 text-white">
+          <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-3 sm:mb-4">빠른 질문하기</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <div className="flex flex-wrap gap-2">
               {subjects.slice(1).map(subject => (
                 <button
                   key={subject}
                   onClick={() => setSelectedSubject(subject)}
-                  className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-full text-xs sm:text-sm transition-colors ${
                     selectedSubject === subject
                       ? 'bg-white text-blue-600'
                       : 'bg-white bg-opacity-20 hover:bg-opacity-30'
@@ -83,32 +83,32 @@ const QuestionRoom = () => {
                 </button>
               ))}
             </div>
-            <div className="flex space-x-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 value={questionText}
                 onChange={(e) => setQuestionText(e.target.value)}
                 placeholder="질문을 입력하세요..."
-                className="flex-1 px-4 py-3 bg-white bg-opacity-20 rounded-lg placeholder-white placeholder-opacity-70 text-white focus:outline-none focus:bg-opacity-30"
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 bg-white bg-opacity-20 rounded-lg placeholder-white placeholder-opacity-70 text-white text-sm sm:text-base focus:outline-none focus:bg-opacity-30"
               />
-              <button className="px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-medium">
+              <button className="px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-medium text-sm sm:text-base">
                 질문하기
               </button>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               <button 
                 onClick={() => {
                   setSelectedMentor({ name: '김수학쌤', subject: '수학' });
                   setIsVideoCallOpen(true);
                 }}
-                className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors"
+                className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors"
               >
-                <Video className="w-4 h-4" />
-                <span className="text-sm">화상 질문</span>
+                <Video className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                <span className="text-xs sm:text-sm">화상 질문</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors">
-                <Mic className="w-4 h-4" />
-                <span className="text-sm">음성 질문</span>
+              <button className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors">
+                <Mic className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                <span className="text-xs sm:text-sm">음성 질문</span>
               </button>
             </div>
           </div>
@@ -117,19 +117,19 @@ const QuestionRoom = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* 최근 질문 목록 */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">실시간 질문 현황</h3>
-                <button className="text-sm text-blue-600 hover:text-blue-700">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-5 lg:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">실시간 질문 현황</h3>
+                <button className="text-xs sm:text-sm text-blue-600 hover:text-blue-700">
                   내 질문 기록
                 </button>
               </div>
               <div className="space-y-3">
                 {recentQuestions.map(q => (
-                  <div key={q.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div key={q.id} className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-2">
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2">
                           <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
                             {q.subject}
                           </span>
@@ -153,16 +153,16 @@ const QuestionRoom = () => {
                             </span>
                           )}
                         </div>
-                        <p className="font-medium text-gray-900 mb-2">{q.question}</p>
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-gray-600">질문자: {q.student}</span>
+                        <p className="font-medium text-sm sm:text-base text-gray-900 mb-2">{q.question}</p>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                          <span className="text-xs sm:text-sm text-gray-600">질문자: {q.student}</span>
                           {q.mentor && (
-                            <span className="text-sm text-blue-600">답변: {q.mentor}</span>
+                            <span className="text-xs sm:text-sm text-blue-600">답변: {q.mentor}</span>
                           )}
                         </div>
                       </div>
                       {q.status === 'answered' && (
-                        <button className="ml-4 px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 text-sm">
+                        <button className="ml-2 sm:ml-4 px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 text-xs sm:text-sm whitespace-nowrap">
                           답변보기
                         </button>
                       )}
@@ -173,8 +173,8 @@ const QuestionRoom = () => {
             </div>
 
             {/* 자주 묻는 질문 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">자주 묻는 질문 TOP 5</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-5 lg:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">자주 묻는 질문 TOP 5</h3>
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-xs font-bold">1</span>
@@ -202,9 +202,9 @@ const QuestionRoom = () => {
           </div>
 
           {/* 대기중인 멘토 */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">실시간 멘토</h3>
+          <div className="space-y-4 lg:space-y-6">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-5 lg:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">실시간 멘토</h3>
               <div className="space-y-3">
                 {onlineMentors.map(mentor => (
                   <div key={mentor.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">

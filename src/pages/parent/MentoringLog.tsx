@@ -142,75 +142,76 @@ const MentoringLog = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">멘토링 일지</h2>
-            <p className="text-gray-600 mt-1">{childData.name}의 1:1 멘토링 기록</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">멘토링 일지</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">{childData.name}의 1:1 멘토링 기록</p>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <select
               value={selectedMentor}
               onChange={(e) => setSelectedMentor(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
             >
               <option value="all">전체 멘토</option>
               {mentors.map(mentor => (
                 <option key={mentor.name} value={mentor.name}>{mentor.name}</option>
               ))}
             </select>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-              멘토링 신청
+            <button className="px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base">
+              <span className="hidden sm:inline">멘토링 신청</span>
+              <span className="sm:hidden">신청</span>
             </button>
           </div>
         </div>
 
         {/* 멘토 현황 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {mentors.map((mentor) => (
-            <div key={mentor.name} className="bg-white rounded-lg shadow-md p-4">
-              <div className="flex items-center justify-between mb-2">
-                <User className="w-6 h-6 text-gray-400" />
+            <div key={mentor.name} className="bg-white rounded-lg shadow-md p-3 sm:p-4">
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <User className="w-5 sm:w-6 h-5 sm:h-6 text-gray-400" />
                 <div className="flex items-center space-x-1">
-                  <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                  <span className="text-sm font-medium">{mentor.rating}</span>
+                  <Star className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-500 fill-current" />
+                  <span className="text-xs sm:text-sm font-medium">{mentor.rating}</span>
                 </div>
               </div>
-              <h3 className="font-bold text-gray-900">{mentor.name}</h3>
-              <p className="text-sm text-gray-600">{mentor.subject}</p>
-              <div className="mt-2 pt-2 border-t">
-                <p className="text-xs text-gray-500">총 {mentor.sessions}회 진행</p>
+              <h3 className="text-sm sm:text-base font-bold text-gray-900 truncate">{mentor.name}</h3>
+              <p className="text-xs sm:text-sm text-gray-600">{mentor.subject}</p>
+              <div className="mt-1 sm:mt-2 pt-1 sm:pt-2 border-t">
+                <p className="text-xs text-gray-500">총 {mentor.sessions}회</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* 멘토링 일지 목록 */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {filteredLogs.map((log) => (
             <div key={log.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className={`p-6 ${log.status === 'scheduled' ? 'bg-blue-50' : ''}`}>
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="text-center">
-                      <Calendar className="w-5 h-5 text-gray-400 mx-auto mb-1" />
-                      <p className="text-sm font-medium">{log.date}</p>
+              <div className={`p-4 sm:p-6 ${log.status === 'scheduled' ? 'bg-blue-50' : ''}`}>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-0 mb-3 sm:mb-4">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="text-center min-w-fit">
+                      <Calendar className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400 mx-auto mb-1" />
+                      <p className="text-xs sm:text-sm font-medium">{log.date}</p>
                       <p className="text-xs text-gray-500">{log.time}</p>
                     </div>
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <h3 className="font-bold text-gray-900">{log.mentor}</h3>
-                        <span className={`px-2 py-1 text-xs rounded ${getStatusColor(log.status)}`}>
+                    <div className="flex-1">
+                      <div className="flex items-center flex-wrap gap-2">
+                        <h3 className="text-sm sm:text-base font-bold text-gray-900">{log.mentor}</h3>
+                        <span className={`px-2 py-0.5 sm:py-1 text-xs rounded ${getStatusColor(log.status)}`}>
                           {log.status === 'completed' ? '완료' : log.status === 'scheduled' ? '예정' : '취소'}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600">{log.subject} - {log.topic}</p>
-                      <p className="text-xs text-gray-500 mt-1">{log.type}</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-1">{log.subject} - {log.topic}</p>
+                      <p className="text-xs text-gray-500 mt-0.5 sm:mt-1">{log.type}</p>
                     </div>
                   </div>
                   {log.studentMood && (
-                    <div className="text-center">
-                      <p className="text-2xl">{getMoodIcon(log.studentMood)}</p>
+                    <div className="text-center self-start">
+                      <p className="text-xl sm:text-2xl">{getMoodIcon(log.studentMood)}</p>
                       <p className="text-xs text-gray-500">학습 태도</p>
                     </div>
                   )}
@@ -219,38 +220,38 @@ const MentoringLog = () => {
                 {log.status === 'completed' && (
                   <>
                     {/* 참여도 및 향상도 */}
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                      <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
+                      <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm text-gray-600">참여도</span>
-                          <span className="text-sm font-bold text-gray-900">{log.participation}%</span>
+                          <span className="text-xs sm:text-sm text-gray-600">참여도</span>
+                          <span className="text-xs sm:text-sm font-bold text-gray-900">{log.participation}%</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2">
                           <div 
-                            className="bg-blue-500 h-2 rounded-full"
+                            className="bg-blue-500 h-1.5 sm:h-2 rounded-full"
                             style={{ width: `${log.participation}%` }}
                           />
                         </div>
                       </div>
-                      <div className="bg-gray-50 rounded-lg p-3">
+                      <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm text-gray-600">성취도 향상</span>
-                          <span className="text-sm font-bold text-green-600">{log.improvement}</span>
+                          <span className="text-xs sm:text-sm text-gray-600">성취도 향상</span>
+                          <span className="text-xs sm:text-sm font-bold text-green-600">{log.improvement}</span>
                         </div>
                         <div className="flex items-center space-x-1">
-                          <TrendingUp className="w-4 h-4 text-green-500" />
-                          <span className="text-xs text-gray-500">지난 세션 대비</span>
+                          <TrendingUp className="w-3 sm:w-4 h-3 sm:h-4 text-green-500" />
+                          <span className="text-xs text-gray-500">지난 대비</span>
                         </div>
                       </div>
                     </div>
 
                     {/* 과제 정보 */}
                     {log.homework && (
-                      <div className="bg-yellow-50 rounded-lg p-3 mb-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <FileText className="w-4 h-4 text-yellow-600" />
-                            <span className="text-sm font-medium text-gray-900">과제: {log.homework}</span>
+                      <div className="bg-yellow-50 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="flex items-start sm:items-center gap-1 sm:gap-2 flex-1 min-w-0">
+                            <FileText className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-600 mt-0.5 sm:mt-0" />
+                            <span className="text-xs sm:text-sm font-medium text-gray-900">과제: {log.homework}</span>
                           </div>
                           {getHomeworkStatusBadge(log.homeworkStatus)}
                         </div>
@@ -259,12 +260,12 @@ const MentoringLog = () => {
 
                     {/* 멘토 피드백 */}
                     {log.mentorNote && log.parentVisible && (
-                      <div className="bg-blue-50 rounded-lg p-4 mb-4">
-                        <div className="flex items-start space-x-2">
-                          <MessageSquare className="w-4 h-4 text-blue-600 mt-1" />
-                          <div>
-                            <p className="text-sm font-medium text-gray-900 mb-1">멘토 피드백</p>
-                            <p className="text-sm text-gray-700">{log.mentorNote}</p>
+                      <div className="bg-blue-50 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
+                        <div className="flex items-start gap-2">
+                          <MessageSquare className="w-3 sm:w-4 h-3 sm:h-4 text-blue-600 mt-0.5 sm:mt-1" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs sm:text-sm font-medium text-gray-900 mb-0.5 sm:mb-1">멘토 피드백</p>
+                            <p className="text-xs sm:text-sm text-gray-700">{log.mentorNote}</p>
                           </div>
                         </div>
                       </div>
@@ -272,8 +273,8 @@ const MentoringLog = () => {
 
                     {/* 다음 목표 */}
                     {log.nextGoal && (
-                      <div className="flex items-center space-x-2 text-sm">
-                        <Target className="w-4 h-4 text-purple-500" />
+                      <div className="flex items-center gap-2 text-xs sm:text-sm">
+                        <Target className="w-3 sm:w-4 h-3 sm:h-4 text-purple-500" />
                         <span className="text-gray-600">다음 목표:</span>
                         <span className="font-medium text-gray-900">{log.nextGoal}</span>
                       </div>
@@ -282,11 +283,11 @@ const MentoringLog = () => {
                 )}
 
                 {log.status === 'scheduled' && (
-                  <div className="bg-blue-100 rounded-lg p-4">
-                    <p className="text-sm text-blue-800">
+                  <div className="bg-blue-100 rounded-lg p-3 sm:p-4">
+                    <p className="text-xs sm:text-sm text-blue-800">
                       예정된 멘토링입니다. 시작 10분 전 알림을 보내드릴게요.
                     </p>
-                    <button className="mt-2 text-sm text-blue-600 hover:text-blue-800 font-medium">
+                    <button className="mt-1 sm:mt-2 text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium">
                       일정 변경 요청 →
                     </button>
                   </div>
@@ -297,23 +298,23 @@ const MentoringLog = () => {
         </div>
 
         {/* 멘토링 요약 통계 */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-6 text-white">
-          <div className="flex items-center space-x-3 mb-4">
-            <Heart className="w-8 h-8" />
-            <h3 className="text-xl font-bold">이번 달 멘토링 요약</h3>
+        <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-4 sm:p-6 text-white">
+          <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <Heart className="w-6 sm:w-8 h-6 sm:h-8" />
+            <h3 className="text-lg sm:text-xl font-bold">이번 달 멘토링 요약</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white/10 rounded-lg p-3">
-              <p className="text-sm text-white/80">총 멘토링 시간</p>
-              <p className="text-2xl font-bold">12시간</p>
+          <div className="grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="bg-white/10 rounded-lg p-2 sm:p-3">
+              <p className="text-xs sm:text-sm text-white/80">총 멘토링</p>
+              <p className="text-lg sm:text-2xl font-bold">12시간</p>
             </div>
-            <div className="bg-white/10 rounded-lg p-3">
-              <p className="text-sm text-white/80">평균 참여도</p>
-              <p className="text-2xl font-bold">87.5%</p>
+            <div className="bg-white/10 rounded-lg p-2 sm:p-3">
+              <p className="text-xs sm:text-sm text-white/80">평균 참여도</p>
+              <p className="text-lg sm:text-2xl font-bold">87.5%</p>
             </div>
-            <div className="bg-white/10 rounded-lg p-3">
-              <p className="text-sm text-white/80">과제 완료율</p>
-              <p className="text-2xl font-bold">75%</p>
+            <div className="bg-white/10 rounded-lg p-2 sm:p-3">
+              <p className="text-xs sm:text-sm text-white/80">과제 완료</p>
+              <p className="text-lg sm:text-2xl font-bold">75%</p>
             </div>
           </div>
         </div>

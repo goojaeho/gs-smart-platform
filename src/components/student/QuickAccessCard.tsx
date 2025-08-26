@@ -38,26 +38,26 @@ const QuickAccessCard = ({
 
   return (
     <div 
-      className={`bg-gradient-to-br ${bgColorClasses[color]} rounded-xl p-6 shadow-lg border-2 border-white cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl`}
+      className={`bg-gradient-to-br ${bgColorClasses[color]} rounded-xl p-4 sm:p-6 shadow-lg border-2 border-white cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl`}
       onClick={onClick}
     >
-      <div className="flex items-center justify-between mb-4">
-        <div className={`p-3 bg-gradient-to-br ${colorClasses[color]} rounded-xl shadow-lg`}>
-          <Icon className="w-6 h-6 text-white" />
+      <div className="flex items-center justify-between mb-3 sm:mb-4">
+        <div className={`p-2 sm:p-3 bg-gradient-to-br ${colorClasses[color]} rounded-xl shadow-lg`}>
+          <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-white" />
         </div>
         {trend && (
-          <div className={`text-sm font-medium ${trend.isPositive ? 'text-green-600' : 'text-red-500'}`}>
+          <div className={`text-xs sm:text-sm font-medium ${trend.isPositive ? 'text-green-600' : 'text-red-500'}`}>
             {trend.isPositive ? '+' : '-'}{trend.value}%
           </div>
         )}
       </div>
       
-      <div className="space-y-2">
-        <h3 className="text-lg font-bold text-gray-800">{title}</h3>
+      <div className="space-y-1 sm:space-y-2">
+        <h3 className="text-sm sm:text-lg font-bold text-gray-800 line-clamp-1">{title}</h3>
         {value && (
-          <div className="text-2xl font-bold text-gray-900">{value}</div>
+          <div className="text-xl sm:text-2xl font-bold text-gray-900">{value}</div>
         )}
-        <p className="text-sm text-gray-600">{description}</p>
+        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2">{description}</p>
       </div>
     </div>
   );

@@ -179,62 +179,62 @@ const ParentDashboard = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* 헤더 */}
         <div>
-          <h2 className="text-3xl font-bold text-gray-900">학부모 대시보드</h2>
-          <p className="text-gray-600 mt-1">자녀의 종합 학습 현황과 성장 기록</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">학부모 대시보드</h2>
+          <p className="text-sm sm:text-base text-gray-600 mt-1">자녀의 종합 학습 현황과 성장 기록</p>
         </div>
 
         {/* 자녀 정보 카드 */}
-        <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-xl">
+        <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-12 sm:w-16 h-12 sm:h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-lg sm:text-xl flex-shrink-0">
                 {childData.name[0]}
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">{childData.name}</h3>
-                <p className="text-gray-600">{childData.school} {childData.grade}학년</p>
-                <div className="flex items-center space-x-4 mt-2">
-                  <span className="text-sm text-gray-500">마지막 접속: 2시간 전</span>
-                  <span className="text-sm text-gray-500">학습 연속: 15일</span>
+              <div className="min-w-0">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900">{childData.name}</h3>
+                <p className="text-sm sm:text-base text-gray-600">{childData.school} {childData.grade}학년</p>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 mt-1 sm:mt-2">
+                  <span className="text-xs sm:text-sm text-gray-500">마지막 접속: 2시간 전</span>
+                  <span className="text-xs sm:text-sm text-gray-500">학습 연속: 15일</span>
                 </div>
               </div>
             </div>
-            <div className="flex items-center space-x-8">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
               <div className="text-center">
-                <p className="text-sm text-gray-500">현재 레벨</p>
-                <p className="text-2xl font-bold text-primary">Lv.{childData.level}</p>
+                <p className="text-xs sm:text-sm text-gray-500">현재 레벨</p>
+                <p className="text-lg sm:text-2xl font-bold text-primary">Lv.{childData.level}</p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">종합 성취도</p>
-                <p className="text-2xl font-bold text-green-600">88.5%</p>
+                <p className="text-xs sm:text-sm text-gray-500">성취도</p>
+                <p className="text-lg sm:text-2xl font-bold text-green-600">88.5%</p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-500">이번 주 학습</p>
-                <p className="text-2xl font-bold text-blue-600">{childData.weeklyStudyTime}시간</p>
+                <p className="text-xs sm:text-sm text-gray-500">주간 학습</p>
+                <p className="text-lg sm:text-2xl font-bold text-blue-600">{childData.weeklyStudyTime}h</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* 종합 요약 섹션 */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">자녀 성장 기록 요약</h3>
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">자녀 성장 기록 요약</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* 출석 현황 */}
             <div 
               onClick={() => handleDetailView('attendance')}
-              className="p-4 bg-blue-50 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
+              className="p-3 sm:p-4 bg-blue-50 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
             >
-              <div className="flex items-center justify-between mb-2">
-                <Calendar className="w-5 h-5 text-blue-600" />
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <Calendar className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
+                <ChevronRight className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />
               </div>
-              <h4 className="font-medium text-gray-900">출석률</h4>
-              <p className="text-2xl font-bold text-blue-600">{growthRecord.attendance.rate}%</p>
+              <h4 className="text-sm sm:text-base font-medium text-gray-900">출석률</h4>
+              <p className="text-xl sm:text-2xl font-bold text-blue-600">{growthRecord.attendance.rate}%</p>
               <p className="text-xs text-gray-500 mt-1">
                 {growthRecord.attendance.presentDays}/{growthRecord.attendance.totalDays}일
               </p>
@@ -243,14 +243,14 @@ const ParentDashboard = () => {
             {/* 포인트 현황 */}
             <div 
               onClick={() => handleDetailView('points')}
-              className="p-4 bg-yellow-50 rounded-lg cursor-pointer hover:bg-yellow-100 transition-colors"
+              className="p-3 sm:p-4 bg-yellow-50 rounded-lg cursor-pointer hover:bg-yellow-100 transition-colors"
             >
-              <div className="flex items-center justify-between mb-2">
-                <Award className="w-5 h-5 text-yellow-600" />
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <Award className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-600" />
+                <ChevronRight className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />
               </div>
-              <h4 className="font-medium text-gray-900">포인트</h4>
-              <p className="text-2xl font-bold text-yellow-600">{growthRecord.points.total}P</p>
+              <h4 className="text-sm sm:text-base font-medium text-gray-900">포인트</h4>
+              <p className="text-xl sm:text-2xl font-bold text-yellow-600">{growthRecord.points.total}P</p>
               <p className="text-xs text-gray-500 mt-1">
                 전체 {growthRecord.points.rank}위
               </p>
@@ -259,30 +259,30 @@ const ParentDashboard = () => {
             {/* 활동 현황 */}
             <div 
               onClick={() => handleDetailView('activities')}
-              className="p-4 bg-green-50 rounded-lg cursor-pointer hover:bg-green-100 transition-colors"
+              className="p-3 sm:p-4 bg-green-50 rounded-lg cursor-pointer hover:bg-green-100 transition-colors"
             >
-              <div className="flex items-center justify-between mb-2">
-                <Activity className="w-5 h-5 text-green-600" />
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <Activity className="w-4 sm:w-5 h-4 sm:h-5 text-green-600" />
+                <ChevronRight className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />
               </div>
-              <h4 className="font-medium text-gray-900">총 학습시간</h4>
-              <p className="text-2xl font-bold text-green-600">{growthRecord.activities.totalHours}시간</p>
+              <h4 className="text-sm sm:text-base font-medium text-gray-900">총 학습시간</h4>
+              <p className="text-xl sm:text-2xl font-bold text-green-600">{growthRecord.activities.totalHours}h</p>
               <p className="text-xs text-gray-500 mt-1">
-                이번 주 {growthRecord.activities.thisWeek}시간
+                이번 주 {growthRecord.activities.thisWeek}h
               </p>
             </div>
 
             {/* 독서 현황 */}
             <div 
               onClick={() => handleDetailView('reading')}
-              className="p-4 bg-purple-50 rounded-lg cursor-pointer hover:bg-purple-100 transition-colors"
+              className="p-3 sm:p-4 bg-purple-50 rounded-lg cursor-pointer hover:bg-purple-100 transition-colors"
             >
-              <div className="flex items-center justify-between mb-2">
-                <BookOpen className="w-5 h-5 text-purple-600" />
-                <ChevronRight className="w-4 h-4 text-gray-400" />
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <BookOpen className="w-4 sm:w-5 h-4 sm:h-5 text-purple-600" />
+                <ChevronRight className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />
               </div>
-              <h4 className="font-medium text-gray-900">독서 진행</h4>
-              <p className="text-2xl font-bold text-purple-600">{currentBooks.length}권</p>
+              <h4 className="text-sm sm:text-base font-medium text-gray-900">독서 진행</h4>
+              <p className="text-xl sm:text-2xl font-bold text-purple-600">{currentBooks.length}권</p>
               <p className="text-xs text-gray-500 mt-1">
                 평균 진도 {Math.round(currentBooks.reduce((a, b) => a + b.progress, 0) / currentBooks.length)}%
               </p>
@@ -290,28 +290,28 @@ const ParentDashboard = () => {
           </div>
 
           {/* 과목별 분석 */}
-          <div className="mt-6 pt-6 border-t">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="font-medium text-gray-900">과목별 성취도</h4>
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h4 className="text-sm sm:text-base font-medium text-gray-900">과목별 성취도</h4>
               <button 
                 onClick={() => handleDetailView('subjects')}
-                className="text-sm text-blue-600 hover:text-blue-800"
+                className="text-xs sm:text-sm text-blue-600 hover:text-blue-800"
               >
                 상세보기 →
               </button>
             </div>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               {subjectAnalysis.map((subject) => (
                 <div 
                   key={subject.subject}
                   onClick={() => handleDetailView('subjectDetail', subject.subject)}
-                  className="text-center p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
+                  className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                 >
-                  <p className="text-sm font-medium text-gray-700">{subject.subject}</p>
-                  <p className="text-xl font-bold text-primary mt-1">{subject.achievement}%</p>
-                  <div className="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+                  <p className="text-xs sm:text-sm font-medium text-gray-700">{subject.subject}</p>
+                  <p className="text-lg sm:text-xl font-bold text-primary mt-1">{subject.achievement}%</p>
+                  <div className="w-full bg-gray-200 rounded-full h-1 sm:h-1.5 mt-1 sm:mt-2">
                     <div 
-                      className="bg-primary h-1.5 rounded-full"
+                      className="bg-primary h-1 sm:h-1.5 rounded-full"
                       style={{ width: `${subject.achievement}%` }}
                     />
                   </div>
@@ -321,13 +321,13 @@ const ParentDashboard = () => {
           </div>
 
           {/* 관심 키워드 */}
-          <div className="mt-6 pt-6 border-t">
-            <h4 className="font-medium text-gray-900 mb-3">관심 키워드</h4>
-            <div className="flex flex-wrap gap-2">
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t">
+            <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2 sm:mb-3">관심 키워드</h4>
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {interestKeywords.map((keyword) => (
                 <span
                   key={keyword.word}
-                  className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  className="px-2 sm:px-3 py-0.5 sm:py-1 bg-blue-100 text-blue-700 rounded-full text-xs sm:text-sm"
                   style={{ fontSize: `${Math.min(0.75 + keyword.count / 50, 1.25)}rem` }}
                 >
                   {keyword.word}
@@ -337,17 +337,17 @@ const ParentDashboard = () => {
           </div>
 
           {/* 현재 읽는 책 */}
-          <div className="mt-6 pt-6 border-t">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="font-medium text-gray-900">현재 읽고 있는 책</h4>
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
+              <h4 className="text-sm sm:text-base font-medium text-gray-900">현재 읽고 있는 책</h4>
               <button 
                 onClick={() => handleDetailView('reading')}
-                className="text-sm text-blue-600 hover:text-blue-800"
+                className="text-xs sm:text-sm text-blue-600 hover:text-blue-800"
               >
                 전체보기 →
               </button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3">
               {currentBooks.map((book) => (
                 <div key={book.title} className="p-3 bg-gray-50 rounded-lg">
                   <div className="flex items-start justify-between mb-2">
@@ -369,12 +369,12 @@ const ParentDashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* 왼쪽 메인 영역 */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {/* 학습 패턴 분석 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">일일 학습 패턴</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">일일 학습 패턴</h3>
               <ResponsiveContainer width="100%" height={200}>
                 <AreaChart data={learningPattern}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -384,14 +384,14 @@ const ParentDashboard = () => {
                   <Area type="monotone" dataKey="hours" stroke="#0397D6" fill="#0397D6" fillOpacity={0.3} />
                 </AreaChart>
               </ResponsiveContainer>
-              <p className="text-sm text-gray-600 mt-3">
+              <p className="text-xs sm:text-sm text-gray-600 mt-2 sm:mt-3">
                 주요 학습 시간대: {growthRecord.activities.favoriteTime}
               </p>
             </div>
 
             {/* 월별 성장 추이 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">성장 추이</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">성장 추이</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={monthlyGrowth}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -407,12 +407,12 @@ const ParentDashboard = () => {
             </div>
 
             {/* 멘토링 일지 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">멘토링 일지</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">멘토링 일지</h3>
                 <button 
                   onClick={() => handleDetailView('mentoring')}
-                  className="text-sm text-blue-600 hover:text-blue-800"
+                  className="text-xs sm:text-sm text-blue-600 hover:text-blue-800"
                 >
                   전체보기 →
                 </button>
@@ -440,43 +440,43 @@ const ParentDashboard = () => {
           </div>
 
           {/* 오른쪽 사이드바 */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* 알림장 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">알림장</h3>
-                <Bell className="w-5 h-5 text-gray-400" />
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">알림장</h3>
+                <Bell className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
               </div>
               <div className="space-y-3">
                 {notices.map((notice) => (
                   <div 
                     key={notice.id}
-                    className={`p-3 rounded-lg cursor-pointer hover:shadow-sm transition-shadow ${
+                    className={`p-2 sm:p-3 rounded-lg cursor-pointer hover:shadow-sm transition-shadow ${
                       notice.urgent ? 'bg-red-50 border border-red-200' : 'bg-gray-50'
                     }`}
                   >
-                    <p className={`text-sm font-medium ${
+                    <p className={`text-xs sm:text-sm font-medium ${
                       notice.urgent ? 'text-red-700' : 'text-gray-900'
                     }`}>
                       {notice.title}
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">{notice.date}</p>
+                    <p className="text-xs text-gray-500 mt-0.5 sm:mt-1">{notice.date}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* 상담 신청 내역 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">상담 내역</h3>
-                <MessageSquare className="w-5 h-5 text-gray-400" />
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">상담 내역</h3>
+                <MessageSquare className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
               </div>
               <div className="space-y-3">
                 {consultationHistory.map((consultation, idx) => (
-                  <div key={idx} className="p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-900">{consultation.type}</span>
+                  <div key={idx} className="p-2 sm:p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                      <span className="text-xs sm:text-sm font-medium text-gray-900">{consultation.type}</span>
                       <span className={`px-2 py-0.5 rounded text-xs ${
                         consultation.status === 'completed' 
                           ? 'bg-green-100 text-green-700' 
@@ -490,62 +490,62 @@ const ParentDashboard = () => {
                   </div>
                 ))}
               </div>
-              <button className="w-full mt-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm">
+              <button className="w-full mt-3 sm:mt-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-xs sm:text-sm font-medium">
                 새 상담 신청
               </button>
             </div>
 
             {/* 빠른 액션 */}
-            <div className="bg-gradient-to-br from-primary to-secondary rounded-lg shadow-md p-6 text-white">
-              <h3 className="text-lg font-bold mb-4">빠른 메뉴</h3>
-              <div className="space-y-3">
-                <button className="w-full py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors text-sm text-left px-3 flex items-center justify-between">
+            <div className="bg-gradient-to-br from-primary to-secondary rounded-lg shadow-md p-4 sm:p-6 text-white">
+              <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">빠른 메뉴</h3>
+              <div className="space-y-2 sm:space-y-3">
+                <button className="w-full py-1.5 sm:py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors text-xs sm:text-sm text-left px-2 sm:px-3 flex items-center justify-between">
                   <span>월간 리포트</span>
-                  <FileText className="w-4 h-4" />
+                  <FileText className="w-3 sm:w-4 h-3 sm:h-4" />
                 </button>
-                <button className="w-full py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors text-sm text-left px-3 flex items-center justify-between">
+                <button className="w-full py-1.5 sm:py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors text-xs sm:text-sm text-left px-2 sm:px-3 flex items-center justify-between">
                   <span>학습 계획 확인</span>
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-3 sm:w-4 h-3 sm:h-4" />
                 </button>
-                <button className="w-full py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors text-sm text-left px-3 flex items-center justify-between">
+                <button className="w-full py-1.5 sm:py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors text-xs sm:text-sm text-left px-2 sm:px-3 flex items-center justify-between">
                   <span>선생님 메시지</span>
-                  <MessageSquare className="w-4 h-4" />
+                  <MessageSquare className="w-3 sm:w-4 h-3 sm:h-4" />
                 </button>
               </div>
             </div>
 
             {/* 이번 주 목표 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">이번 주 목표</h3>
-                <Target className="w-5 h-5 text-gray-400" />
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">이번 주 목표</h3>
+                <Target className="w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-gray-700">학습 시간</span>
-                    <span className="text-sm font-medium">12/15시간</span>
+                  <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                    <span className="text-xs sm:text-sm text-gray-700">학습 시간</span>
+                    <span className="text-xs sm:text-sm font-medium">12/15시간</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-blue-500 h-2 rounded-full" style={{ width: '80%' }} />
+                  <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2">
+                    <div className="bg-blue-500 h-1.5 sm:h-2 rounded-full" style={{ width: '80%' }} />
                   </div>
                 </div>
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-gray-700">문제 풀이</span>
-                    <span className="text-sm font-medium">85/100문제</span>
+                  <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                    <span className="text-xs sm:text-sm text-gray-700">문제 풀이</span>
+                    <span className="text-xs sm:text-sm font-medium">85/100문제</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }} />
+                  <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2">
+                    <div className="bg-green-500 h-1.5 sm:h-2 rounded-full" style={{ width: '85%' }} />
                   </div>
                 </div>
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm text-gray-700">독서</span>
-                    <span className="text-sm font-medium">2/3권</span>
+                  <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                    <span className="text-xs sm:text-sm text-gray-700">독서</span>
+                    <span className="text-xs sm:text-sm font-medium">2/3권</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-purple-500 h-2 rounded-full" style={{ width: '66%' }} />
+                  <div className="w-full bg-gray-200 rounded-full h-1.5 sm:h-2">
+                    <div className="bg-purple-500 h-1.5 sm:h-2 rounded-full" style={{ width: '66%' }} />
                   </div>
                 </div>
               </div>

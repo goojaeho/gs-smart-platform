@@ -23,59 +23,59 @@ const Mentoring = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900">멘토링</h2>
-          <p className="text-gray-600 mt-1">1:1 맞춤 학습 및 정서 지원</p>
+      <div className="space-y-4 sm:space-y-6">
+        <div className="bg-white rounded-lg p-4 sm:p-0 sm:bg-transparent">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">멘토링</h2>
+          <p className="text-sm sm:text-base text-gray-600 mt-1">1:1 맞춤 학습 및 정서 지원</p>
         </div>
 
-        {/* 다음 멘토링 일정 */}
-        <div className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg p-6 text-white">
-          <div className="flex items-center justify-between">
+        {/* 다음 멘토링 일정 - Mobile optimized */}
+        <div className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg p-4 sm:p-6 text-white">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h3 className="text-xl font-bold mb-2">다음 멘토링 일정</h3>
-              <p className="text-2xl font-bold mb-1">{upcomingSession.date} {upcomingSession.time}</p>
-              <p className="opacity-90">{upcomingSession.mentor} 선생님 • {upcomingSession.subject}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-2">다음 멘토링 일정</h3>
+              <p className="text-xl sm:text-2xl font-bold mb-1">{upcomingSession.date} {upcomingSession.time}</p>
+              <p className="text-sm sm:text-base opacity-90">{upcomingSession.mentor} 선생님 • {upcomingSession.subject}</p>
             </div>
-            <div className="flex space-x-3">
+            <div className="flex gap-2 sm:gap-3">
               <button 
                 onClick={() => {
                   setSelectedMentor({ name: upcomingSession.mentor, subject: upcomingSession.subject });
                   setIsVideoCallOpen(true);
                 }}
-                className="px-6 py-3 bg-white text-purple-600 rounded-lg hover:bg-gray-100 font-medium flex items-center space-x-2"
+                className="flex-1 sm:flex-initial px-4 sm:px-6 py-2 sm:py-3 bg-white text-purple-600 rounded-lg hover:bg-gray-100 font-medium flex items-center justify-center space-x-1 sm:space-x-2 text-sm sm:text-base"
               >
-                <Video className="w-5 h-5" />
-                <span>화상 멘토링 참여</span>
+                <Video className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span>화상 참여</span>
               </button>
-              <button className="px-4 py-3 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30">
-                <Calendar className="w-5 h-5" />
+              <button className="px-3 sm:px-4 py-2 sm:py-3 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30">
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* 멘토링 기록 */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">최근 멘토링 기록</h3>
-              <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* 멘토링 기록 - Mobile optimized */}
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">최근 멘토링 기록</h3>
+              <div className="space-y-3 sm:space-y-4">
                 {mentoringHistory.map(session => (
-                  <div key={session.id} className="border border-gray-200 rounded-lg p-4">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium mb-2 ${
+                  <div key={session.id} className="border border-gray-200 rounded-lg p-3 sm:p-4">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                      <div className="flex-1">
+                        <span className={`inline-block px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium mb-2 ${
                           session.type === 'learning' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'
                         }`}>
                           {session.type === 'learning' ? '학습 멘토링' : '정서 멘토링'}
                         </span>
-                        <h4 className="font-bold text-gray-900">{session.subject}</h4>
-                        <p className="text-sm text-gray-600 mt-1">{session.content}</p>
+                        <h4 className="font-bold text-gray-900 text-sm sm:text-base">{session.subject}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600 mt-1">{session.content}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm text-gray-500">{session.date}</p>
-                        <p className="text-sm text-gray-500">{session.duration}분</p>
+                        <p className="text-xs sm:text-sm text-gray-500">{session.date}</p>
+                        <p className="text-xs sm:text-sm text-gray-500">{session.duration}분</p>
                       </div>
                     </div>
                     <div className="flex items-center justify-between pt-3 border-t border-gray-100">
@@ -92,10 +92,10 @@ const Mentoring = () => {
               </div>
             </div>
 
-            {/* 멘토링 일정 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">이번 주 멘토링 일정</h3>
-              <div className="space-y-3">
+            {/* 멘토링 일정 - Mobile optimized */}
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">이번 주 멘토링 일정</h3>
+              <div className="space-y-2 sm:space-y-3">
                 <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
                   <div className="flex items-center space-x-4">
                     <div className="text-center">
@@ -142,11 +142,11 @@ const Mentoring = () => {
             </div>
           </div>
 
-          {/* 나의 멘토 */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">나의 멘토</h3>
-              <div className="space-y-4">
+          {/* 나의 멘토 - Hidden on mobile, shown on lg */}
+          <div className="hidden lg:block space-y-6">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">나의 멘토</h3>
+              <div className="space-y-3 sm:space-y-4">
                 {myMentors.map(mentor => (
                   <div key={mentor.id} className="border border-gray-200 rounded-lg p-4">
                     <div className="flex items-start justify-between mb-2">

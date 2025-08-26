@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { UserRole } from '../types';
-import { User, Lock, Users, GraduationCap, Settings } from 'lucide-react';
+import { User, Lock, Users, GraduationCap, Settings, X, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const LoginPage = () => {
   const [selectedRole, setSelectedRole] = useState<UserRole>('student');
   const [error, setError] = useState('');
   const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const roles = [
     { value: 'student' as UserRole, label: '학생', icon: GraduationCap, color: 'bg-blue-500' },
@@ -40,10 +42,19 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
+      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 relative">
+        {/* Back/Close Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          aria-label="이전 페이지로 돌아가기"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">경산시 스마트학습 플랫폼</h1>
-          <p className="text-gray-600">gs-smart.kr</p>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2">경산시 스마트학습 플랫폼</h1>
+          <p className="text-sm sm:text-base text-gray-600">gs-smart.kr</p>
         </div>
 
         <div className="mb-6">
@@ -129,6 +140,17 @@ const LoginPage = () => {
               </button>
             ))}
           </div>
+        </div>
+        
+        {/* Alternative back link */}
+        <div className="mt-4 text-center">
+          <button
+            onClick={() => navigate('/')}
+            className="text-sm text-gray-500 hover:text-gray-700 flex items-center justify-center space-x-1 mx-auto"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>홈으로 돌아가기</span>
+          </button>
         </div>
       </div>
     </div>

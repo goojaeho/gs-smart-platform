@@ -111,90 +111,91 @@ const AIDiagnosis = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* 헤더 */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">AI 학습 진단</h2>
-            <p className="text-gray-600 mt-1">인공지능 기반 학생 학습 수준 분석 및 개인별 맞춤 추천</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">AI 학습 진단</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">인공지능 기반 학생 학습 수준 분석 및 개인별 맞춤 추천</p>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
             <div className="text-xs text-gray-500">
               마지막 업데이트: {overallStats.lastUpdate}
             </div>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+            <button className="flex items-center justify-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base">
               <Brain className="w-4 h-4" />
-              <span>새 진단 실행</span>
+              <span className="hidden sm:inline">새 진단 실행</span>
+              <span className="sm:hidden">진단</span>
             </button>
           </div>
         </div>
 
         {/* 전체 통계 */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-blue-100 rounded-lg">
-              <Users className="w-6 h-6 text-blue-600" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center">
+            <div className="flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-2 sm:mb-3 bg-blue-100 rounded-lg">
+              <Users className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600" />
             </div>
-            <div className="text-2xl font-bold text-gray-900">{overallStats.totalAnalyzed}</div>
-            <div className="text-sm text-gray-600">분석 완료</div>
+            <div className="text-xl sm:text-2xl font-bold text-gray-900">{overallStats.totalAnalyzed}</div>
+            <div className="text-xs sm:text-sm text-gray-600">분석 완료</div>
           </div>
           
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-green-100 rounded-lg">
-              <TrendingUp className="w-6 h-6 text-green-600" />
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center">
+            <div className="flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-2 sm:mb-3 bg-green-100 rounded-lg">
+              <TrendingUp className="w-5 sm:w-6 h-5 sm:h-6 text-green-600" />
             </div>
-            <div className="text-2xl font-bold text-green-600">{overallStats.averageImprovement}</div>
-            <div className="text-sm text-gray-600">평균 향상도</div>
+            <div className="text-xl sm:text-2xl font-bold text-green-600">{overallStats.averageImprovement}</div>
+            <div className="text-xs sm:text-sm text-gray-600">평균 향상도</div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-red-100 rounded-lg">
-              <AlertCircle className="w-6 h-6 text-red-600" />
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center">
+            <div className="flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-2 sm:mb-3 bg-red-100 rounded-lg">
+              <AlertCircle className="w-5 sm:w-6 h-5 sm:h-6 text-red-600" />
             </div>
-            <div className="text-2xl font-bold text-red-600">{overallStats.atRiskStudents}</div>
-            <div className="text-sm text-gray-600">위험군 학생</div>
+            <div className="text-xl sm:text-2xl font-bold text-red-600">{overallStats.atRiskStudents}</div>
+            <div className="text-xs sm:text-sm text-gray-600">위험군 학생</div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-yellow-100 rounded-lg">
-              <Star className="w-6 h-6 text-yellow-600" />
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center">
+            <div className="flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-2 sm:mb-3 bg-yellow-100 rounded-lg">
+              <Star className="w-5 sm:w-6 h-5 sm:h-6 text-yellow-600" />
             </div>
-            <div className="text-2xl font-bold text-yellow-600">{overallStats.topPerformers}</div>
-            <div className="text-sm text-gray-600">우수 학생</div>
+            <div className="text-xl sm:text-2xl font-bold text-yellow-600">{overallStats.topPerformers}</div>
+            <div className="text-xs sm:text-sm text-gray-600">우수 학생</div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 text-center">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-purple-100 rounded-lg">
-              <Brain className="w-6 h-6 text-purple-600" />
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 text-center col-span-2 sm:col-span-1">
+            <div className="flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 mx-auto mb-2 sm:mb-3 bg-purple-100 rounded-lg">
+              <Brain className="w-5 sm:w-6 h-5 sm:h-6 text-purple-600" />
             </div>
-            <div className="text-2xl font-bold text-purple-600">AI</div>
-            <div className="text-sm text-gray-600">분석 엔진</div>
+            <div className="text-xl sm:text-2xl font-bold text-purple-600">AI</div>
+            <div className="text-xs sm:text-sm text-gray-600">분석 엔진</div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* 메인 콘텐츠 */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {/* 과목별 분석 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">과목별 학습 수준 분석</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">과목별 학습 수준 분석</h3>
               <div className="space-y-3">
                 {subjectAnalysis.map((subject, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <BookOpen className="w-6 h-6 text-blue-600" />
+                  <div key={idx} className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center space-x-3 sm:space-x-4">
+                      <div className="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <BookOpen className="w-5 sm:w-6 h-5 sm:h-6 text-blue-600" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900">{subject.subject}</h4>
-                        <p className="text-sm text-gray-600">{subject.students}명 분석</p>
+                        <h4 className="font-medium text-sm sm:text-base text-gray-900">{subject.subject}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{subject.students}명 분석</p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getLevelColor(subject.avgLevel.charAt(0))}`}>
-                        평균 {subject.avgLevel}
+                      <div className={`inline-flex items-center px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium ${getLevelColor(subject.avgLevel.charAt(0))}`}>
+                        <span className="hidden sm:inline">평균</span> {subject.avgLevel}
                       </div>
-                      <div className="text-sm text-green-600 font-medium mt-1">{subject.improvement}</div>
+                      <div className="text-xs sm:text-sm text-green-600 font-medium mt-0.5 sm:mt-1">{subject.improvement}</div>
                     </div>
                   </div>
                 ))}
@@ -202,18 +203,18 @@ const AIDiagnosis = () => {
             </div>
 
             {/* 학생별 진단 결과 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">개별 학생 진단 결과</h3>
-                <div className="flex space-x-2">
-                  <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900">개별 학생 진단 결과</h3>
+                <div className="flex gap-2">
+                  <select className="px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-300 rounded-lg text-xs sm:text-sm">
                     <option>전체 학년</option>
                     <option>5학년</option>
                     <option>6학년</option>
                   </select>
                   <button
                     onClick={() => setShowRecommendations(!showRecommendations)}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                       showRecommendations ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -251,8 +252,8 @@ const AIDiagnosis = () => {
                       </div>
                     </div>
 
-                    {/* 과목별 간단 표시 */}
-                    <div className="grid grid-cols-5 gap-2 mb-3">
+                    {/* 과목별 간단 표시 - 모바일에서는 숨김 */}
+                    <div className="hidden sm:grid grid-cols-5 gap-2 mb-3">
                       {Object.entries(student.subjects).map(([subject, data]) => (
                         <div key={subject} className="text-center">
                           <div className="text-xs text-gray-600 mb-1">{subject}</div>
@@ -311,13 +312,13 @@ const AIDiagnosis = () => {
             </div>
           </div>
 
-          {/* 사이드바 */}
-          <div className="space-y-6">
+          {/* 사이드바 - 모바일에서는 하단에 표시 */}
+          <div className="space-y-4 sm:space-y-6">
             {/* AI 추천 액션 */}
-            <div className="bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg shadow-md p-6 text-white">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold">AI 추천 액션</h3>
-                <Brain className="w-6 h-6" />
+            <div className="bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg shadow-md p-4 sm:p-6 text-white">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-bold">AI 추천 액션</h3>
+                <Brain className="w-5 sm:w-6 h-5 sm:h-6" />
               </div>
               <div className="space-y-3">
                 <div className="p-3 bg-white bg-opacity-10 rounded-lg">
@@ -339,8 +340,8 @@ const AIDiagnosis = () => {
             </div>
 
             {/* 진단 보고서 생성 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">리포트 생성</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">리포트 생성</h3>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <input type="checkbox" id="individual" className="rounded" defaultChecked />
@@ -366,8 +367,8 @@ const AIDiagnosis = () => {
             </div>
 
             {/* 빠른 통계 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">이주간 하이라이트</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">이주간 하이라이트</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">가장 많이 향상된 과목</span>

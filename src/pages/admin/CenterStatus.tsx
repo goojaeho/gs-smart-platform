@@ -23,77 +23,78 @@ const CenterStatus = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">센터별 현황</h2>
-            <p className="text-gray-600 mt-1">경산시 전체 학습센터 운영 현황</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">센터별 현황</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">경산시 전체 학습센터 운영 현황</p>
           </div>
-          <div className="flex space-x-3">
-            <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <div className="flex gap-2">
+            <select className="px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base">
               <option>전체 센터</option>
               <option>운영중</option>
               <option>점검중</option>
             </select>
-            <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-              실시간 모니터링
+            <button className="px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base">
+              <span className="hidden sm:inline">실시간 모니터링</span>
+              <span className="sm:hidden">모니터링</span>
             </button>
           </div>
         </div>
 
         {/* 전체 통계 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between mb-2">
-              <MapPin className="w-8 h-8 text-blue-500" />
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-1 sm:mb-2">
+              <MapPin className="w-6 sm:w-8 h-6 sm:h-8 text-blue-500" />
             </div>
-            <h3 className="text-sm text-gray-600">운영 센터</h3>
-            <p className="text-2xl font-bold text-gray-900">{centerStats.length}개</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">운영 센터</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">{centerStats.length}개</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between mb-2">
-              <Users className="w-8 h-8 text-green-500" />
-              <span className="text-sm text-green-600">+125명</span>
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-1 sm:mb-2">
+              <Users className="w-6 sm:w-8 h-6 sm:h-8 text-green-500" />
+              <span className="text-xs sm:text-sm text-green-600">+125명</span>
             </div>
-            <h3 className="text-sm text-gray-600">전체 학생</h3>
-            <p className="text-2xl font-bold text-gray-900">
+            <h3 className="text-xs sm:text-sm text-gray-600">전체 학생</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">
               {centerStats.reduce((sum, c) => sum + c.activeStudents, 0)}명
             </p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between mb-2">
-              <Activity className="w-8 h-8 text-purple-500" />
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-1 sm:mb-2">
+              <Activity className="w-6 sm:w-8 h-6 sm:h-8 text-purple-500" />
             </div>
-            <h3 className="text-sm text-gray-600">평균 출석률</h3>
-            <p className="text-2xl font-bold text-gray-900">
+            <h3 className="text-xs sm:text-sm text-gray-600">평균 출석률</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">
               {(centerStats.reduce((sum, c) => sum + c.todayAttendance, 0) / centerStats.length).toFixed(1)}%
             </p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center justify-between mb-2">
-              <AlertCircle className="w-8 h-8 text-yellow-500" />
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-1 sm:mb-2">
+              <AlertCircle className="w-6 sm:w-8 h-6 sm:h-8 text-yellow-500" />
             </div>
-            <h3 className="text-sm text-gray-600">처리 대기</h3>
-            <p className="text-2xl font-bold text-gray-900">
+            <h3 className="text-xs sm:text-sm text-gray-600">처리 대기</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">
               {centerStats.reduce((sum, c) => sum + c.issues, 0)}건
             </p>
           </div>
         </div>
 
         {/* 센터 목록 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {centerStats.map((center) => (
             <div 
               key={center.id} 
-              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer"
+              className="bg-white rounded-lg shadow-md p-4 sm:p-6 hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => setSelectedCenter(center)}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-3 sm:mb-4">
                 <div>
-                  <h3 className="font-bold text-gray-900">{center.name}</h3>
-                  <p className="text-sm text-gray-600">경산시</p>
+                  <h3 className="text-sm sm:text-base font-bold text-gray-900">{center.name}</h3>
+                  <p className="text-xs sm:text-sm text-gray-600">경산시</p>
                 </div>
-                <span className={`px-2 py-1 rounded text-xs font-medium ${
+                <span className={`px-2 py-0.5 sm:py-1 rounded text-xs font-medium ${
                   center.status === '운영중' 
                     ? 'bg-green-100 text-green-700' 
                     : 'bg-yellow-100 text-yellow-700'
@@ -102,27 +103,27 @@ const CenterStatus = () => {
                 </span>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">활동 학생</span>
-                  <span className="font-medium text-gray-900">{center.activeStudents}명</span>
+                  <span className="text-xs sm:text-sm text-gray-600">활동 학생</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-900">{center.activeStudents}명</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">오늘 출석률</span>
-                  <span className={`font-medium ${getStatusColor(center.todayAttendance)}`}>
+                  <span className="text-xs sm:text-sm text-gray-600">오늘 출석률</span>
+                  <span className={`text-xs sm:text-sm font-medium ${getStatusColor(center.todayAttendance)}`}>
                     {center.todayAttendance}%
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">만족도</span>
-                  <div className="flex items-center space-x-1">
-                    <span className="text-yellow-500">★</span>
-                    <span className="font-medium text-gray-900">{center.satisfaction}</span>
+                  <span className="text-xs sm:text-sm text-gray-600">만족도</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-yellow-500 text-sm">★</span>
+                    <span className="text-xs sm:text-sm font-medium text-gray-900">{center.satisfaction}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">주간 성장률</span>
-                  <span className={`font-medium ${
+                  <span className="text-xs sm:text-sm text-gray-600">주간 성장률</span>
+                  <span className={`text-xs sm:text-sm font-medium ${
                     center.weeklyGrowth > 0 ? 'text-green-600' : 
                     center.weeklyGrowth < 0 ? 'text-red-600' : 'text-gray-600'
                   }`}>
@@ -132,7 +133,7 @@ const CenterStatus = () => {
               </div>
 
               {center.issues > 0 && (
-                <div className="mt-4 p-2 bg-yellow-50 rounded-lg">
+                <div className="mt-3 sm:mt-4 p-2 bg-yellow-50 rounded-lg">
                   <p className="text-xs text-yellow-800">
                     처리 필요 사항 {center.issues}건
                   </p>
@@ -144,53 +145,53 @@ const CenterStatus = () => {
 
         {/* 센터 상세 모달 */}
         {selectedCenter && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
-              <div className="flex items-center justify-between mb-6">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg p-4 sm:p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900">{selectedCenter.name}</h3>
-                  <p className="text-gray-600">경산시</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">{selectedCenter.name}</h3>
+                  <p className="text-sm sm:text-base text-gray-600">경산시</p>
                 </div>
                 <button 
                   onClick={() => setSelectedCenter(null)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="text-gray-400 hover:text-gray-600 text-xl"
                 >
                   ✕
                 </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600 mb-1">센터장</p>
-                  <p className="font-medium text-gray-900">{selectedCenter.director}</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-1">센터장</p>
+                  <p className="text-sm sm:text-base font-medium text-gray-900">{selectedCenter.director}</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600 mb-1">연락처</p>
-                  <p className="font-medium text-gray-900">{selectedCenter.contact}</p>
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-1">연락처</p>
+                  <p className="text-sm sm:text-base font-medium text-gray-900">{selectedCenter.contact}</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600 mb-1">교사 수</p>
-                  <p className="font-medium text-gray-900">{selectedCenter.teachers}명</p>
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-1">교사 수</p>
+                  <p className="text-sm sm:text-base font-medium text-gray-900">{selectedCenter.teachers}명</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-600 mb-1">시설 규모</p>
-                  <p className="font-medium text-gray-900">{selectedCenter.capacity}명 수용</p>
+                <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-1">시설 규모</p>
+                  <p className="text-sm sm:text-base font-medium text-gray-900">{selectedCenter.capacity}명 수용</p>
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">운영 시간</h4>
-                  <p className="text-sm text-gray-600">평일: 09:00 - 21:00</p>
-                  <p className="text-sm text-gray-600">주말: 10:00 - 18:00</p>
+                  <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2">운영 시간</h4>
+                  <p className="text-xs sm:text-sm text-gray-600">평일: 09:00 - 21:00</p>
+                  <p className="text-xs sm:text-sm text-gray-600">주말: 10:00 - 18:00</p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">주요 프로그램</h4>
+                  <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2">주요 프로그램</h4>
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm">수학</span>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm">영어</span>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm">AI/코딩</span>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-sm">과학</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs sm:text-sm">수학</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs sm:text-sm">영어</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs sm:text-sm">AI/코딩</span>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs sm:text-sm">과학</span>
                   </div>
                 </div>
               </div>

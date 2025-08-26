@@ -402,41 +402,43 @@ const TodayLearning = () => {
 
   // Render main view
   const renderMainView = () => (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold text-gray-900">오늘의 학습</h2>
-          <p className="text-gray-600 mt-1">AI가 추천하는 맞춤형 학습 콘텐츠</p>
-        </div>
-        <div className="flex items-center space-x-4">
-          <div className="text-center">
-            <p className="text-sm text-gray-500">오늘 학습 목표</p>
-            <p className="text-2xl font-bold text-blue-600">3시간</p>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="bg-white rounded-lg p-4 sm:p-0 sm:bg-transparent">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">오늘의 학습</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">AI가 추천하는 맞춤형 학습 콘텐츠</p>
           </div>
-          <div className="text-center">
-            <p className="text-sm text-gray-500">완료한 학습</p>
-            <p className="text-2xl font-bold text-green-600">1.5시간</p>
+          <div className="flex items-center space-x-4">
+            <div className="text-center flex-1 sm:flex-initial">
+              <p className="text-xs sm:text-sm text-gray-500">오늘 목표</p>
+              <p className="text-xl sm:text-2xl font-bold text-blue-600">3시간</p>
+            </div>
+            <div className="text-center flex-1 sm:flex-initial">
+              <p className="text-xs sm:text-sm text-gray-500">완료</p>
+              <p className="text-xl sm:text-2xl font-bold text-green-600">1.5시간</p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* AI 추천 학습 */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            <Brain className="w-8 h-8" />
-            <h3 className="text-xl font-bold">AI 맞춤 추천</h3>
+      {/* AI 추천 학습 - Mobile optimized */}
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-4 sm:p-6 text-white">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-4">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <Brain className="w-6 h-6 sm:w-8 sm:h-8" />
+            <h3 className="text-lg sm:text-xl font-bold">AI 맞춤 추천</h3>
           </div>
-          <span className="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">
-            개인화 분석 기반
+          <span className="px-2 sm:px-3 py-1 bg-white bg-opacity-20 rounded-full text-xs sm:text-sm self-start sm:self-auto">
+            개인화 분석
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {aiRecommendations.map((rec, idx) => (
-            <div key={idx} className="bg-white bg-opacity-10 rounded-lg p-4">
+            <div key={idx} className="bg-white bg-opacity-10 rounded-lg p-3 sm:p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-medium">{rec.subject}</span>
-                <span className={`px-2 py-1 rounded text-xs ${
+                <span className="font-medium text-sm sm:text-base">{rec.subject}</span>
+                <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs ${
                   rec.priority === 'high' ? 'bg-red-500' :
                   rec.priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
                 }`}>
@@ -444,11 +446,11 @@ const TodayLearning = () => {
                    rec.priority === 'medium' ? '권장' : '선택'}
                 </span>
               </div>
-              <p className="text-lg font-medium mb-1">{rec.topic}</p>
-              <p className="text-xs opacity-80">{rec.reason}</p>
+              <p className="text-base sm:text-lg font-medium mb-1">{rec.topic}</p>
+              <p className="text-[11px] sm:text-xs opacity-80 line-clamp-2">{rec.reason}</p>
               <button 
                 onClick={() => handleStartLearning(rec)}
-                className="mt-3 w-full py-2 bg-white bg-opacity-20 rounded hover:bg-opacity-30 transition-colors text-sm"
+                className="mt-2 sm:mt-3 w-full py-1.5 sm:py-2 bg-white bg-opacity-20 rounded hover:bg-opacity-30 transition-colors text-xs sm:text-sm"
               >
                 학습 시작
               </button>
@@ -457,25 +459,27 @@ const TodayLearning = () => {
         </div>
       </div>
 
-      {/* 과목 필터 */}
-      <div className="flex space-x-2">
-        {subjects.map(subject => (
-          <button
-            key={subject}
-            onClick={() => setSelectedSubject(subject)}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              selectedSubject === subject
-                ? 'bg-blue-500 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
-            }`}
-          >
-            {subject}
-          </button>
-        ))}
+      {/* 과목 필터 - Mobile scrollable */}
+      <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex space-x-2 pb-2">
+          {subjects.map(subject => (
+            <button
+              key={subject}
+              onClick={() => setSelectedSubject(subject)}
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors text-sm sm:text-base whitespace-nowrap ${
+                selectedSubject === subject
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              {subject}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* 영상 강의 목록 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {/* 영상 강의 목록 - Mobile optimized grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {filteredContents.map((lesson) => (
           <div 
             key={lesson.id} 
@@ -484,7 +488,7 @@ const TodayLearning = () => {
           >
               {/* 썸네일 영역 */}
               <div className="relative">
-                <div className="w-full h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
+                <div className="w-full h-32 sm:h-40 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
                   {typeof lesson.thumbnail === 'string' && lesson.thumbnail.includes('.') ? (
                     <img 
                       src={lesson.thumbnail} 
@@ -505,27 +509,27 @@ const TodayLearning = () => {
                   </div>
                 )}
                 {/* 동영상 시간 */}
-                <div className="absolute bottom-2 right-2 px-2 py-1 bg-black bg-opacity-70 text-white text-xs rounded">
+                <div className="absolute bottom-2 right-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-black bg-opacity-70 text-white text-[10px] sm:text-xs rounded">
                   {lesson.duration}:00
                 </div>
-                {/* 재생 버튼 */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black bg-opacity-30">
+                {/* 재생 버튼 - Hidden on mobile */}
+                <div className="absolute inset-0 hidden sm:flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black bg-opacity-30">
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
                     <Play className="w-6 h-6 text-gray-900 ml-1" />
                   </div>
                 </div>
                 {/* 라벨 */}
                 {lesson.isNew && (
-                  <span className="absolute top-2 left-2 px-2 py-1 bg-red-500 text-white text-xs rounded">NEW</span>
+                  <span className="absolute top-2 left-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-500 text-white text-[10px] sm:text-xs rounded">NEW</span>
                 )}
                 {lesson.isRecommended && (
-                  <span className="absolute top-2 left-2 px-2 py-1 bg-blue-500 text-white text-xs rounded">AI 추천</span>
+                  <span className="absolute top-2 left-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-blue-500 text-white text-[10px] sm:text-xs rounded">AI 추천</span>
                 )}
                 {lesson.isPopular && (
-                  <span className="absolute top-2 left-2 px-2 py-1 bg-orange-500 text-white text-xs rounded">인기</span>
+                  <span className="absolute top-2 left-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-orange-500 text-white text-[10px] sm:text-xs rounded">인기</span>
                 )}
                 {/* 난이도 */}
-                <div className={`absolute top-2 right-2 px-2 py-1 rounded text-xs font-medium ${
+                <div className={`absolute top-2 right-2 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded text-[10px] sm:text-xs font-medium ${
                   lesson.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
                   lesson.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700' :
                   'bg-red-100 text-red-700'
@@ -536,14 +540,14 @@ const TodayLearning = () => {
               </div>
               
               {/* 콘텐츠 정보 */}
-              <div className="p-4">
-                <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2 hover:text-blue-600">
+              <div className="p-3 sm:p-4">
+                <h3 className="font-bold text-gray-900 text-xs sm:text-sm mb-1 sm:mb-2 line-clamp-2 hover:text-blue-600">
                   {lesson.title}
                 </h3>
                 
-                <div className="flex items-center space-x-2 text-xs text-gray-600 mb-2">
+                <div className="flex items-center space-x-1 sm:space-x-2 text-[10px] sm:text-xs text-gray-600 mb-1 sm:mb-2">
                   <User className="w-3 h-3" />
-                  <span>{lesson.teacher}</span>
+                  <span className="truncate">{lesson.teacher}</span>
                   <span className="text-gray-400">•</span>
                   <span className={`font-medium ${
                     lesson.subject === 'AI' ? 'text-purple-600' :
@@ -669,10 +673,10 @@ const TodayLearning = () => {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               {selectedTopic?.subject} - {selectedTopic?.topic}
             </h2>
-            <p className="text-gray-600 mt-1">관련 강의 목록</p>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">관련 강의 목록</p>
           </div>
         </div>
 
@@ -812,8 +816,8 @@ const TodayLearning = () => {
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
-            <h2 className="text-xl font-bold text-gray-900">{selectedLecture.title}</h2>
-            <p className="text-gray-600">{selectedLecture.teacher}</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{selectedLecture.title}</h2>
+            <p className="text-sm sm:text-base text-gray-600">{selectedLecture.teacher}</p>
           </div>
         </div>
 

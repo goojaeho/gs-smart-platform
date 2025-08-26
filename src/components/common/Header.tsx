@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
-import { Bell, LogOut, User, GraduationCap, Search, MessageSquare } from 'lucide-react';
+import { Bell, LogOut, User, GraduationCap, Search, MessageSquare, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
@@ -8,6 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [fontSize, setFontSize] = useState('medium');
   const [unreadQuestions, setUnreadQuestions] = useState(3); // Mock data for unread questions
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const getRoleName = (role: string) => {
     const roleNames = {
@@ -29,8 +30,8 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-20">
-      {/* 상단 유틸리티 바 (LandingGov 스타일) */}
-      <div className="bg-[#f8f9fa] border-b border-[#dee2e6]">
+      {/* 상단 유틸리티 바 (LandingGov 스타일) - 모바일에서 숨김 */}
+      <div className="hidden sm:block bg-[#f8f9fa] border-b border-[#dee2e6]">
         <div className="max-w-[1280px] mx-auto px-4">
           <div className="flex justify-between items-center h-10">
             {/* 좌측: 관련 사이트 */}
@@ -96,16 +97,16 @@ const Header = () => {
       {/* 메인 헤더 (LandingGov 스타일) */}
       <div className="bg-white shadow-sm">
         <div className="max-w-[1280px] mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             {/* 로고 */}
             <div className="flex items-center space-x-4">
-              <a href="/" className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-[#0397D6] rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-7 h-7 text-white" />
+              <a href="/" className="flex items-center space-x-2 sm:space-x-3">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#0397D6] rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                 </div>
                 <div>
-                  <div className="text-xl font-bold text-[#333333]">경산시 스마트학습 플랫폼</div>
-                  <div className="text-xs text-[#666666]">Gyeongsan Smart Learning Platform</div>
+                  <div className="text-base sm:text-xl font-bold text-[#333333]">경산시 스마트학습 플랫폼</div>
+                  <div className="hidden sm:block text-xs text-[#666666]">Gyeongsan Smart Learning Platform</div>
                 </div>
               </a>
             </div>
@@ -125,15 +126,15 @@ const Header = () => {
             </div>
 
             {/* 알림 및 빠른 액세스 버튼 */}
-            <div className="flex items-center space-x-4">
-              {/* Teacher Q&A Button */}
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              {/* Teacher Q&A Button - 모바일에서 아이콘만 표시 */}
               {user?.role === 'teacher' && (
                 <button 
                   onClick={() => navigate('/teacher/qa')}
-                  className="relative flex items-center space-x-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
+                  className="relative flex items-center space-x-2 px-2 sm:px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors"
                 >
                   <MessageSquare className="w-5 h-5" />
-                  <span className="text-sm font-medium">질문 답변</span>
+                  <span className="hidden sm:inline text-sm font-medium">질문 답변</span>
                   {unreadQuestions > 0 && (
                     <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                       {unreadQuestions}
@@ -147,10 +148,39 @@ const Header = () => {
                 <Bell className="w-5 h-5" />
                 <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
+              
+              {/* Mobile Menu Button */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="sm:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden absolute top-16 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-50">
+          <div className="px-4 py-4 space-y-3">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+              <span className="text-sm font-medium text-gray-700">{user?.name}</span>
+              <span className="text-xs text-gray-500">{getRoleName(user?.role || '')}</span>
+            </div>
+            <button
+              onClick={() => {
+                logout();
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left text-sm text-red-600 hover:text-red-700 font-medium py-2"
+            >
+              로그아웃
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

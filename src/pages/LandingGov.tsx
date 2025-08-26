@@ -92,7 +92,32 @@ const LandingGov = () => {
       {/* 상단 유틸리티 바 */}
       <div className="bg-[#f8f9fa] border-b border-[#dee2e6]">
         <div className="max-w-[1280px] mx-auto px-4">
-          <div className="flex justify-between items-center h-10">
+          {/* Mobile View */}
+          <div className="sm:hidden">
+            <div className="flex justify-between items-center h-10">
+              {/* 좌측: 관련 사이트 드롭다운 */}
+              <select className="bg-transparent text-[#666666] text-xs outline-none max-w-[100px] truncate">
+                <option>관련사이트</option>
+                <option>경산시청</option>
+                <option>경산교육지원청</option>
+              </select>
+              
+              {/* 우측: 언어와 로그인 */}
+              <div className="flex items-center gap-2 text-xs">
+                <select className="bg-transparent text-[#666666] outline-none">
+                  <option>한국어</option>
+                  <option>English</option>
+                  <option>中文</option>
+                </select>
+                <button onClick={handleLogin} className="text-[#0397D6] font-medium px-2 py-1 rounded hover:bg-blue-50 transition-colors">
+                  로그인
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          {/* Desktop View */}
+          <div className="hidden sm:flex justify-between items-center h-10">
             {/* 좌측: 관련 사이트 */}
             <div className="flex items-center space-x-4 text-sm">
               <a href="#" className="text-[#666666] hover:text-[#1e4788] transition">경산시청</a>
@@ -101,9 +126,9 @@ const LandingGov = () => {
             </div>
             
             {/* 우측: 글자 크기, 언어, 로그인 */}
-            <div className="flex items-center space-x-4 text-sm">
-              {/* 글자 크기 조절 */}
-              <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-2 lg:space-x-4 text-sm">
+              {/* 글자 크기 조절 - Hide on tablet, show on desktop */}
+              <div className="hidden lg:flex items-center space-x-1">
                 <span className="text-[#666666] mr-2">글자크기</span>
                 <button 
                   onClick={() => adjustFontSize('small')}
@@ -128,7 +153,7 @@ const LandingGov = () => {
                 </button>
               </div>
               
-              <span className="text-[#cccccc]">|</span>
+              <span className="text-[#cccccc] hidden lg:inline">|</span>
               
               {/* 언어 선택 */}
               <select className="bg-transparent text-[#666666] outline-none">
@@ -152,16 +177,19 @@ const LandingGov = () => {
       <header className={`sticky top-0 z-40 transition-all ${scrolled ? 'shadow-md' : ''}`}>
         <div className="bg-white">
           <div className="max-w-[1280px] mx-auto px-4">
-            <div className="flex items-center justify-between h-20">
+            <div className="flex items-center justify-between h-16 sm:h-20">
               {/* 로고 */}
               <div className="flex items-center space-x-4">
-                <a href="/" className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-[#0397D6] rounded-lg flex items-center justify-center">
-                    <GraduationCap className="w-7 h-7 text-white" />
+                <a href="/" className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#0397D6] rounded-lg flex items-center justify-center shadow-sm">
+                    <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-[#333333]">경산시 스마트학습 플랫폼</div>
-                    <div className="text-xs text-[#666666]">Gyeongsan Smart Learning Platform</div>
+                    <div className="text-sm sm:text-xl font-bold text-[#333333] leading-tight">
+                      <span className="block sm:inline">경산시 스마트학습</span>
+                      <span className="block sm:inline sm:ml-1">플랫폼</span>
+                    </div>
+                    <div className="hidden sm:block text-xs text-[#666666]">Gyeongsan Smart Learning Platform</div>
                   </div>
                 </a>
               </div>
@@ -225,7 +253,7 @@ const LandingGov = () => {
           <div className="lg:hidden bg-white border-t shadow-lg">
             <div className="p-4 space-y-2">
               {['온라인 학습', 'AI 학습진단', '멘토링', '학습자료실', '공지사항', '고객지원'].map((item, idx) => (
-                <button key={idx} className="w-full text-left py-3 px-4 text-[#333333] hover:bg-[#f5f5f5] rounded">
+                <button key={idx} className="w-full text-left py-3 px-4 text-[#333333] hover:bg-[#f5f5f5] rounded transition-colors touch-manipulation">
                   {item}
                 </button>
               ))}
@@ -235,7 +263,7 @@ const LandingGov = () => {
       </header>
 
       {/* 메인 비주얼 */}
-      <section id="main-content" className="relative h-[330px] overflow-hidden">
+      <section id="main-content" className="relative h-[280px] sm:h-[330px] md:h-[400px] overflow-hidden">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -246,19 +274,19 @@ const LandingGov = () => {
             <div className={`absolute inset-0 ${slide.image}`} />
             <div className="relative h-full flex items-center">
               <div className="max-w-[1280px] mx-auto px-4 w-full">
-                <div className="max-w-2xl">
-                  <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <div className="max-w-2xl text-center sm:text-left">
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
                     {slide.title}
                   </h1>
-                  <p className="text-xl text-white/90 mb-8">
+                  <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 px-2 sm:px-0">
                     {slide.subtitle}
                   </p>
                   <button 
                     onClick={handleLogin}
-                    className="px-8 py-3 bg-white text-[#0397D6] rounded-lg font-medium hover:bg-[#f5f5f5] transition"
+                    className="px-6 sm:px-8 py-3 bg-white text-[#0397D6] rounded-lg font-medium hover:bg-[#f5f5f5] transition-all hover:scale-105 shadow-lg"
                   >
-                    학습 시작하기
-                    <ArrowRight className="inline-block w-5 h-5 ml-2" />
+                    <span className="text-sm sm:text-base">학습 시작하기</span>
+                    <ArrowRight className="inline-block w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </button>
                 </div>
               </div>
@@ -267,13 +295,13 @@ const LandingGov = () => {
         ))}
 
         {/* 슬라이드 인디케이터 */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentSlide ? 'bg-white w-8' : 'bg-white/50'
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all touch-manipulation ${
+                index === currentSlide ? 'bg-white w-6 sm:w-8' : 'bg-white/50'
               }`}
               aria-label={`슬라이드 ${index + 1}`}
             />
@@ -283,24 +311,25 @@ const LandingGov = () => {
         {/* 슬라이드 컨트롤 */}
         <button 
           onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/20 rounded-full hover:bg-white/30 transition"
+          className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-white/20 rounded-full hover:bg-white/30 transition touch-manipulation"
           aria-label="이전 슬라이드"
         >
-          <ChevronLeft className="w-6 h-6 text-white" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
         <button 
           onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white/20 rounded-full hover:bg-white/30 transition"
+          className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-white/20 rounded-full hover:bg-white/30 transition touch-manipulation"
           aria-label="다음 슬라이드"
         >
-          <ChevronRight className="w-6 h-6 text-white" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </button>
       </section>
 
       {/* 빠른 링크 - 히어로 섹션 바로 아래로 이동 */}
-      <section className="py-8 bg-[#f8f9fa]">
+      <section className="py-6 sm:py-8 bg-[#f8f9fa]">
         <div className="max-w-[1280px] mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+          <h2 className="text-lg sm:text-xl font-bold text-[#333333] text-center mb-4 sm:mb-6">빠른 서비스</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
             {[
               { icon: '📚', label: '학습가이드', route: '/student/today' },
               { icon: '📝', label: '과제제출', route: '/student/today' },
@@ -344,10 +373,10 @@ const LandingGov = () => {
                 <button 
                   key={idx} 
                   onClick={handleQuickNavClick}
-                  className="bg-white rounded-lg p-4 hover:shadow-md transition text-center group cursor-pointer hover:bg-gray-50"
+                  className="bg-white rounded-lg p-3 sm:p-4 hover:shadow-md transition-all text-center group cursor-pointer hover:bg-gray-50 hover:scale-105 touch-manipulation"
                 >
-                  <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{link.icon}</div>
-                  <div className="text-sm text-[#666666]">{link.label}</div>
+                  <div className="text-xl sm:text-2xl mb-2 group-hover:scale-110 transition-transform">{link.icon}</div>
+                  <div className="text-xs sm:text-sm text-[#666666] font-medium leading-tight">{link.label}</div>
                 </button>
               );
             })}
@@ -356,17 +385,17 @@ const LandingGov = () => {
       </section>
 
       {/* 공지사항 & 자료실 */}
-      <section className="py-16">
+      <section className="py-8 sm:py-16">
         <div className="max-w-[1280px] mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
             {/* 공지사항 */}
-            <div className="bg-white rounded-lg border border-[#dee2e6] p-6">
+            <div className="bg-white rounded-lg border border-[#dee2e6] p-4 sm:p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-[#333333] flex items-center">
-                  <AlertCircle className="w-5 h-5 mr-2 text-[#d9534f]" />
+                <h3 className="text-lg sm:text-xl font-bold text-[#333333] flex items-center">
+                  <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-[#d9534f]" />
                   공지사항
                 </h3>
-                <button className="text-sm text-[#0397D6] hover:underline">
+                <button className="text-xs sm:text-sm text-[#0397D6] hover:underline font-medium">
                   더보기 →
                 </button>
               </div>
@@ -378,32 +407,32 @@ const LandingGov = () => {
                   { title: '시스템 정기 점검 일정 안내', date: '2024.01.18' },
                   { title: '1월 멘토링 일정 안내', date: '2024.01.15' }
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center justify-between py-2 border-b last:border-0">
-                    <div className="flex items-center space-x-2">
+                  <li key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2 border-b last:border-0 gap-1 sm:gap-2">
+                    <div className="flex items-center flex-wrap gap-1 sm:gap-2">
                       {item.isImportant && (
-                        <span className="px-2 py-1 bg-[#d9534f] text-white text-xs rounded">중요</span>
+                        <span className="px-2 py-0.5 bg-[#d9534f] text-white text-xs rounded font-medium">중요</span>
                       )}
                       {item.isNew && (
-                        <span className="px-2 py-1 bg-[#f0ad4e] text-white text-xs rounded">NEW</span>
+                        <span className="px-2 py-0.5 bg-[#f0ad4e] text-white text-xs rounded font-medium">NEW</span>
                       )}
-                      <a href="#" className="text-[#333333] hover:text-[#0397D6] hover:underline">
+                      <a href="#" className="text-sm sm:text-base text-[#333333] hover:text-[#0397D6] hover:underline line-clamp-2 sm:line-clamp-1">
                         {item.title}
                       </a>
                     </div>
-                    <span className="text-sm text-[#999999]">{item.date}</span>
+                    <span className="text-xs sm:text-sm text-[#999999] self-start sm:self-center flex-shrink-0">{item.date}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* 학습자료실 */}
-            <div className="bg-white rounded-lg border border-[#dee2e6] p-6">
+            <div className="bg-white rounded-lg border border-[#dee2e6] p-4 sm:p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-[#333333] flex items-center">
-                  <FileText className="w-5 h-5 mr-2 text-[#1e4788]" />
+                <h3 className="text-lg sm:text-xl font-bold text-[#333333] flex items-center">
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-[#1e4788]" />
                   학습자료실
                 </h3>
-                <button className="text-sm text-[#0397D6] hover:underline">
+                <button className="text-xs sm:text-sm text-[#0397D6] hover:underline font-medium">
                   더보기 →
                 </button>
               </div>
@@ -415,16 +444,16 @@ const LandingGov = () => {
                   { title: '[국어] 독서 감상문 예시 모음', category: '국어', downloads: 145 },
                   { title: '[코딩] Python 기초 교재', category: '코딩', downloads: 312 }
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center justify-between py-2 border-b last:border-0">
-                    <div className="flex items-center space-x-2">
-                      <span className="px-2 py-1 bg-[#f5f5f5] text-[#666666] text-xs rounded">
+                  <li key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-2 border-b last:border-0 gap-1 sm:gap-2">
+                    <div className="flex items-center flex-wrap gap-1 sm:gap-2">
+                      <span className="px-2 py-0.5 bg-[#f5f5f5] text-[#666666] text-xs rounded font-medium flex-shrink-0">
                         {item.category}
                       </span>
-                      <a href="#" className="text-[#333333] hover:text-[#0397D6] hover:underline">
+                      <a href="#" className="text-sm sm:text-base text-[#333333] hover:text-[#0397D6] hover:underline line-clamp-2 sm:line-clamp-1">
                         {item.title}
                       </a>
                     </div>
-                    <span className="text-sm text-[#999999]">↓ {item.downloads}</span>
+                    <span className="text-xs sm:text-sm text-[#999999] self-start sm:self-center flex-shrink-0">↓ {item.downloads}</span>
                   </li>
                 ))}
               </ul>
@@ -434,11 +463,11 @@ const LandingGov = () => {
       </section>
 
       {/* 주요 서비스 */}
-      <section className="py-12 bg-white">
+      <section className="py-8 sm:py-12 bg-white">
         <div className="max-w-[1280px] mx-auto px-4">
-          <h2 className="text-3xl font-bold text-[#333333] text-center mb-10">주요 서비스</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#333333] text-center mb-6 sm:mb-10">주요 서비스</h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { icon: Monitor, title: '온라인 학습', desc: 'AI 기술과 인간적\n교감이 결합된 학습', color: '#0397D6' },
               { icon: Brain, title: 'AI 학습진단', desc: '개인별 맞춤 학습\n수준 분석 서비스', color: '#63C29D' },
@@ -447,15 +476,15 @@ const LandingGov = () => {
             ].map((service, idx) => {
               const Icon = service.icon;
               return (
-                <div key={idx} className="bg-white rounded-lg p-5 text-center hover:shadow-lg transition group cursor-pointer">
+                <div key={idx} className="bg-white rounded-lg p-4 sm:p-5 text-center hover:shadow-lg transition-all group cursor-pointer border border-gray-100 hover:scale-105">
                   <div 
-                    className="w-16 h-16 mx-auto mb-3 rounded-full flex items-center justify-center transition-transform group-hover:scale-110"
+                    className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-2 sm:mb-3 rounded-full flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm"
                     style={{ backgroundColor: `${service.color}20` }}
                   >
-                    <Icon className="w-8 h-8" style={{ color: service.color }} />
+                    <Icon className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: service.color }} />
                   </div>
-                  <h3 className="text-lg font-bold text-[#333333] mb-2">{service.title}</h3>
-                  <p className="text-sm text-[#666666] whitespace-pre-line">{service.desc}</p>
+                  <h3 className="text-sm sm:text-lg font-bold text-[#333333] mb-1 sm:mb-2">{service.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#666666] whitespace-pre-line leading-relaxed">{service.desc}</p>
                 </div>
               );
             })}
@@ -464,11 +493,11 @@ const LandingGov = () => {
       </section>
 
       {/* 통계 정보 */}
-      <section className="py-16 bg-[#0397D6]">
+      <section className="py-8 sm:py-16 bg-[#0397D6]">
         <div className="max-w-[1280px] mx-auto px-4">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">플랫폼 현황</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8 sm:mb-12">플랫폼 현황</h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
             {[
               { label: '누적 이용자', value: '2,847', unit: '명', icon: Users },
               { label: '학습 콘텐츠', value: '15,342', unit: '개', icon: BookOpen },
@@ -477,12 +506,12 @@ const LandingGov = () => {
             ].map((stat, idx) => {
               const Icon = stat.icon;
               return (
-                <div key={idx} className="text-white">
-                  <Icon className="w-12 h-12 mx-auto mb-4 opacity-80" />
-                  <div className="text-3xl font-bold mb-2">
-                    {stat.value}<span className="text-xl">{stat.unit}</span>
+                <div key={idx} className="text-white p-2">
+                  <Icon className="w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-2 sm:mb-4 opacity-80" />
+                  <div className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">
+                    {stat.value}<span className="text-lg sm:text-xl">{stat.unit}</span>
                   </div>
-                  <div className="text-white/80">{stat.label}</div>
+                  <div className="text-white/80 text-sm sm:text-base">{stat.label}</div>
                 </div>
               );
             })}

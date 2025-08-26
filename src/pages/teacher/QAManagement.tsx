@@ -281,70 +281,72 @@ const QAManagement = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">1:1 질문 답변</h2>
-            <p className="text-gray-600 mt-1">학생들의 질문을 관리하고 답변합니다</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">1:1 질문 답변</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">학생들의 질문을 관리하고 답변합니다</p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">
+            <span className="px-2 sm:px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs sm:text-sm">
               대기중 {questions.filter(q => q.status === 'pending').length}
             </span>
-            <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">
+            <span className="px-2 sm:px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs sm:text-sm">
               답변중 {questions.filter(q => q.status === 'in-progress').length}
             </span>
           </div>
         </div>
 
         {/* 필터 및 검색 */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <div className="flex flex-col md:flex-row gap-4">
+        <div className="bg-white rounded-lg shadow-md p-3 sm:p-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 sm:w-5 h-4 sm:h-5" />
                 <input
                   type="text"
                   placeholder="질문 검색..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                 />
               </div>
             </div>
-            <select
-              value={filterSubject}
-              onChange={(e) => setFilterSubject(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">전체 과목</option>
-              <option value="수학">수학</option>
-              <option value="영어">영어</option>
-              <option value="과학">과학</option>
-              <option value="국어">국어</option>
-              <option value="사회">사회</option>
-            </select>
-            <select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">전체 상태</option>
-              <option value="pending">대기중</option>
-              <option value="in-progress">답변중</option>
-              <option value="answered">답변완료</option>
-            </select>
+            <div className="flex gap-2">
+              <select
+                value={filterSubject}
+                onChange={(e) => setFilterSubject(e.target.value)}
+                className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              >
+                <option value="all">전체 과목</option>
+                <option value="수학">수학</option>
+                <option value="영어">영어</option>
+                <option value="과학">과학</option>
+                <option value="국어">국어</option>
+                <option value="사회">사회</option>
+              </select>
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="flex-1 sm:flex-initial px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              >
+                <option value="all">전체 상태</option>
+                <option value="pending">대기중</option>
+                <option value="in-progress">답변중</option>
+                <option value="answered">답변완료</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* 질문 목록 */}
           <div className="lg:col-span-1 space-y-4">
             <div className="bg-white rounded-lg shadow-md">
-              <div className="p-4 border-b">
-                <h3 className="font-bold text-gray-900">질문 목록</h3>
+              <div className="p-3 sm:p-4 border-b">
+                <h3 className="font-bold text-gray-900 text-sm sm:text-base">질문 목록</h3>
               </div>
-              <div className="divide-y max-h-[600px] overflow-y-auto">
+              <div className="divide-y max-h-[400px] sm:max-h-[600px] overflow-y-auto">
                 {filteredQuestions.map((question) => (
                   <div
                     key={question.id}

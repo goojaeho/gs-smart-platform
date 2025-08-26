@@ -252,11 +252,11 @@ const NoticeBoard = () => {
   if (selectedNotice) {
     return (
       <Layout>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           {/* Back button */}
           <button 
             onClick={() => setSelectedNotice(null)}
-            className="mb-6 flex items-center text-blue-600 hover:text-blue-800"
+            className="mb-4 sm:mb-6 flex items-center text-blue-600 hover:text-blue-800 text-sm sm:text-base"
           >
             ← 목록으로 돌아가기
           </button>
@@ -264,39 +264,39 @@ const NoticeBoard = () => {
           {/* Notice Detail */}
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
             {/* Header */}
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-start justify-between mb-4">
+            <div className="p-4 sm:p-6 border-b border-gray-200">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                 <div className="flex-1">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-3">
+                  <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
                     {selectedNotice.title}
                   </h1>
                   
-                  <div className="flex items-center space-x-4 text-sm text-gray-600">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-2 text-xs sm:text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-lg">
+                      <div className="w-6 sm:w-8 h-6 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center text-sm sm:text-lg">
                         {selectedNotice.author.profileImage}
                       </div>
                       <span className="font-medium">{selectedNotice.author.name}</span>
                     </div>
                     
                     <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-3 sm:w-4 h-3 sm:h-4" />
                       <span>{formatDate(selectedNotice.date)}</span>
                     </div>
                     
-                    <span className={`px-2 py-1 rounded-full text-xs ${getTargetBadgeColor(selectedNotice.target)}`}>
+                    <span className={`px-2 py-1 rounded-full text-[10px] sm:text-xs ${getTargetBadgeColor(selectedNotice.target)}`}>
                       {selectedNotice.targetLabel}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-gray-500">
                   <div className="flex items-center space-x-1">
-                    <Eye className="w-4 h-4" />
+                    <Eye className="w-3 sm:w-4 h-3 sm:h-4" />
                     <span>{selectedNotice.views}</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-3 sm:w-4 h-3 sm:h-4" />
                     <span>{selectedNotice.comments}</span>
                   </div>
                 </div>
@@ -325,10 +325,10 @@ const NoticeBoard = () => {
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <div className="prose max-w-none">
                 {selectedNotice.fullContent.split('\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                  <p key={index} className="mb-4 text-sm sm:text-base text-gray-700 leading-relaxed">
                     {paragraph}
                   </p>
                 ))}
@@ -375,43 +375,43 @@ const NoticeBoard = () => {
     <Layout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900">알림장</h2>
-            <p className="text-gray-600 mt-1">선생님이 보내주신 공지사항을 확인하세요</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">알림장</h2>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">선생님이 보내주신 공지사항을 확인하세요</p>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <div className="text-center">
-              <p className="text-sm text-gray-500">읽지 않은 알림</p>
-              <p className="text-2xl font-bold text-red-600">
+              <p className="text-xs sm:text-sm text-gray-500">읽지 않은 알림</p>
+              <p className="text-xl sm:text-2xl font-bold text-red-600">
                 {notices.filter(n => !n.isRead).length}
               </p>
             </div>
             <div className="text-center">
-              <p className="text-sm text-gray-500">전체 알림</p>
-              <p className="text-2xl font-bold text-blue-600">{notices.length}</p>
+              <p className="text-xs sm:text-sm text-gray-500">전체 알림</p>
+              <p className="text-xl sm:text-2xl font-bold text-blue-600">{notices.length}</p>
             </div>
           </div>
         </div>
 
         {/* Search and Filter */}
-        <div className="flex items-center justify-between space-x-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:space-x-4">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-gray-400" />
             <input
               type="text"
               placeholder="제목, 내용, 선생님 이름으로 검색..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           
           <div className="flex space-x-2">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                 filter === 'all'
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
@@ -421,7 +421,7 @@ const NoticeBoard = () => {
             </button>
             <button
               onClick={() => setFilter('unread')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                 filter === 'unread'
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
@@ -431,7 +431,7 @@ const NoticeBoard = () => {
             </button>
             <button
               onClick={() => setFilter('important')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium transition-colors text-sm sm:text-base ${
                 filter === 'important'
                   ? 'bg-blue-500 text-white'
                   : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
@@ -448,7 +448,7 @@ const NoticeBoard = () => {
             <div
               key={notice.id}
               onClick={() => handleNoticeClick(notice)}
-              className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer p-6 border-l-4 ${
+              className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer p-4 sm:p-6 border-l-4 ${
                 notice.isPinned 
                   ? 'border-l-yellow-500 bg-yellow-50' 
                   : notice.isImportant 
@@ -461,8 +461,8 @@ const NoticeBoard = () => {
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   {/* Title and badges */}
-                  <div className="flex items-start space-x-3 mb-3">
-                    <h3 className={`text-lg font-bold ${!notice.isRead ? 'text-gray-900' : 'text-gray-700'} flex-1`}>
+                  <div className="flex items-start space-x-2 sm:space-x-3 mb-2 sm:mb-3">
+                    <h3 className={`text-base sm:text-lg font-bold ${!notice.isRead ? 'text-gray-900' : 'text-gray-700'} flex-1`}>
                       {notice.title}
                     </h3>
                     
@@ -481,47 +481,48 @@ const NoticeBoard = () => {
                   </div>
 
                   {/* Author and meta info */}
-                  <div className="flex items-center space-x-4 mb-3 text-sm text-gray-600">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-sm">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-2 sm:mb-3 text-xs sm:text-sm text-gray-600">
+                    <div className="flex items-center space-x-1 sm:space-x-2">
+                      <div className="w-5 sm:w-6 h-5 sm:h-6 bg-blue-100 rounded-full flex items-center justify-center text-xs sm:text-sm">
                         {notice.author.profileImage}
                       </div>
                       <span className="font-medium">{notice.author.name}</span>
                     </div>
                     
-                    <span>{formatDate(notice.date)}</span>
+                    <span className="hidden sm:inline">{formatDate(notice.date)}</span>
+                    <span className="sm:hidden">{notice.date}</span>
                     
-                    <span className={`px-2 py-1 rounded-full text-xs ${getTargetBadgeColor(notice.target)}`}>
+                    <span className={`px-2 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs ${getTargetBadgeColor(notice.target)}`}>
                       {notice.targetLabel}
                     </span>
                   </div>
 
                   {/* Content preview */}
-                  <p className="text-gray-600 mb-3 line-clamp-2">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 line-clamp-2">
                     {notice.contentPreview}
                   </p>
 
                   {/* Icons and stats */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm text-gray-500">
                       <div className="flex items-center space-x-1">
-                        <Eye className="w-4 h-4" />
+                        <Eye className="w-3 sm:w-4 h-3 sm:h-4" />
                         <span>{notice.views}</span>
                       </div>
                       <div className="flex items-center space-x-1">
-                        <MessageCircle className="w-4 h-4" />
+                        <MessageCircle className="w-3 sm:w-4 h-3 sm:h-4" />
                         <span>{notice.comments}</span>
                       </div>
                       
                       {/* Attachment indicators */}
-                      <div className="flex items-center space-x-2">
-                        {notice.hasAttachment && <Paperclip className="w-4 h-4 text-gray-400" />}
-                        {notice.hasImage && <ImageIcon className="w-4 h-4 text-gray-400" />}
-                        {notice.hasLink && <Link className="w-4 h-4 text-gray-400" />}
+                      <div className="flex items-center space-x-1 sm:space-x-2">
+                        {notice.hasAttachment && <Paperclip className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />}
+                        {notice.hasImage && <ImageIcon className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />}
+                        {notice.hasLink && <Link className="w-3 sm:w-4 h-3 sm:h-4 text-gray-400" />}
                       </div>
                     </div>
                     
-                    <div className="text-xs text-gray-400">
+                    <div className="text-[10px] sm:text-xs text-gray-400 hidden sm:block">
                       클릭하여 자세히 보기
                     </div>
                   </div>

@@ -86,96 +86,103 @@ const OnlineLibrary = () => {
 
   return (
     <Layout>
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900">온라인 도서관</h2>
-            <p className="text-gray-600 mt-1">10,000권 이상의 전자책과 오디오북</p>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="text-center">
-              <p className="text-sm text-gray-500">이번 달 독서</p>
-              <p className="text-2xl font-bold text-purple-600">5권</p>
+      <div className="space-y-4 sm:space-y-6">
+        <div className="bg-white rounded-lg p-4 sm:p-0 sm:bg-transparent">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">온라인 도서관</h2>
+              <p className="text-sm sm:text-base text-gray-600 mt-1">10,000권 이상의 전자책과 오디오북</p>
             </div>
-            <div className="text-center">
-              <p className="text-sm text-gray-500">독서 포인트</p>
-              <p className="text-2xl font-bold text-orange-600">250P</p>
+            <div className="flex items-center space-x-4">
+              <div className="text-center flex-1 sm:flex-initial">
+                <p className="text-xs sm:text-sm text-gray-500">이번 달 독서</p>
+                <p className="text-xl sm:text-2xl font-bold text-purple-600">5권</p>
+              </div>
+              <div className="text-center flex-1 sm:flex-initial">
+                <p className="text-xs sm:text-sm text-gray-500">독서 포인트</p>
+                <p className="text-xl sm:text-2xl font-bold text-orange-600">250P</p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 검색 및 필터 */}
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <div className="flex items-center space-x-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+        {/* 검색 및 필터 - Mobile optimized */}
+        <div className="bg-white rounded-lg shadow-md p-3 sm:p-4">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <div className="flex-1 relative w-full">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 sm:w-5 sm:h-5" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="도서명, 저자명으로 검색..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="도서명, 저자명..."
+                className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
               />
             </div>
-            <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 flex items-center space-x-2">
+            <button className="px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base w-full sm:w-auto justify-center">
               <Filter className="w-4 h-4" />
-              <span>상세 필터</span>
+              <span className="hidden sm:inline">상세 필터</span>
+              <span className="sm:hidden">필터</span>
             </button>
           </div>
         </div>
 
-        {/* 카테고리 */}
-        <div className="flex space-x-2 overflow-x-auto">
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors ${
-                selectedCategory === category
-                  ? 'bg-purple-500 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        {/* 카테고리 - Mobile scrollable */}
+        <div className="overflow-x-auto scrollbar-hide -mx-3 px-3 sm:mx-0 sm:px-0">
+          <div className="flex space-x-2 pb-2">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium whitespace-nowrap transition-colors text-sm sm:text-base ${
+                  selectedCategory === category
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* 도서 목록 */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* 도서 목록 - Mobile optimized */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {filteredBooks.map(book => (
-                <div key={book.id} className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
-                  <div className="flex space-x-4">
-                    <div className="w-20 h-28 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center text-4xl">
+                <div key={book.id} className="bg-white rounded-lg shadow-md p-3 sm:p-4 hover:shadow-lg transition-shadow">
+                  <div className="flex space-x-3 sm:space-x-4">
+                    <div className="w-16 h-24 sm:w-20 sm:h-28 bg-gradient-to-br from-purple-100 to-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                       <img
-    src={book.cover}
-    alt={book.title}
-    className="w-full h-full object-cover rounded-lg"
-  />
+                        src={book.cover}
+                        alt={book.title}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h3 className="font-bold text-gray-900">{book.title}</h3>
-                          <p className="text-sm text-gray-600">{book.author}</p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-1">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate">{book.title}</h3>
+                          <p className="text-xs sm:text-sm text-gray-600 truncate">{book.author}</p>
                         </div>
-                        {book.isNew && (
-                          <span className="px-2 py-1 bg-red-100 text-red-600 text-xs rounded-full">NEW</span>
-                        )}
-                        {book.isRecommended && (
-                          <span className="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">추천</span>
-                        )}
+                        <div className="flex flex-col gap-1">
+                          {book.isNew && (
+                            <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-red-100 text-red-600 text-[10px] sm:text-xs rounded-full">NEW</span>
+                          )}
+                          {book.isRecommended && (
+                            <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-blue-100 text-blue-600 text-[10px] sm:text-xs rounded-full">추천</span>
+                          )}
+                        </div>
                       </div>
                       
-                      <div className="flex items-center space-x-3 mt-2">
+                      <div className="flex items-center space-x-2 sm:space-x-3 mt-1.5 sm:mt-2">
                         <div className="flex items-center space-x-1">
-                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                          <span className="text-sm text-gray-600">{book.rating}</span>
+                          <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 fill-current" />
+                          <span className="text-xs sm:text-sm text-gray-600">{book.rating}</span>
                         </div>
-                        <span className="text-sm text-gray-500">{book.pages}쪽</span>
-                        <span className={`text-xs px-2 py-1 rounded ${
+                        <span className="text-xs sm:text-sm text-gray-500">{book.pages}쪽</span>
+                        <span className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded ${
                           book.level === '초급' ? 'bg-green-100 text-green-700' :
                           book.level === '중급' ? 'bg-yellow-100 text-yellow-700' :
                           'bg-red-100 text-red-700'
@@ -184,15 +191,15 @@ const OnlineLibrary = () => {
                         </span>
                       </div>
                       
-                      <div className="flex space-x-2 mt-3">
+                      <div className="flex space-x-1.5 sm:space-x-2 mt-2 sm:mt-3">
                         <button 
                           onClick={() => handleReadBook(book)}
-                          className="flex-1 py-1.5 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 transition-colors"
+                          className="flex-1 py-1 sm:py-1.5 bg-purple-500 text-white text-xs sm:text-sm rounded hover:bg-purple-600 transition-colors"
                         >
                           읽기
                         </button>
-                        <button className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors">
-                          <Bookmark className="w-4 h-4" />
+                        <button className="px-2 sm:px-3 py-1 sm:py-1.5 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors">
+                          <Bookmark className="w-3 h-3 sm:w-4 sm:h-4" />
                         </button>
                       </div>
                     </div>
@@ -202,11 +209,11 @@ const OnlineLibrary = () => {
             </div>
           </div>
 
-          {/* 사이드바 */}
-          <div className="space-y-6">
+          {/* 사이드바 - Hidden on mobile, shown on large screens */}
+          <div className="hidden lg:block space-y-6">
             {/* 나의 독서 현황 */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">나의 독서 현황</h3>
+            <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">나의 독서 현황</h3>
               <div className="space-y-3">
                 {readingHistory.map((book, idx) => (
                   <div key={idx} className="border-b border-gray-100 pb-3 last:border-0">
