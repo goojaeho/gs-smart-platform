@@ -202,46 +202,46 @@ const MentoringManagement = () => {
         </div>
 
         {/* 통계 카드 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <Users className="w-8 h-8 text-blue-500" />
+              <Users className="w-6 h-6 sm:w-8 sm:h-8 text-blue-500" />
             </div>
-            <h3 className="text-sm text-gray-600">총 멘토링</h3>
-            <p className="text-2xl font-bold text-gray-900">{mentoringStats.totalSessions}회</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">총 멘토링</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">{mentoringStats.totalSessions}회</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <Calendar className="w-8 h-8 text-green-500" />
+              <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
             </div>
-            <h3 className="text-sm text-gray-600">이번 달</h3>
-            <p className="text-2xl font-bold text-gray-900">{mentoringStats.thisMonth}회</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">이번 달</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">{mentoringStats.thisMonth}회</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <Star className="w-8 h-8 text-yellow-500" />
+              <Star className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-500" />
             </div>
-            <h3 className="text-sm text-gray-600">평균 평점</h3>
-            <p className="text-2xl font-bold text-gray-900">{mentoringStats.averageRating}점</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">평균 평점</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">{mentoringStats.averageRating}점</p>
           </div>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
-              <TrendingUp className="w-8 h-8 text-purple-500" />
+              <TrendingUp className="w-6 h-6 sm:w-8 sm:h-8 text-purple-500" />
             </div>
-            <h3 className="text-sm text-gray-600">완료율</h3>
-            <p className="text-2xl font-bold text-gray-900">{mentoringStats.completionRate}%</p>
+            <h3 className="text-xs sm:text-sm text-gray-600">완료율</h3>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900">{mentoringStats.completionRate}%</p>
           </div>
         </div>
 
         {/* 탭 메뉴 */}
         <div className="bg-white rounded-lg shadow-md">
-          <div className="border-b border-gray-200">
-            <div className="flex space-x-8 px-6">
+          <div className="border-b border-gray-200 overflow-x-auto">
+            <div className="flex gap-4 sm:gap-8 px-4 sm:px-6 min-w-max">
               {['scheduled', 'pending', 'in-progress', 'completed', 'journals'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setSelectedTab(tab)}
-                  className={`py-4 border-b-2 font-medium text-sm ${
+                  className={`py-3 sm:py-4 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap ${
                     selectedTab === tab
                       ? 'border-blue-500 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -258,118 +258,118 @@ const MentoringManagement = () => {
           </div>
 
           {/* 콘텐츠 영역 */}
-          <div className="p-6">
+          <div className="p-3 sm:p-6">
             {selectedTab !== 'journals' ? (
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {filteredSchedules.map((schedule) => (
-                  <div key={schedule.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h4 className="font-bold text-gray-900">
+                  <div key={schedule.id} className="border rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h4 className="font-bold text-gray-900 text-sm sm:text-base">
                             {schedule.type === '학부모 상담' 
                               ? `${schedule.studentName} 학부모 (${schedule.parentName})`
                               : schedule.studentName
                             }
                           </h4>
-                          <span className={`px-2 py-1 rounded text-xs ${
+                          <span className={`px-2 py-0.5 rounded text-xs ${
                             schedule.type === '학부모 상담' 
                               ? 'bg-purple-100 text-purple-700'
                               : 'bg-blue-100 text-blue-700'
                           }`}>
                             {schedule.type}
                           </span>
-                          <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                          <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs">
                             {schedule.subject}
                           </span>
                         </div>
                         
-                        <p className="text-sm text-gray-600 mb-2">{schedule.topic}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-2">{schedule.topic}</p>
                         
-                        <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500 mb-3">
                           <div className="space-y-1">
-                            <div className="flex items-center space-x-2">
-                              <Calendar className="w-4 h-4" />
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <Calendar className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                               <span>{schedule.date}</span>
                             </div>
-                            <div className="flex items-center space-x-2">
-                              <Clock className="w-4 h-4" />
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                               <span>{schedule.time}</span>
                             </div>
                           </div>
                           <div className="space-y-1">
-                            <div className="flex items-center space-x-2">
-                              <MapPin className="w-4 h-4" />
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <MapPin className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                               <span>{schedule.location}</span>
                             </div>
-                            <div className="flex items-center space-x-2">
-                              <Target className="w-4 h-4" />
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <Target className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                               <span>{schedule.purpose}</span>
                             </div>
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
                           <span className="font-medium">센터:</span>
                           <span>{schedule.centerName}</span>
                         </div>
 
                         {schedule.requestNote && (
-                          <div className="mt-3 p-3 bg-gray-50 rounded">
-                            <p className="text-sm text-gray-600">
+                          <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-gray-50 rounded">
+                            <p className="text-xs sm:text-sm text-gray-600">
                               <span className="font-medium">요청사항:</span> {schedule.requestNote}
                             </p>
                           </div>
                         )}
                         
                         {schedule.feedback && (
-                          <div className="mt-3 p-3 bg-blue-50 rounded">
-                            <p className="text-sm text-gray-600">
+                          <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-blue-50 rounded">
+                            <p className="text-xs sm:text-sm text-gray-600">
                               <span className="font-medium">피드백:</span> {schedule.feedback}
                             </p>
                           </div>
                         )}
                       </div>
                       
-                      <div className="flex flex-col space-y-2 ml-4">
+                      <div className="flex sm:flex-col gap-2 mt-3 sm:mt-0">
                         {schedule.status === 'scheduled' && (
                           <>
                             <button 
                               onClick={() => setShowVideoCall(true)}
-                              className="px-3 py-1 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+                              className="flex-1 sm:flex-initial px-3 py-1.5 bg-blue-500 text-white rounded text-xs sm:text-sm hover:bg-blue-600 flex items-center justify-center gap-1"
                             >
-                              <Video className="w-4 h-4 inline mr-1" />
-                              입장
+                              <Video className="w-3 h-3 sm:w-4 sm:h-4" />
+                              <span>입장</span>
                             </button>
-                            <button className="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">
+                            <button className="flex-1 sm:flex-initial px-3 py-1.5 border border-gray-300 rounded text-xs sm:text-sm hover:bg-gray-50">
                               일정 변경
                             </button>
                           </>
                         )}
                         {schedule.status === 'pending' && (
                           <>
-                            <button className="px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600">
-                              <CheckCircle className="w-4 h-4 inline mr-1" />
-                              승인
+                            <button className="flex-1 sm:flex-initial px-3 py-1.5 bg-green-500 text-white rounded text-xs sm:text-sm hover:bg-green-600 flex items-center justify-center gap-1">
+                              <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                              <span>승인</span>
                             </button>
-                            <button className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600">
-                              <XCircle className="w-4 h-4 inline mr-1" />
-                              거절
+                            <button className="flex-1 sm:flex-initial px-3 py-1.5 bg-red-500 text-white rounded text-xs sm:text-sm hover:bg-red-600 flex items-center justify-center gap-1">
+                              <XCircle className="w-3 h-3 sm:w-4 sm:h-4" />
+                              <span>거절</span>
                             </button>
                           </>
                         )}
                         {schedule.status === 'in-progress' && (
                           <button 
                             onClick={() => setShowVideoCall(true)}
-                            className="px-3 py-1 bg-green-500 text-white rounded text-sm hover:bg-green-600 animate-pulse"
+                            className="flex-1 sm:flex-initial px-3 py-1.5 bg-green-500 text-white rounded text-xs sm:text-sm hover:bg-green-600 animate-pulse flex items-center justify-center gap-1"
                           >
-                            <Video className="w-4 h-4 inline mr-1" />
-                            진행중
+                            <Video className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span>진행중</span>
                           </button>
                         )}
                         {schedule.status === 'completed' && schedule.rating && (
                           <div className="text-center">
-                            <div className="text-yellow-500">
+                            <div className="text-yellow-500 text-sm sm:text-base">
                               {'★'.repeat(schedule.rating)}
                             </div>
                             <p className="text-xs text-gray-500">학생 평가</p>
@@ -382,43 +382,43 @@ const MentoringManagement = () => {
               </div>
             ) : (
               // 멘토링 일지 목록
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {mentoringJournals.map((journal) => (
-                  <div key={journal.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <h4 className="font-bold text-gray-900">{journal.studentName}</h4>
-                          <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs">
+                  <div key={journal.id} className="border rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h4 className="font-bold text-gray-900 text-sm sm:text-base">{journal.studentName}</h4>
+                          <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">
                             {journal.type}
                           </span>
-                          <span className="text-sm text-gray-500">{journal.date}</span>
+                          <span className="text-xs sm:text-sm text-gray-500">{journal.date}</span>
                           {journal.parentShared && (
-                            <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">
+                            <span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-xs">
                               학부모 공유
                             </span>
                           )}
                         </div>
                         
-                        <div className="space-y-2 text-sm text-gray-600">
+                        <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-600">
                           <p><span className="font-medium">수업 시간:</span> {journal.duration}</p>
-                          <p><span className="font-medium">수업 내용:</span> {journal.content}</p>
-                          <p><span className="font-medium">성취도:</span> {journal.achievement}</p>
-                          <p><span className="font-medium">다음 계획:</span> {journal.nextPlan}</p>
+                          <p className="line-clamp-2 sm:line-clamp-none"><span className="font-medium">수업 내용:</span> {journal.content}</p>
+                          <p className="line-clamp-2 sm:line-clamp-none"><span className="font-medium">성취도:</span> {journal.achievement}</p>
+                          <p className="line-clamp-2 sm:line-clamp-none"><span className="font-medium">다음 계획:</span> {journal.nextPlan}</p>
                         </div>
                       </div>
                       
-                      <div className="flex flex-col space-y-2 ml-4">
+                      <div className="flex sm:flex-col gap-2 mt-3 sm:mt-0">
                         <button 
                           onClick={() => setSelectedJournal(journal)}
-                          className="px-3 py-1 bg-blue-100 text-blue-700 rounded text-sm hover:bg-blue-200"
+                          className="flex-1 sm:flex-initial px-3 py-1.5 bg-blue-100 text-blue-700 rounded text-xs sm:text-sm hover:bg-blue-200 flex items-center justify-center gap-1"
                         >
-                          <Eye className="w-4 h-4 inline mr-1" />
-                          상세보기
+                          <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span>상세보기</span>
                         </button>
-                        <button className="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">
-                          <Edit className="w-4 h-4 inline mr-1" />
-                          수정
+                        <button className="flex-1 sm:flex-initial px-3 py-1.5 border border-gray-300 rounded text-xs sm:text-sm hover:bg-gray-50 flex items-center justify-center gap-1">
+                          <Edit className="w-3 h-3 sm:w-4 sm:h-4" />
+                          <span>수정</span>
                         </button>
                       </div>
                     </div>
