@@ -252,6 +252,12 @@ const LandingGov = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-t shadow-lg">
             <div className="p-4 space-y-2">
+              <button 
+                onClick={handleLogin}
+                className="w-full text-left py-3 px-4 text-[#0397D6] font-medium hover:bg-[#f5f5f5] rounded transition-colors touch-manipulation border border-[#0397D6] bg-blue-50"
+              >
+                로그인
+              </button>
               {['온라인 학습', 'AI 학습진단', '멘토링', '학습자료실', '공지사항', '고객지원'].map((item, idx) => (
                 <button key={idx} className="w-full text-left py-3 px-4 text-[#333333] hover:bg-[#f5f5f5] rounded transition-colors touch-manipulation">
                   {item}
