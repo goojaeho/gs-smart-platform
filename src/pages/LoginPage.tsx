@@ -58,29 +58,42 @@ const LoginPage = () => {
         </div>
 
         <div className="mb-6">
-          <p className="text-sm text-gray-600 mb-3">사용자 유형을 선택하세요</p>
+          <p className="text-sm text-gray-600 mb-3">사용자 유형을 선택하여 빠른 로그인</p>
           <div className="grid grid-cols-2 gap-2">
             {roles.map((role) => {
               const Icon = role.icon;
               return (
                 <button
                   key={role.value}
-                  onClick={() => setSelectedRole(role.value)}
-                  className={`p-3 rounded-lg border-2 transition-all ${
+                  onClick={() => {
+                    setSelectedRole(role.value);
+                    handleQuickLogin(role.value);
+                  }}
+                  className={`p-4 rounded-lg border-2 transition-all hover:shadow-md ${
                     selectedRole === role.value
                       ? `border-blue-500 ${role.color} text-white`
-                      : 'border-gray-200 hover:border-gray-300 bg-white'
+                      : 'border-gray-200 hover:border-blue-300 bg-white hover:bg-blue-50'
                   }`}
                 >
-                  <Icon className="w-5 h-5 mx-auto mb-1" />
-                  <span className="text-sm font-medium">{role.label}</span>
+                  <Icon className="w-6 h-6 mx-auto mb-2" />
+                  <span className="text-sm font-medium block">{role.label}</span>
+                  <span className="text-xs opacity-75 mt-1">클릭하여 로그인</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-gray-500">또는 직접 로그인</span>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4 mt-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               이메일
@@ -127,6 +140,7 @@ const LoginPage = () => {
           </button>
         </form>
 
+        {/* Quick test login UI - commented out as role buttons now handle quick login
         <div className="mt-6 pt-6 border-t border-gray-200">
           <p className="text-xs text-gray-500 text-center mb-3">빠른 테스트 로그인</p>
           <div className="grid grid-cols-2 gap-2">
@@ -141,9 +155,9 @@ const LoginPage = () => {
             ))}
           </div>
         </div>
+        */}
         
-        {/* Alternative back link */}
-        <div className="mt-4 text-center">
+        <div className="mt-6 pt-6 border-t border-gray-200 text-center">
           <button
             onClick={() => navigate('/')}
             className="text-sm text-gray-500 hover:text-gray-700 flex items-center justify-center space-x-1 mx-auto"
